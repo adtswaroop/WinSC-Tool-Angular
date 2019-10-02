@@ -1,4 +1,4 @@
-.project-logo{
+.project-logo {
     font-size: 2.5rem;
     float: left;
     margin-left: 2%;
@@ -6,29 +6,34 @@
     font-family: 'Lato'
 }
 
-.nav-menu{
-  float: right;
-  width: 20%;
-  margin-top: 2.5%;
-  text-align: center;
+.nav-menu {
+    float: right;
+    width: 20%;
+    margin-top: 2.5%;
+    text-align: center;
 }
 
-.menu-holder{
-  background-color: deepskyblue;
-  height: 15%;
+.navbar-brand {
+    font-family: 'Lato';
+    font-size: 2rem;
 }
 
-.menu-item{
-  display: inline;
-  margin-right: 5%;
+.menu-holder {
+    background-color: deepskyblue;
+    height: 15%;
 }
 
-.menu-button{
-  background-color: transparent;
-  border: none;
-  padding-left:0px;
+.menu-item {
+    display: inline;
+    margin-right: 5%;
+}
+
+.menu-button {
+    background-color: transparent;
+    border: none;
+    padding-left: 0px;
 }
 
 .mat-icon {
-  vertical-align: middle;
+    vertical-align: middle;
 }
