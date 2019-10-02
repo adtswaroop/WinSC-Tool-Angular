@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MainComponentComponent } from './components/main-component/main-component.component';
-import { NavigationComponentComponent } from './components/navigation-component/navigation-component.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     MainComponentComponent,
-    NavigationComponentComponent
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
