@@ -10,7 +10,9 @@ export class WinHolderComponent implements OnInit {
   sortStates;
   currentSortState;
 
-  constructor() { }
+  constructor() {
+    this.sortStates = ["Sort1", "Sort2"];
+  }
 
   ngOnInit() {
   }
