@@ -15,4 +15,11 @@ export class CategoryHolderComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleKey(event,box) {
+      if (event.key === 'Enter'){
+        this.categories.push({name:box.value});
+        box.value = "";
+      }
+  }
+
 }
