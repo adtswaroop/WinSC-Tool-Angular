@@ -1,0 +1,35 @@
+.bt-holder {
+  width: max-content;
+  text-align: center;
+}
+
+.btx {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.arw {
+  vertical-align: bottom;
+  color:black;
+}
+
+.btx-up {
+  padding-bottom: 0px;
+}
+
+.btx-down{
+  padding-top: 0px;
+}
+
+.arw-selected {
+  color: red !important;
+}
+
+.arw-unselected {
+  color:black;
+}
+
+.tooltip-inner {
+  white-space: pre-line;
+}
