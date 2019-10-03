@@ -20,6 +20,9 @@ import { WinHolderComponent } from './components/win-holder/win-holder.component
 import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.component';
 import { WinInputComponent } from './components/win-input/win-input.component';
 import { ProjectVisionComponent } from './components/project-vision/project-vision.component';
+import { VoteComponent } from './components/vote/vote.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { WinConditionComponent } from './components/win-condition/win-condition.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ProjectVisionComponent } from './components/project-vision/project-visi
     WinHolderComponent,
     SortDropdownComponent,
     WinInputComponent,
-    ProjectVisionComponent
+    ProjectVisionComponent,
+    VoteComponent,
+    CommentComponent,
+    WinConditionComponent
   ],
   imports: [
     BrowserModule,

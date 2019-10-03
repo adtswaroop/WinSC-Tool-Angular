@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WinCondition } from 'src/app/classes/win-condition';
+import { WinCondition } from '../../classes/win-condition';
 
 @Component({
   selector: 'app-win-holder',
@@ -11,24 +11,48 @@ export class WinHolderComponent implements OnInit {
   sortStates;
   currentSortState;
   winConditionsArray;
+  winConditions;
 
   constructor() {
-    this.sortStates = ["Sort1", "Sort2"];
-    this.currentSortState = "Sort1";
-    this.winConditionsArray = new Array<String>();
   }
 
   ngOnInit() {
+    this.sortStates = ["MostLikes", "LeastLikes"];
+    this.currentSortState = "MostLikes";
+    this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos", 1, 1, ["UI"], "win condition text 1", [])];
+    this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos", 2, 2, ["UI"], "win condition text 2", []));
+    this.winConditions.push(new WinCondition(["1"], ["1","2"], 3, "Carlos", 3, 3, ["UI"], "win condition text 3", []));
+    this.sort("MostLikes");
   }
 
-  sortByMostLikes() {
+  sortByMostLikes(pWinConditions) {
+    var clonePWinConditions = pWinConditions.slice(0);
+    clonePWinConditions.sort(function(a, b){
+      var aTotalVotes = a.upVoters.length - a.downVoters.length;
+      var bTotalVotes = b.upVoters.length - b.downVoters.length;
+      return bTotalVotes - aTotalVotes;
+    });
+    return clonePWinConditions;
   }
 
-  sortByLeastLikes() {
+  sortByLeastLikes(pWinConditions) {
+    var clonePWinConditions = pWinConditions.slice(0);
+    clonePWinConditions.sort(function(a, b){
+      var aTotalVotes = a.upVoters.length - a.downVoters.length;
+      var bTotalVotes = b.upVoters.length - b.downVoters.length;
+      return aTotalVotes - bTotalVotes;
+    });
+    return clonePWinConditions;
   }
 
   sort(currentSortStateChange) {
-    console.log("sort");
+    this.currentSortState = currentSortStateChange;
+    if(currentSortStateChange == "MostLikes"){
+      this.winConditions = this.sortByMostLikes(this.winConditions);
+    }
+    else if(currentSortStateChange == "LeastLikes"){
+      this.winConditions = this.sortByLeastLikes(this.winConditions);
+    }
   }
 
   postWinCondition(addWinCondition) {
