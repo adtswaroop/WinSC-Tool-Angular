@@ -55,7 +55,7 @@ export class WinHolderComponent implements OnInit {
     }
   }
   
-  createWinConditionHandler(pEvent Event) {
+  createWinConditionHandler(pEvent) {
     var newWinCondition = pEvent;
     this.winConditions = this.createWinCondition(newWinCondition, this.winConditions);
     this.sort(this.currentSortState);
