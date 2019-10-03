@@ -10,7 +10,10 @@ export class WinHolderComponent implements OnInit {
   sortStates;
   currentSortState;
 
-  constructor() { }
+  constructor() {
+    this.sortStates = ["Sort1", "Sort2"];
+    this.currentSortState = "Sort1";
+  }
 
   ngOnInit() {
   }
@@ -19,6 +22,10 @@ export class WinHolderComponent implements OnInit {
   }
 
   sortByLeastLikes() {
+  }
+
+  sort(currentSortStateChange) {
+    console.log("sort");
   }
 
 }

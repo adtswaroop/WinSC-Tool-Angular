@@ -1,1 +1,3 @@
-<p>sort-dropdown works!</p>
+<select (change)="changeSortState($event.target.value)">
+	<option *ngFor="let sortState of sortStates" [value]="sortState">{{sortState}}</option>
+</select>
