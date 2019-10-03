@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sort-dropdown',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SortDropdownComponent implements OnInit {
 
+  sortStates;
+  @Input() currentSortState: string;
+  @Output() currentSortStateChange = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeSortState() {
   }
 
 }
