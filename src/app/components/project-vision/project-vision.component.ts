@@ -8,28 +8,29 @@ import { FormBuilder,FormGroup,Validators, FormControl, ReactiveFormsModule } fr
 })
 export class ProjectVisionComponent implements OnInit {
 
-  addLinkForm : FormGroup
-  winpostpost : FormControl
+  addVisionForm : FormGroup
+  vision : FormControl
   @Output() addArticle = new EventEmitter<any>()
 
   constructor(private fb: FormBuilder) {
-    this.addLinkForm = this.fb.group({
-      winpost: ['',[Validators.required,Validators.minLength(4)]]
+    this.addVisionForm = this.fb.group({
+      vision: ['',[Validators.required,Validators.minLength(4)]]
     })
    }
 
   ngOnInit() {
   }
 
-  addLink = () => {
-    console.log(this.addLinkForm.controls['winpost'].value);
-    document.getElementById('winpost-value').textContent = this.addLinkForm.controls['winpost'].value;
-    this.addArticle.emit({
-      winpost:this.addLinkForm.controls['winpost'].value
+  addVision = () => {
+    console.log(this.addVisionForm.controls['vision'].value);
+    document.getElementById("save-button").style.display = 'none';
+    this.addVisionForm.setValue({
+      vision:this.addVisionForm.controls['vision'].value
     })
-    this.addLinkForm.setValue({
-      winpost:''
-    })
+  }
+
+  onInputClick = () => {
+    document.getElementById("save-button").style.display = 'inline';
   }
 
 }

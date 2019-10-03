@@ -10,11 +10,11 @@ import { WinCondition } from 'src/app/classes/win-condition';
 })
 export class WinInputComponent implements OnInit {
 
-  addLinkForm : FormGroup
+  addWinForm : FormGroup
   @Output() addWinCondition = new EventEmitter<WinCondition>()
 
   constructor(private fb: FormBuilder) {
-    this.addLinkForm = this.fb.group({
+    this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
    }
@@ -22,21 +22,21 @@ export class WinInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  addLink = () => {
-    console.log(this.addLinkForm.controls['winpost'].value);
-    document.getElementById('winpost-value').textContent = this.addLinkForm.controls['winpost'].value;
+  addWin = () => {
+    console.log(this.addWinForm.controls['winpost'].value);
+    document.getElementById('winpost-value').textContent = this.addWinForm.controls['winpost'].value;
     this.addWinCondition.emit({
       upVoters: null,
       downVoters: null,
       likeType: 1,
       userName: 'Romi',
       userId: 1,
-      text:this.addLinkForm.controls['winpost'].value,
+      text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
       categories: null,
       comments: null
     })
-    this.addLinkForm.setValue({
+    this.addWinForm.setValue({
       winpost:''
     })
   }

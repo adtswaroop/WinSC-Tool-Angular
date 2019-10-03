@@ -1,15 +1,12 @@
 <!-- form start -->
-<form style="width:50%; margin-top:30px; margin-left:30px; display:flow-root;" [formGroup]='addLinkForm' (ngSubmit)="addLink()">
+<form id="vision-form" [formGroup]='addVisionForm' (ngSubmit)="addVision()">
     <div class="box-body">
         <div class="form-group">
-            <label for="winpost">Vision</label>
+            <label for="vision">Vision</label>
             <div>
-                <input style="display:inline; width:90%;" type="text" class="form-control input-lg" id="winpost" placeholder="Write a win condition" formControlName='winpost'>
-                <button [disabled]='!addLinkForm.valid' type="submit" class="btn btn-primary">Edit</button>
+                <input (click)="onInputClick()" type="text" class="form-control input-lg" id="vision" placeholder="Write the project vision" formControlName='vision'>
+                <button [disabled]='!addVisionForm.valid' type="submit" class="btn btn-primary" id="save-button">Save</button>
             </div>
         </div>
     </div>
-    <!-- <div class="box-footer" style="float:right;">
-        <button [disabled]='!addLinkForm.valid' type="submit" class="btn btn-primary">Post</button>
-    </div> -->
 </form>

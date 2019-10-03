@@ -1,0 +1,15 @@
+#vision-form {
+    width: 50%;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flow-root;
+}
+
+#vision {
+    display: inline;
+    width: 90%;
+}
+
+#save-button {
+    display: none;
+}

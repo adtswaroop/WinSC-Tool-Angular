@@ -1,2 +1,2 @@
 <app-sort-dropdown [sortStates]="sortStates" [currentSortState]="currentSortState" (currentSortStateChange)="sort($event)"></app-sort-dropdown>
-<app-win-input></app-win-input>
+<app-win-input (addWinCondition)="postWinCondition($event)"></app-win-input>

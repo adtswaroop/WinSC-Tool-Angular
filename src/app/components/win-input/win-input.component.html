@@ -1,15 +1,15 @@
-<form style="width:50%; margin-top:30px; margin-left:30px; display:flow-root;" [formGroup]='addLinkForm' (ngSubmit)="addLink()">
+<form id="win-form" [formGroup]='addWinForm' (ngSubmit)="addWin()">
     <div class="box-body">
         <div class="form-group">
             <label for="winpost">Win Condition</label>
             <input type="text" class="form-control input-lg" id="winpost" placeholder="Write a win condition" formControlName='winpost'>
         </div>
     </div>
-    <div class="box-footer" style="float:right;">
-        <button [disabled]='!addLinkForm.valid' type="submit" class="btn btn-primary">Post</button>
+    <div class="box-footer" id="post-button">
+        <button [disabled]='!addWinForm.valid' type="submit" class="btn btn-primary">Post</button>
     </div>
 </form>
 
-<div style="width:50%; margin-top:30px; margin-left:30px;">
+<div id="win-condition">
     <p id="winpost-value"></p>
 </div>

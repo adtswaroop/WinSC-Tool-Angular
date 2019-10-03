@@ -1,0 +1,16 @@
+#win-form {
+    width: 50%;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flow-root;
+}
+
+#post-button {
+    float: right;
+}
+
+#win-condition {
+    width: 50%;
+    margin-top: 30px;
+    margin-left: 30px;
+}
