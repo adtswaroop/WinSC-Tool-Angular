@@ -1,1 +1,20 @@
-<p>category-holder works!</p>
+<div class="category-holder">
+
+  <p class="category-header">
+    Categories
+  </p>
+
+  <div *ngFor="let category of categories">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="">
+      <label class="form-check-label">
+        {{ category.name }}
+      </label>
+    </div>
+  </div>
+
+  <div class="category-input">
+      <input class="text" type="text" placeholder="Enter a new category...">
+  </div>
+
+</div>

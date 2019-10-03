@@ -1,0 +1,20 @@
+.form-check {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.category-holder {
+  position: absolute;
+  right: 5%;
+  top: 150px;
+}
+
+.category-input {
+  padding-top: 5px;
+}
+
+.category-header{
+  text-align: center;
+  font-weight: bold;
+  font-size: 14pt;
+}
