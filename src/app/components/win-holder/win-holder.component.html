@@ -1,2 +1,2 @@
 <app-sort-dropdown [sortStates]="sortStates" [currentSortState]="currentSortState" (currentSortStateChange)="sort($event)"></app-sort-dropdown>
-<div *ngFor="let winCondition of winConditions">{{winCondition.text}} + number of liked: {{winCondition.upVoters.length}}</div>
+<app-win-condition *ngFor="let winCondition of winConditions" [winCondition]="winCondition"></app-win-condition>
