@@ -14,6 +14,7 @@ import { ProjectBenefitsComponent } from './components/project-benefits/project-
 import { ProjectPriorizationComponent } from './components/project-priorization/project-priorization.component';
 import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 import { ProjectComponent } from './components/project/project.component';
+import { CategoryHolderComponent } from './components/category-holder/category-holder.component';
 import { WinHolderComponent } from './components/win-holder/win-holder.component';
 import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.component';
 
@@ -28,6 +29,7 @@ import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.
     ProjectPriorizationComponent,
     ProjectSettingsComponent,
     ProjectComponent,
+    CategoryHolderComponent,
     WinHolderComponent,
     SortDropdownComponent
   ],
