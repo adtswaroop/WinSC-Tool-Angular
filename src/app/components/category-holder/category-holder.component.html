@@ -14,7 +14,7 @@
   </div>
 
   <div class="category-input">
-      <input class="text" type="text" placeholder="Enter a new category...">
+      <input #box (keyup)="handleKey($event,box)" class="text" type="text" placeholder="Enter a new category...">
   </div>
 
 </div>
