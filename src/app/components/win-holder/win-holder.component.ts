@@ -54,11 +54,17 @@ export class WinHolderComponent implements OnInit {
       this.winConditions = this.sortByLeastLikes(this.winConditions);
     }
   }
+  
+  createWinConditionHandler(pEvent Event) {
+    var newWinCondition = pEvent;
+    this.winConditions = this.createWinCondition(newWinCondition, this.winConditions);
+    this.sort(this.currentSortState);
+  }
 
-  postWinCondition(addWinCondition) {
-    this.winConditionsArray.push(addWinCondition);
-    console.log(this.winConditionsArray);
-    // TODO: update view
+  createWinCondition(pWinCondition, pWinConditions) {
+    var clonePWinConditions = pWinConditions.slice(0);
+    clonePWinConditions.push(pWinCondition);
+    return clonePWinConditions;
   }
 
 }
