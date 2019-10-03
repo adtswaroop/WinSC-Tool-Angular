@@ -14,6 +14,7 @@ import { ProjectBenefitsComponent } from './components/project-benefits/project-
 import { ProjectPriorizationComponent } from './components/project-priorization/project-priorization.component';
 import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 import { ProjectComponent } from './components/project/project.component';
+import { CategoryHolderComponent } from './components/category-holder/category-holder.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProjectComponent } from './components/project/project.component';
     ProjectBenefitsComponent,
     ProjectPriorizationComponent,
     ProjectSettingsComponent,
-    ProjectComponent
+    ProjectComponent,
+    CategoryHolderComponent
   ],
   imports: [
     BrowserModule,
