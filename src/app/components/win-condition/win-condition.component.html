@@ -1,0 +1,21 @@
+
+<div class="commentMain">
+    <app-vote [comment]="wcToComment()"> </app-vote>
+
+
+    <div class="commentText">
+      <p><b>{{ winCondition.userName }} added the win condition:</b></p>
+      <p > {{ winCondition.text }} </p>
+      <a href="#" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
+      <a href="#" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a>
+
+    </div>
+
+  </div>
+
+<div class="commentHolder" *ngIf="showComments">
+    <div *ngFor="let com of winCondition.comments">
+        <app-comment [comment]=com></app-comment>
+  </div>
+</div>
+

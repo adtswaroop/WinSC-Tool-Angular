@@ -19,6 +19,7 @@ import { WinHolderComponent } from './components/win-holder/win-holder.component
 import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.component';
 import { VoteComponent } from './components/vote/vote.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { WinConditionComponent } from './components/win-condition/win-condition.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CommentComponent } from './components/comment/comment.component';
     WinHolderComponent,
     SortDropdownComponent,
     VoteComponent,
-    CommentComponent
+    CommentComponent,
+    WinConditionComponent
   ],
   imports: [
     BrowserModule,
