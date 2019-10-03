@@ -21,6 +21,7 @@ export class WinHolderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sort("MostLikes");
   }
 
   sortByMostLikes(pWinConditions) {
