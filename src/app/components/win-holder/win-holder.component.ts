@@ -24,4 +24,8 @@ export class WinHolderComponent implements OnInit {
   sortByLeastLikes() {
   }
 
+  sort(currentSortStateChange) {
+    console.log("sort");
+  }
+
 }
