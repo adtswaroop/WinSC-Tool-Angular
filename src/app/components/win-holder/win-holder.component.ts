@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinHolderComponent implements OnInit {
 
+  sortStates;
+  currentSortState;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  sortByMostLikes() {
+  }
+
+  sortByLeastLikes() {
   }
 
 }
