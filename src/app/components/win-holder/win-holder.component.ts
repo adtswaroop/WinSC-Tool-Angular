@@ -10,6 +10,7 @@ export class WinHolderComponent implements OnInit {
 
   sortStates;
   currentSortState;
+  winConditionsArray;
   winConditions;
 
   constructor() {
@@ -53,7 +54,7 @@ export class WinHolderComponent implements OnInit {
       this.winConditions = this.sortByLeastLikes(this.winConditions);
     }
   }
-
+  
   createWinConditionHandler(pEvent Event) {
     var newWinCondition = pEvent;
     this.winConditions = this.createWinCondition(newWinCondition, this.winConditions);

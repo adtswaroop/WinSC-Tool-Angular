@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
@@ -17,6 +18,8 @@ import { ProjectComponent } from './components/project/project.component';
 import { CategoryHolderComponent } from './components/category-holder/category-holder.component';
 import { WinHolderComponent } from './components/win-holder/win-holder.component';
 import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.component';
+import { WinInputComponent } from './components/win-input/win-input.component';
+import { ProjectVisionComponent } from './components/project-vision/project-vision.component';
 import { VoteComponent } from './components/vote/vote.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { WinConditionComponent } from './components/win-condition/win-condition.component';
@@ -35,6 +38,8 @@ import { WinConditionComponent } from './components/win-condition/win-condition.
     CategoryHolderComponent,
     WinHolderComponent,
     SortDropdownComponent,
+    WinInputComponent,
+    ProjectVisionComponent,
     VoteComponent,
     CommentComponent,
     WinConditionComponent
@@ -44,7 +49,9 @@ import { WinConditionComponent } from './components/win-condition/win-condition.
     BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

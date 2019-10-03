@@ -1,0 +1,12 @@
+<!-- form start -->
+<form id="vision-form" [formGroup]='addVisionForm' (ngSubmit)="addVision()">
+    <div class="box-body">
+        <div class="form-group">
+            <label for="vision">Vision</label>
+            <div>
+                <input (click)="onInputClick()" type="text" class="form-control input-lg" id="vision" placeholder="Write the project vision" formControlName='vision'>
+                <button [disabled]='!addVisionForm.valid' type="submit" class="btn btn-primary" id="save-button">Save</button>
+            </div>
+        </div>
+    </div>
+</form>

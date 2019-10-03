@@ -1,8 +1,3 @@
 <app-sort-dropdown [sortStates]="sortStates" [currentSortState]="currentSortState" (currentSortStateChange)="sort($event)"></app-sort-dropdown>
+<app-win-input (addWinCondition)="createWinConditionHandler($event)"></app-win-input>
 <app-win-condition *ngFor="let winCondition of winConditions" [winCondition]="winCondition"></app-win-condition>
-
-<!-- You will not be able to see this text. 
-
-<app-win-input (winInputEvent)="createWinConditionHandler($event)"></app-win-input>>
-
--->
