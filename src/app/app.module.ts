@@ -18,7 +18,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { CategoryHolderComponent } from './components/category-holder/category-holder.component';
 import { WinHolderComponent } from './components/win-holder/win-holder.component';
 import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.component';
-import { WinConditionComponent } from './components/win-condition/win-condition.component';
+import { WinInputComponent } from './components/win-input/win-input.component';
 import { ProjectVisionComponent } from './components/project-vision/project-vision.component';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { ProjectVisionComponent } from './components/project-vision/project-visi
     CategoryHolderComponent,
     WinHolderComponent,
     SortDropdownComponent,
-    WinConditionComponent,
+    WinInputComponent,
     ProjectVisionComponent
   ],
   imports: [

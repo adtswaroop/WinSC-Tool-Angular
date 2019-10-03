@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WinConditionComponent } from './win-condition.component';
+import { WinInputComponent } from './win-input.component';
 
-describe('WinConditionComponent', () => {
-  let component: WinConditionComponent;
-  let fixture: ComponentFixture<WinConditionComponent>;
+describe('WinInputComponent', () => {
+  let component: WinInputComponent;
+  let fixture: ComponentFixture<WinInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WinConditionComponent ]
+      declarations: [ WinInputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WinConditionComponent);
+    fixture = TestBed.createComponent(WinInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
