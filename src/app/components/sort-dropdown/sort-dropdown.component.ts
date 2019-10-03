@@ -16,7 +16,9 @@ export class SortDropdownComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeSortState() {
+  changeSortState(pState) {
+  	this.currentSortState = pState;
+  	this.currentSortStateChange.emit(pState);
   }
 
 }
