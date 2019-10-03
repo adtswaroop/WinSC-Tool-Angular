@@ -18,6 +18,7 @@ import { CategoryHolderComponent } from './components/category-holder/category-h
 import { WinHolderComponent } from './components/win-holder/win-holder.component';
 import { SortDropdownComponent } from './components/sort-dropdown/sort-dropdown.component';
 import { VoteComponent } from './components/vote/vote.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { VoteComponent } from './components/vote/vote.component';
     CategoryHolderComponent,
     WinHolderComponent,
     SortDropdownComponent,
-    VoteComponent
+    VoteComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

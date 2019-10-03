@@ -1,0 +1,12 @@
+.commentText{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.commentMain{
+  display: table;
+}
+
+.commentText p {
+  margin: 0;
+}
