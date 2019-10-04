@@ -36,9 +36,16 @@ export class VoteComponent implements OnInit {
   generateUpVoters() {
     let res: string;
     if (this.likeType === 1) {
-      res  = 'You, ';
+      if (this.upVoters.length === 0){
+        res = 'You ';
+      } else {
+        res  = 'You, ';
+      }
     } else {
       res = '';
+    }
+    if (res === '' && this.upVoters.length === 0) {
+      return 'Nobody upvoted';
     }
     return res + this.upVoters.join(', ') + ' upvoted';
   }
@@ -46,9 +53,16 @@ export class VoteComponent implements OnInit {
   generateDownVoters() {
     let res: string;
     if (this.likeType === -1) {
-      res  = 'You, ';
+      if (this.downVoters.length === 0){
+        res = 'You ';
+      } else {
+        res  = 'You, ';
+      }
     } else {
       res = '';
+    }
+    if (res === '' && this.downVoters.length === 0) {
+      return 'Nobody downvoted';
     }
     return res + this.downVoters.join(', ') + ' downvoted';
   }
