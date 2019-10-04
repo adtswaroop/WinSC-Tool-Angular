@@ -1,6 +1,7 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder,FormGroup,Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { WinCondition } from 'src/app/classes/win-condition';
+import { categories } from '../category-holder/dummyCategories';
 // import { WinCondition } from 'src/app/classes/win-condition';
 
 @Component({
@@ -11,12 +12,20 @@ import { WinCondition } from 'src/app/classes/win-condition';
 export class WinInputComponent implements OnInit {
 
   addWinForm : FormGroup
-  @Output() addWinCondition = new EventEmitter<WinCondition>()
+  @Input() categories: string;
+  @Input() currentCategory: string;
+  @Output() currentCategoryChange = new EventEmitter<string>();
+  @Output() addWinCondition = new EventEmitter<WinCondition>();
 
   constructor(private fb: FormBuilder) {
     this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
+   }
+
+   changeCategory(pCategory) {
+     this.currentCategory = pCategory;
+     this.currentCategoryChange.emit(pCategory);
    }
 
   ngOnInit() {

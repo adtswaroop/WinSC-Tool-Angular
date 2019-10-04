@@ -8,8 +8,15 @@
 #vision {
     display: inline;
     width: 90%;
+    border: none;
+    text-decoration: underline;
 }
 
 #save-button {
     display: none;
+}
+
+#project-name {
+    font-family: 'Lato';
+    font-size: 1.5em;
 }

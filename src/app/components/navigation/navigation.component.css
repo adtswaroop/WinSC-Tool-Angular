@@ -18,6 +18,10 @@
     font-size: 2rem;
 }
 
+.navbar {
+    padding: .5rem 2rem;
+}
+
 .menu-holder {
     background-color: deepskyblue;
     height: 15%;

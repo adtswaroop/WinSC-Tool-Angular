@@ -1,12 +1,12 @@
-.commentText{
-  display: table-cell;
-  vertical-align: middle;
+.commentText {
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.commentMain{
-  display: table;
+.commentMain {
+    display: table;
 }
 
 .commentText p {
-  margin: 0;
+    margin: 0;
 }
