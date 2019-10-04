@@ -31,4 +31,11 @@ export class WinConditionComponent implements OnInit {
     this.showComments = !this.showComments;
   }
 
+  handleCommentAdd(event,box) {
+    if (event.key === 'Enter' && box.value.length > 0) { // TODO: Proper value check
+      this.winCondition.comments.push(new Comment([], [], 0, 'Romi A.', 1, 1, [ ], box.value, 0, false));
+      box.value = '';
+    }
+  }
+
 }
