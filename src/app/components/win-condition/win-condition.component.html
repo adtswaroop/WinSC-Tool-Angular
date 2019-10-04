@@ -16,4 +16,5 @@
     <div *ngFor="let com of winCondition.comments">
         <app-comment [comment]=com></app-comment>
     </div>
+    <input #box (keyup)="handleCommentAdd($event,box)" class="text" type="text" placeholder="Enter a new comment">
 </div>
