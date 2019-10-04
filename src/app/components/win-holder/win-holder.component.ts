@@ -22,7 +22,7 @@ export class WinHolderComponent implements OnInit {
   ngOnInit() {
     this.sortStates = ["MostLikes", "LeastLikes"];
     this.currentSortState = "MostLikes";
-    this.categories = categories.values;
+    this.categories = categories;
     this.currentCategory = "None";
     this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos Santana", 1, 1, ["UI"], "win condition text 1", [])];
     this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos Santana", 2, 2, ["UI"], "win condition text 2", []));
