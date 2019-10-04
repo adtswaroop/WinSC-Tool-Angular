@@ -26,15 +26,15 @@ export class WinInputComponent implements OnInit {
     console.log(this.addWinForm.controls['winpost'].value);
     document.getElementById('winpost-value').textContent = this.addWinForm.controls['winpost'].value;
     this.addWinCondition.emit({
-      upVoters: ["1","2","3","4"],
-      downVoters: ["1","2"],
-      likeType: 1,
+      upVoters: [],
+      downVoters: [],
+      likeType: 0,
       userName: 'Romi',
       userId: 1,
       text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
       categories: null,
-      comments: null
+      comments: []
     })
     this.addWinForm.setValue({
       winpost:''
