@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WinCondition } from '../../classes/win-condition';
 import { categories } from '../category-holder/dummyCategories';
+import { DummyData } from '../../classes/dummy-data';
 
 @Component({
   selector: 'app-win-holder',
@@ -24,9 +25,10 @@ export class WinHolderComponent implements OnInit {
     this.currentSortState = "MostLikes";
     this.categories = categories;
     this.currentCategory = "None";
-    this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos Santana", 1, 1, ["UI"], "win condition text 1", [])];
-    this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos Santana", 2, 2, ["UI"], "win condition text 2", []));
-    this.winConditions.push(new WinCondition(["1"], ["1","2"], 3, "Carlos Santana", 3, 3, ["UI"], "win condition text 3", []));
+    this.winConditions = new DummyData().wcArr;
+    // this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos", 1, 1, ["UI"], "win condition text 1", [])];
+    // this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos", 2, 2, ["UI"], "win condition text 2", []));
+    // this.winConditions.push(new WinCondition(["1"], ["1","2"], 3, "Carlos", 3, 3, ["UI"], "win condition text 3", []));
     this.sort("MostLikes");
   }
 
@@ -63,7 +65,7 @@ export class WinHolderComponent implements OnInit {
   categorize(currentCategoryChange){
     this.currentCategory = currentCategoryChange;
   }
-  
+
   createWinConditionHandler(pEvent) {
     var newWinCondition = pEvent;
     this.winConditions = this.createWinCondition(newWinCondition, this.winConditions);
