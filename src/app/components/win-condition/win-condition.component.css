@@ -1,16 +1,18 @@
-.commentText{
-  display: table-cell;
-  vertical-align: middle;
+.commentText {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
 }
 
-.commentMain{
-  display: table;
+.commentMain {
+    display: table;
+    margin-left: 30px;
 }
 
 .commentText p {
-  margin: 0;
+    margin: 0;
 }
 
 .commentHolder {
-  margin-left: 3%;
+    margin-left: 3%;
 }

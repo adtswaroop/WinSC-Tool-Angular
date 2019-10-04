@@ -1,15 +1,12 @@
 <form id="win-form" [formGroup]='addWinForm' (ngSubmit)="addWin()">
     <div class="box-body">
+        <!-- <label for="winpost">Win Condition</label> -->
         <div class="form-group">
-            <label for="winpost">Win Condition</label>
             <input type="text" class="form-control input-lg" id="winpost" placeholder="Write a win condition" formControlName='winpost'>
+            <select (change)="changeCategory($event.target.value)">
+                <option *ngFor="let category of categories" [value]="category">{{category.name}}</option>
+            </select>
+            <button id="post-button" [disabled]='!addWinForm.valid' type="submit" class="btn btn-primary">Post</button>
         </div>
     </div>
-    <div class="box-footer" id="post-button">
-        <button [disabled]='!addWinForm.valid' type="submit" class="btn btn-primary">Post</button>
-    </div>
 </form>
-
-<div id="win-condition" style="display: none;">
-    <p id="winpost-value"></p>
-</div>

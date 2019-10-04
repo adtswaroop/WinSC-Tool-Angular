@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WinCondition } from '../../classes/win-condition';
+import { categories } from '../category-holder/dummyCategories';
 import { DummyData } from '../../classes/dummy-data';
 
 @Component({
@@ -11,6 +12,8 @@ export class WinHolderComponent implements OnInit {
 
   sortStates;
   currentSortState;
+  categories;
+  currentCategory;
   winConditionsArray;
   winConditions;
 
@@ -20,6 +23,8 @@ export class WinHolderComponent implements OnInit {
   ngOnInit() {
     this.sortStates = ["MostLikes", "LeastLikes"];
     this.currentSortState = "MostLikes";
+    this.categories = categories;
+    this.currentCategory = "None";
     this.winConditions = new DummyData().wcArr;
     // this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos", 1, 1, ["UI"], "win condition text 1", [])];
     // this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos", 2, 2, ["UI"], "win condition text 2", []));
@@ -55,6 +60,10 @@ export class WinHolderComponent implements OnInit {
     else if(currentSortStateChange == "LeastLikes"){
       this.winConditions = this.sortByLeastLikes(this.winConditions);
     }
+  }
+
+  categorize(currentCategoryChange){
+    this.currentCategory = currentCategoryChange;
   }
 
   createWinConditionHandler(pEvent) {
