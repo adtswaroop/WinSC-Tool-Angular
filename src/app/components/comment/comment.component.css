@@ -5,8 +5,16 @@
 
 .commentMain {
     display: table;
+    padding-left: 30px
 }
 
 .commentText p {
     margin: 0;
+}
+
+#imgDiv img {
+    width:40px;
+    padding: 5px;
+    margin-top: 20px;
+    /* display: table-cell; */
 }
