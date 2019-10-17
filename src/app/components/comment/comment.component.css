@@ -8,12 +8,38 @@
     padding-left: 30px
 }
 
+#header>p{
+    display: inline-block;
+    float: left;
+}
+
+#icons
+{
+    display: inline-block;
+    float: right;
+   
+}
+
+.fas{
+    font-size: 12px;
+    color: #007bff;
+    padding: 3px;
+}
+
+.fas:hover{
+    font-size: 15px;
+    color: black;
+    padding: 3px;
+}
+
 .commentText p {
     margin: 0;
+    display: inline-block;
+    margin-top:3px;
 }
 
 #imgDiv img {
-    width:40px;
+    width:35px;
     padding: 5px;
     margin-top: 20px;
     /* display: table-cell; */
