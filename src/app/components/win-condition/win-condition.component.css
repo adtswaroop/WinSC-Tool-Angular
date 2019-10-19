@@ -2,6 +2,7 @@
     display: table-cell;
     vertical-align: middle;
     padding-left: 10px;
+    width: 38rem;
 }
 
 .commentMain {
@@ -18,9 +19,9 @@
 }
 
 .text {
-    margin-left: 30px;
-    display: block;
+    margin-left: 70px;
     width: 30%;
+    display: block;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -32,4 +33,46 @@
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#chkIssue {
+    margin-left: 70px;
+}
+
+#lblIssue {
+    margin-left: 5px;
+    font-size: small;
+}
+
+
+/* #header {
+    display: block;
+    float: left;
+} */
+
+#header>p {
+    display: block;
+    width: 100%;
+    float: left;
+}
+
+#icons {
+    display: inline-block;
+    float: right;
+}
+
+#winConText>p {
+    display: inline-block;
+}
+
+.fas {
+    font-size: 12px;
+    color: #007bff;
+    padding: 3px;
+}
+
+.fas:hover {
+    font-size: 15px;
+    color: black;
+    padding: 3px;
 }

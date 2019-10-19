@@ -1,35 +1,39 @@
 .bt-holder {
-  width: max-content;
-  text-align: center;
+    width: max-content;
+    text-align: center;
 }
 
 .btx {
-  background: transparent;
-  border: none;
-  outline: none;
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .arw {
-  vertical-align: bottom;
-  color:black;
+    vertical-align: bottom;
+    color: black;
 }
 
 .btx-up {
-  padding-bottom: 0px;
+    padding-bottom: 0px;
 }
 
-.btx-down{
-  padding-top: 0px;
+.btx-down {
+    padding-top: 0px;
 }
 
-.arw-selected {
-  color: red !important;
+.arw-up-selected {
+    color: green !important;
+}
+
+.arw-down-selected {
+    color: red !important;
 }
 
 .arw-unselected {
-  color:black;
+    color: black;
 }
 
 .tooltip-inner {
-  white-space: pre-line;
+    white-space: pre-line;
 }
