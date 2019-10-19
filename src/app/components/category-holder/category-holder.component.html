@@ -1,20 +1,36 @@
 <div class="category-holder">
+    <p class="category-header">
+        Categories
+    </p>
+    <form id="category-form" [formGroup]="categoryForm" (ngSubmit)="applyCategory()">
+        <label formArrayName="categories" *ngFor="let category of categoryForm.controls.categories.controls; let i = index">
+          <input type="checkbox" [formControlName]="i">
+          {{categories[i].name}}
+        </label>
 
-  <p class="category-header">
-    Categories
-  </p>
+        <div class="category-input">
+            <input #box (keyup)="handleKey($event,box)" class="text" type="text" placeholder="Enter a new category...">
+        </div>
+        <button id="apply-category" type="submit" class="btn btn-primary">Apply</button>
+    </form>
+    <!-- <form id="category-form" [formGroup]='applyCategoryForm' (ngSubmit)="applyCategory()">
+        <div *ngFor="let category of categories">
+            <div class="form-check">
+                <input class="form-check-input" id="categorycheck" type="checkbox" value="" formControlName='categorycheck'>
+                <label class="form-check-label" id="categoryname">
+                {{ category.name }}
+              </label>
+            </div>
+        </div>
+        <label formArrayName="categories" *ngFor="let category of applyCategoryForm.controls.categories.controls; let i = index">
+            <input type="checkbox" [formControlName]="i">
+            {{categories[i].name}}
+          </label>
 
-  <div *ngFor="let category of categories">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="">
-      <label class="form-check-label">
-        {{ category.name }}
-      </label>
-    </div>
-  </div>
 
-  <div class="category-input">
-      <input #box (keyup)="handleKey($event,box)" class="text" type="text" placeholder="Enter a new category...">
-  </div>
-
+        <div class="category-input">
+            <input #box (keyup)="handleKey($event,box)" class="text" type="text" placeholder="Enter a new category...">
+        </div>
+        <button id="apply-category" [disabled]='!applyCategoryForm.valid' type="submit" class="btn btn-primary">Apply</button>
+    </form> -->
 </div>
