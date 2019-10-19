@@ -2,6 +2,7 @@
     display: table-cell;
     vertical-align: middle;
     padding-left: 10px;
+    width: 38rem;
 }
 
 .commentMain {
@@ -34,42 +35,43 @@
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-#chkIssue
-{
+#chkIssue {
     margin-left: 70px;
 }
 
-#lblIssue
-{
+#lblIssue {
     margin-left: 5px;
     font-size: small;
 }
 
 
-#header>p{
-    display: inline-block;
+/* #header {
+    display: block;
+    float: left;
+} */
+
+#header>p {
+    display: block;
+    width: 100%;
     float: left;
 }
 
-#icons
-{
+#icons {
     display: inline-block;
-    /* float: right; */
-    margin-left: 5%;
-   
+    float: right;
 }
 
-#winConText>p{
+#winConText>p {
     display: inline-block;
 }
 
-.fas{
-    font-size: 10px;
+.fas {
+    font-size: 12px;
     color: #007bff;
     padding: 3px;
 }
 
-.fas:hover{
+.fas:hover {
     font-size: 15px;
     color: black;
     padding: 3px;
