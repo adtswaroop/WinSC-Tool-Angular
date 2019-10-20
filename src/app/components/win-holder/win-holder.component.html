@@ -1,3 +1,3 @@
 <app-win-input (addWinCondition)="createWinConditionHandler($event)" [categories]="categories" [currentCategory]="currentCategory" (currentCategoryChange)="sort($event)"></app-win-input>
-<app-sort-dropdown class="ml-4" [sortStates]="sortStates" [currentSortState]="currentSortState" (currentSortStateChange)="sort($event)"></app-sort-dropdown>
+<app-sort-dropdown class="mr-5" id="sort-dropdown" [sortStates]="sortStates" [currentSortState]="currentSortState" (currentSortStateChange)="sort($event)"></app-sort-dropdown>
 <app-win-condition *ngFor="let winCondition of winConditions" [winCondition]="winCondition"></app-win-condition>

@@ -1,15 +1,24 @@
 <div class="commentMain">
-    <app-vote [comment]="wcToComment()"> </app-vote>
+    <app-vote [comment]="wcToComment()" style="display: table-cell;"> </app-vote>
 
-
+    <div id="imgDiv"><img src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" style="width: 35px; padding-top: 20px;"></div>
     <div class="commentText">
-        <p><b>{{ winCondition.userName }}:</b></p>
+        <div id="header">
+            <p><b>{{ winCondition.userName }}:</b></p>
+        </div>
         <div class="categoryHolder">
             <div *ngFor="let category of winCondition.categories" id="category-labels">
                 <span [ngStyle]="{'color': category.color}">{{ category.name }}</span>
             </div>
         </div>
-        <p> {{ winCondition.text }} </p>
+        <div id="icons">
+                <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+                <i class="fas fa-trash-alt" title="Delete Comment"></i>
+                <i class="fas fa-check" title="Mark as Issue Resolved"></i>
+        </div>
+        <div id="winConText">
+            <p> {{ winCondition.text }} </p>
+        </div>
         <a href="#" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
         <a href="#" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a>
 
@@ -21,5 +30,9 @@
     <div *ngFor="let com of winCondition.comments">
         <app-comment [comment]=com></app-comment>
     </div>
+    <span>
     <input #box (keyup)="handleCommentAdd($event,box)" class="text" type="text" placeholder="Enter a new comment">
+    <input id="chkIssue" type="checkbox" value="">
+      <label id="lblIssue">Tag comment as an Issue</label>
+</span>
 </div>

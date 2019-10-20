@@ -4,9 +4,8 @@
 }
 
 .category-holder {
-    position: absolute;
-    right: 8%;
-    top: 260px;
+    margin-top: 30px;
+    width: 80%;
 }
 
 .category-input {

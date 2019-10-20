@@ -10,13 +10,13 @@ export class DummyData {
   public categoryArray2 = [this.cat2];
   public categoryArray3 = [this.cat1, this.cat2];
 
-  public c1 = new Comment(['Aditi', 'Romi'], ['Alex'], 1, 'Alp C.', 1, 5, this.categoryArray1,
+  public c1 = new Comment(['Aditi', 'Romi'], ['Alex'], 1, 'Alp', 1, 5, this.categoryArray1,
                           'This feature is really good', 100, false);
-  public c2 = new Comment(['Aditi', 'Romi'], ['Alex'], 0, 'Romi A.', 1, 5, this.categoryArray1,
+  public c2 = new Comment(['Aditi', 'Romi'], ['Alex'], 0, 'Romi', 1, 5, this.categoryArray1,
                           'I am not sure that we can implement this', 100, false);
-  public c3 = new Comment(['Aditi', 'Romi'], ['Alex H.'], -1, 'Romi A.', 1, 5, this.categoryArray1,
+  public c3 = new Comment(['Aditi', 'Romi'], ['Alex'], -1, 'Romi', 1, 5, this.categoryArray1,
                           'Looks good! Well done', 100, false);
-  public c4 = new Comment(['Aditi', 'Romi'], ['Doruk K.'], 1, 'Romi A.', 1, 5, this.categoryArray1,
+  public c4 = new Comment(['Aditi', 'Romi'], ['Doruk'], 1, 'Romi', 1, 5, this.categoryArray1,
                           'This will work!', 100, false);
 
   public w1 =new WinCondition(['Aditi','Romi'],['Doruk'],0,'Kam',5,5,this.categoryArray1,
