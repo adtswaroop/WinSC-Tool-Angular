@@ -39,10 +39,10 @@ export class WinHolderPriorizationComponent implements OnInit {
   sort(currentSortStateChange) {
     this.currentSortState = currentSortStateChange;
     if(currentSortStateChange == "MostLikes"){
-      this.winConditions = this.sortByMostLikes(this.winConditions);
+      //this.winConditions = this.sortByMostLikes(this.winConditions);
     }
     else if(currentSortStateChange == "LeastLikes"){
-      this.winConditions = this.sortByLeastLikes(this.winConditions);
+      //this.winConditions = this.sortByLeastLikes(this.winConditions);
     }
   }
 

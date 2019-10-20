@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
@@ -55,7 +57,8 @@ import { WinConditionInputComponent } from './components/win-condition-input/win
     MatIconModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
