@@ -24,6 +24,7 @@ import { VoteComponent } from './components/vote/vote.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { WinConditionComponent } from './components/win-condition/win-condition.component';
 import { WinConditionPriorizationComponent } from './components/win-condition-priorization/win-condition-priorization.component';
+import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { WinConditionPriorizationComponent } from './components/win-condition-pr
     VoteComponent,
     CommentComponent,
     WinConditionComponent,
-    WinConditionPriorizationComponent
+    WinConditionPriorizationComponent,
+    WinConditionInputComponent
   ],
   imports: [
     BrowserModule,
