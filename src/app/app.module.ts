@@ -23,6 +23,7 @@ import { ProjectVisionComponent } from './components/project-vision/project-visi
 import { VoteComponent } from './components/vote/vote.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { WinConditionComponent } from './components/win-condition/win-condition.component';
+import { WinConditionPriorizationComponent } from './components/win-condition-priorization/win-condition-priorization.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { WinConditionComponent } from './components/win-condition/win-condition.
     ProjectVisionComponent,
     VoteComponent,
     CommentComponent,
-    WinConditionComponent
+    WinConditionComponent,
+    WinConditionPriorizationComponent
   ],
   imports: [
     BrowserModule,
