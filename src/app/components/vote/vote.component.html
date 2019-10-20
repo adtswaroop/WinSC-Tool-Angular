@@ -1,13 +1,13 @@
 <div class="bt-holder">
     <div>
-        <button (click)='handleButton(1)' type="button" class="btx btx-up"><i [ngClass]="{'arw-selected': likeType=='1'}" class="fas fa-caret-up fa-2x arw"></i></button>
+        <button (click)='handleButton(1)' type="button" class="btx btx-up"><i [ngClass]="{'arw-up-selected': likeType=='1'}" class="fas fa-caret-up fa-2x arw"></i></button>
     </div>
     <div>
-        <ng-template #tipContent> {{ generateUpVoters() }} <br>  {{ generateDownVoters() }} </ng-template>
-        <a href="#" placement="right" [ngbTooltip]="tipContent" >{{ getScore() }}</a>
+        <ng-template #tipContent> {{ generateUpVoters() }} <br> {{ generateDownVoters() }} </ng-template>
+        <a href="#" placement="right" [ngbTooltip]="tipContent">{{ getScore() }}</a>
     </div>
     <div>
-        <button (click)='handleButton(-1)' type="button" class="btx btx-down"><i [ngClass]="{'arw-selected': likeType=='-1'}" class="fas fa-caret-down fa-2x arw"></i></button>
+        <button (click)='handleButton(-1)' type="button" class="btx btx-down"><i [ngClass]="{'arw-down-selected': likeType=='-1'}" class="fas fa-caret-down fa-2x arw"></i></button>
     </div>
 </div>
 
@@ -29,7 +29,3 @@
     </div>
   </div>
 -->
-
-
-
-
