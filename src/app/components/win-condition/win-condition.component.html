@@ -3,7 +3,12 @@
 
 
     <div class="commentText">
-        <p><b>{{ winCondition.userName }}:</b> <span id="category"> {{ winCondition.categories[0].name }}</span></p>
+        <p><b>{{ winCondition.userName }}:</b></p>
+        <div class="categoryHolder">
+            <div *ngFor="let category of winCondition.categories" id="category-labels">
+                <span [ngStyle]="{'color': category.color}">{{ category.name }}</span>
+            </div>
+        </div>
         <p> {{ winCondition.text }} </p>
         <a href="#" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
         <a href="#" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a>

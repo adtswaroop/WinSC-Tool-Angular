@@ -13,6 +13,10 @@
     padding-top: 5px;
 }
 
+#category-name {
+    margin-left: 10px;
+}
+
 #category-form label {
     display: block;
 }

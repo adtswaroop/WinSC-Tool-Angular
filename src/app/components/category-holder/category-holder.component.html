@@ -5,7 +5,7 @@
     <form id="category-form" [formGroup]="categoryForm" (ngSubmit)="applyCategory()">
         <label formArrayName="categories" *ngFor="let category of categoryForm.controls.categories.controls; let i = index">
           <input type="checkbox" [formControlName]="i">
-          {{categories[i].name}}
+          <span id="category-name" [ngStyle]="{'color': categories[i].color}">{{categories[i].name}}</span>
         </label>
 
         <div class="category-input">
