@@ -1,17 +1,27 @@
 export const categories = [
   {
-    name: 'Category 1'
+    name: 'Admin',
+    isMMF: false,
+    color: '#E74C22'
   },
   {
-    name: 'Category 2'
+    name: 'Prototype',
+    isMMF: false,
+    color: '#FEA60F'
   },
   {
-    name: 'Category 3'
+    name: 'Win Condition',
+    isMMF: false,
+    color: '#AFD459'
   },
   {
-    name: 'Category 4'
+    name: 'Benefits',
+    isMMF: false,
+    color: '#1CA9AD'
   },
   {
-    name: 'Category 5'
+    name: 'Comments',
+    isMMF: false,
+    color: '#690F56'
   }
 ]

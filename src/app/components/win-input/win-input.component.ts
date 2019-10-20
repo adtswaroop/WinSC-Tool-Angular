@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder,FormGroup,Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { WinCondition } from 'src/app/classes/win-condition';
 import { categories } from '../category-holder/dummyCategories';
+import { Category } from 'src/app/classes/category';
 // import { WinCondition } from 'src/app/classes/win-condition';
 
 @Component({
@@ -12,7 +13,7 @@ import { categories } from '../category-holder/dummyCategories';
 export class WinInputComponent implements OnInit {
 
   addWinForm : FormGroup
-  @Input() categories: string;
+  @Input() categories: Array<Category>;
   @Input() currentCategory: string;
   @Output() currentCategoryChange = new EventEmitter<string>();
   @Output() addWinCondition = new EventEmitter<WinCondition>();
@@ -41,7 +42,7 @@ export class WinInputComponent implements OnInit {
       userId: 1,
       text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
-      categories: null,
+      categories: categories,
       comments: []
     })
     this.addWinForm.setValue({

@@ -12,6 +12,14 @@
     padding-top: 5px;
 }
 
+#category-name {
+    margin-left: 10px;
+}
+
+#category-form label {
+    display: block;
+}
+
 .category-input input {
     display: block;
     width: 100%;
@@ -29,7 +37,11 @@
 }
 
 .category-header {
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     font-size: 14pt;
+}
+
+#apply-category {
+    margin-top: 10px;
 }

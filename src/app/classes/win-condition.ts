@@ -1,4 +1,5 @@
 import { Comment } from './comment';
+import { Category } from './category'
 
 export class WinCondition {
     public upVoters: Array<string>;
@@ -7,14 +8,14 @@ export class WinCondition {
     public userName: string;
     public userId: number;
     public winConditionId: number;
-    public categories: Array<string>;
+    public categories: Array<Category>;
     public text: string;
     public comments: Array<Comment>;
 
 
     constructor($upVoters: Array<string>, $downVoters: Array<string>,
                 $likeType: number, $userName: string, $userId: number,
-                $winConditionId: number, $categories: Array<string>,
+                $winConditionId: number, $categories: Array<Category>,
                 $text: string, $comments: Array<Comment>) {
     this.upVoters = $upVoters;
     this.downVoters = $downVoters;

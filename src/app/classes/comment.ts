@@ -1,3 +1,5 @@
+import { Category } from './category';
+
 export class Comment {
   public upVoters: Array<string>;
   public downVoters: Array<string>;
@@ -5,14 +7,14 @@ export class Comment {
   public userName: string; // Full name of the user
   public userId: number;
   public commentId: number;
-  public categories: Array<string>;
+  public categories: Array<Category>;
   public text: string;
   public timestamp: any;
   public isIssue: boolean; // True if it is a issue, False if it is a comment
 
   constructor($upVoters: Array<string>, $downVoters: Array<string>,
               $likeType: number, $userName: string, $userId: number,
-              $commentId: number, $categories: Array<string>,
+              $commentId: number, $categories: Array<Category>,
               $text: string, $timestamp: any, $isIssue: boolean) {
     this.upVoters = $upVoters;
     this.downVoters = $downVoters;
