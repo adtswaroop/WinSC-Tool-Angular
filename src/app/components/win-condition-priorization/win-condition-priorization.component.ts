@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-win-condition-priorization',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./win-condition-priorization.component.css']
 })
 export class WinConditionPriorizationComponent implements OnInit {
+
+  @Input() winCondition;
 
   constructor() { }
 
