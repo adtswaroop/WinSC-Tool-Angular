@@ -10,10 +10,16 @@ export class WinHolderPriorizationComponent implements OnInit {
   sortStates;
   currentSortState;
   winConditions;
+  businessValue;
+  relativePenalty;
+  easeRealization;
 
   constructor() { }
 
   ngOnInit() {
+    this.businessValue = 50;
+    this.relativePenalty = 50;
+    this.easeRealization = 50;
   }
 
   sortByLeastPriority(pWinConditions) {
@@ -39,6 +45,10 @@ export class WinHolderPriorizationComponent implements OnInit {
 
   sort(currentSortStateChange) {
     
+  }
+
+  updateBusinessValue(sliderChangeEvent) {
+    console.log(sliderChangeEvent.value);
   }
 
 }
