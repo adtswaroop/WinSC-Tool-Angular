@@ -11,6 +11,9 @@ export class WinCondition {
     public categories: Array<Category>;
     public text: string;
     public comments: Array<Comment>;
+    public businessValue: number;
+    public relativePenalty: number;
+    public easeRealization: number;
 
 
     constructor($upVoters: Array<string>, $downVoters: Array<string>,
@@ -26,6 +29,9 @@ export class WinCondition {
     this.categories = $categories;
     this.text = $text;
     this.comments = $comments;
+    this.businessValue = 3;
+    this.relativePenalty = 2;
+    this.easeRealization = 5;
   }
 
 
