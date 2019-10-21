@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
@@ -23,6 +25,9 @@ import { ProjectVisionComponent } from './components/project-vision/project-visi
 import { VoteComponent } from './components/vote/vote.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { WinConditionComponent } from './components/win-condition/win-condition.component';
+import { WinConditionPriorizationComponent } from './components/win-condition-priorization/win-condition-priorization.component';
+import { WinHolderPriorizationComponent } from './components/win-holder-priorization/win-holder-priorization.component';
+import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,10 @@ import { WinConditionComponent } from './components/win-condition/win-condition.
     ProjectVisionComponent,
     VoteComponent,
     CommentComponent,
-    WinConditionComponent
+    WinConditionComponent,
+    WinConditionPriorizationComponent,
+    WinConditionInputComponent,
+    WinHolderPriorizationComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +59,8 @@ import { WinConditionComponent } from './components/win-condition/win-condition.
     MatIconModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
