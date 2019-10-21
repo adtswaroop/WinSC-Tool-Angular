@@ -7,14 +7,24 @@
 
 	-->
 
-	<app-win-condition-priorization *ngFor="let winCondition of winConditions"></app-win-condition-priorization>
-
 	<div>
 		<div>
 			<span>Business value</span>
 			<mat-slider min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
 		</div>
+
+		<div>
+			<span>Relative Penalty</span>
+			<mat-slider min="1" max="100" step="1" [value]="relativePenalty" (change)="updateRelativePenalty($event)"></mat-slider>
+		</div>
+
+		<div>
+			<span>Ease of Realization</span>
+			<mat-slider min="1" max="100" step="1" [value]="easeRealization" (change)="updateEaseRealization($event)"></mat-slider>
+		</div>
 	</div>
+
+	<app-win-condition-priorization *ngFor="let winCondition of winConditions"></app-win-condition-priorization>
 
 </div>
 
