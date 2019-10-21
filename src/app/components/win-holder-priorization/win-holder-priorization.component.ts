@@ -47,4 +47,8 @@ export class WinHolderPriorizationComponent implements OnInit {
     
   }
 
+  updateBusinessValue(sliderChangeEvent) {
+    console.log(sliderChangeEvent.value);
+  }
+
 }
