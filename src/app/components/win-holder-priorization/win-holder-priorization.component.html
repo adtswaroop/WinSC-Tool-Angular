@@ -1,38 +1,39 @@
 <div>
-	
-	<h2>Select the level of importance of each criteria</h2>
+    <div id="button-container">
+        <button class="btn btn-primary btn-win">Win Conditions</button>
+        <button class="btn btn-primary btn-benefit" [disabled]=true>Benefits</button>
+    </div>
+    <h5 id="prioritization-title">Select the level of importance of each criteria</h5>
 
-	<!-- You will not be able to see this text. 
+    <!-- You will not be able to see this text. 
 	<app-win-condition-priorization *ngFor="let winCondition of winConditions" [winCondition]="winCondition"></app-win-condition-priorization>
 
 	-->
 
-	<div>
-		<div>
-			<span>Business value</span>
-			<mat-slider min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
-		</div>
+    <div id="slider">
+        <div class="col-4">
+            <span>Business value</span>
+            <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+        </div>
 
-		<div>
-			<span>Relative Penalty</span>
-			<mat-slider min="1" max="100" step="1" [value]="relativePenalty" (change)="updateRelativePenalty($event)"></mat-slider>
-		</div>
+        <div class="col-4">
+            <span>Relative Penalty</span>
+            <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="relativePenalty" (change)="updateRelativePenalty($event)"></mat-slider>
+        </div>
 
-		<div>
-			<span>Ease of Realization</span>
-			<mat-slider min="1" max="100" step="1" [value]="easeRealization" (change)="updateEaseRealization($event)"></mat-slider>
-		</div>
-	</div>
+        <div class="col-4">
+            <span>Ease of Realization</span>
+            <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="easeRealization" (change)="updateEaseRealization($event)"></mat-slider>
+        </div>
+    </div>
 
-	<div *ngFor="let winCondition of winConditions">
-		<app-win-condition-priorization [winCondition]="winCondition"></app-win-condition-priorization>
-		<app-win-condition-input label="Business value"></app-win-condition-input>
-		<app-win-condition-input label="Relative penalty"></app-win-condition-input>
-		<app-win-condition-input label="Ease Realization"></app-win-condition-input>
-	</div>
+    <div *ngFor="let winCondition of winConditions">
+        <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
+        <div class="col-5" id="win-weights">
+            <app-win-condition-input id="weight-value" label="Business value"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Relative penalty"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Ease Realization"></app-win-condition-input>
+        </div>
+    </div>
 
 </div>
-
-
-
-
