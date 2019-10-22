@@ -1,0 +1,58 @@
+.mainDiv {
+  height: 1000px;
+  width: 800px;
+  background-color: white;
+  border: black;
+  margin: auto;
+}
+.myProject {
+  top: 5%;
+  height: 15%;
+  width: 100%;
+  background-color: #EEEEEE;
+  border: black;
+  margin: auto;
+  position: relative;
+}
+.joinProject {
+  top: 10%;
+  height: 50%;
+  width: 100%;
+  background-color: #EEEEEE;
+  border: black;
+  margin: auto;
+  position: relative;
+}
+.button {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    transition: all .25s ease-out;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: .3em .4em;
+    margin: 0 1rem 1rem 0;
+    font-size: .9rem;
+    font-family: Roboto, "Helvetica Neue", sans-seri;
+    background: #990000;
+    color: #fff;
+    text-decoration: none;
+    float: right;
+}
+.listItem {
+  height: 3em;
+  width: 70%;
+
+}
+#listHeading {
+  font-family: Roboto, "Helvetica Neue", sans-seri;
+  font-size: 1.5em;
+}
+#innerText {
+  top: 1.25em;
+  left: 5%;
+  position: relative;
+}
+#joinList li {
+  margin: 15px 0;
+}
