@@ -7,8 +7,17 @@ export class DummyData {
   public cat1 = new Category('Prototype', false, '#FEA60F');
   public categoryArray1 = [this.cat1];
   public cat2 = new Category('Win Condition', false, '#AFD459');
+  public cat3 = new Category('Comments', false, '#690f56');
+  public cat4 = new Category('Admin', false, '#e84c22');
+  public cat5 = new Category('Benefits', false, '#33b0b4');
+
+
+
   public categoryArray2 = [this.cat2];
   public categoryArray3 = [this.cat1, this.cat2];
+  public categoryArray4 = [this.cat3];
+  public categoryArray5 = [this.cat4];
+  public categoryArray6 = [this.cat5];
 
   public c1 = new Comment(['Aditi', 'Romi'], ['Alex'], 1, 'Alp', 1, 5, this.categoryArray1,
                           'This feature is really good', 100, false);
@@ -19,7 +28,7 @@ export class DummyData {
   public c4 = new Comment(['Aditi', 'Romi'], ['Doruk'], 1, 'Romi', 1, 5, this.categoryArray1,
                           'This will work!', 100, false);
 
-  public w1 = new WinCondition(['Aditi', 'Romi'], ['Doruk'], -1, 'Kam', 5, 5, this.categoryArray1,
+  public w1 = new WinCondition(['Aditi', 'Romi'], ['Doruk'], -1, 'Kam', 5, 5, this.categoryArray5,
                   'As a user, I can upvote and downvote the posts',
                   [this.c1, this.c2, this.c3, this.c4]);
 
@@ -30,7 +39,7 @@ export class DummyData {
   public w2c2 = new Comment(['Kam', 'Romi'], [], 1, 'Doruk', 1, 5, this.categoryArray2,
                           'What should the comments look like?', 100, false);
 
-  public w2 = new WinCondition(['Aditi', 'Romi'], [], 0, 'Romi', 5, 5, this.categoryArray2,
+  public w2 = new WinCondition(['Aditi', 'Romi'], [], 0, 'Romi', 5, 5, this.categoryArray4,
                   'As a user, I can add comments and reply to comments',
                   [this.w2c1, this.w2c2]);
 
@@ -59,7 +68,7 @@ export class DummyData {
                     'This sounds good', 100, false);
 
 
-  public w4 = new WinCondition(['Alavaro', 'Kam'], ['Aditi' , 'Doruk'], -1, 'Romi', 5, 5, this.categoryArray1,
+  public w4 = new WinCondition(['Alavaro', 'Kam'], ['Aditi' , 'Doruk'], -1, 'Romi', 5, 5, this.categoryArray6,
                   'As an admin, I can edit and delete everyone\'s posts and comments.',
                   [this.w4c1, this.w4c2, this.w4c3, this.w4c4]);
 

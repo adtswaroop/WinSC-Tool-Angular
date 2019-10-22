@@ -9,10 +9,12 @@ import { categories } from './dummyCategories';
   styleUrls: ['./category-holder.component.css']
 })
 export class CategoryHolderComponent implements OnInit {
-  
+
   categoryForm : FormGroup
   categories = categories;
   categoriesSelected = [];
+
+  @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
 
   constructor(private formBuilder: FormBuilder) {
     this.categoryForm = this.formBuilder.group({
@@ -40,7 +42,6 @@ export class CategoryHolderComponent implements OnInit {
     // })
   }
 
-  @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
 
   ngOnInit() {
   }

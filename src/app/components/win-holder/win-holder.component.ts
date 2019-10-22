@@ -16,7 +16,7 @@ export class WinHolderComponent implements OnInit {
   currentCategory;
   winConditionsArray;
   winConditions;
-
+  origWinConditions;
   constructor() {
   }
 
@@ -26,6 +26,7 @@ export class WinHolderComponent implements OnInit {
     this.categories = categories;
     this.currentCategory = "None";
     this.winConditions = new DummyData().wcArr;
+    this.origWinConditions = new DummyData().wcArr;
     // this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos", 1, 1, ["UI"], "win condition text 1", [])];
     // this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos", 2, 2, ["UI"], "win condition text 2", []));
     // this.winConditions.push(new WinCondition(["1"], ["1","2"], 3, "Carlos", 3, 3, ["UI"], "win condition text 3", []));
@@ -62,8 +63,17 @@ export class WinHolderComponent implements OnInit {
     }
   }
 
-  categorize(currentCategoryChange){
-    this.currentCategory = currentCategoryChange;
+  categorize(currentCategoryChange : Array<string>){
+    if (currentCategoryChange.length===0) {
+      this.winConditions = this.origWinConditions.slice();
+      return;
+    }
+    this.winConditions = this.origWinConditions.filter((item) => {
+            return item.categories.find((cat) => {
+                return currentCategoryChange.includes(cat.name);
+            });
+
+    });
   }
 
   createWinConditionHandler(pEvent) {
