@@ -6,15 +6,38 @@
 }
 
 #button-container {
+    display: block;
+    height: 50px;
+}
+
+#select-buttons {
     text-align: center;
     margin: 20px;
+    display: inline;
+    float: right;
+}
+
+#prioritization-buttons {
+    margin-top: 20px;
+    display: inline;
+    float: left;
 }
 
 .btn-win {
     margin-right: 10px;
+    /* text-decoration: underline !important;
+    color: #990000 !important; */
 }
 
 .btn-benefit {
+    margin-left: 10px;
+}
+
+#btn-save {
+    margin-right: 10px;
+}
+
+#btn-prioritize {
     margin-left: 10px;
 }
 
