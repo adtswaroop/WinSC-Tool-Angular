@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-win-condition-input',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinConditionInputComponent implements OnInit {
 
+  @Input() value: number;
+  @Input() label: string;
+  @Input() type: string;
+  @Output() valueChange = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeValue() {
+  
   }
 
 }

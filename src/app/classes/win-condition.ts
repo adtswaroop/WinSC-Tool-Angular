@@ -14,6 +14,7 @@ export class WinCondition {
     public businessValue: number;
     public relativePenalty: number;
     public easeRealization: number;
+    public priorityValue: number;
 
 
     constructor($upVoters: Array<string>, $downVoters: Array<string>,
@@ -32,6 +33,7 @@ export class WinCondition {
     this.businessValue = 3;
     this.relativePenalty = 2;
     this.easeRealization = 5;
+    this.priorityValue = 5;
   }
 
 
