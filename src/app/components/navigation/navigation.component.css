@@ -16,6 +16,7 @@
 .navbar-brand {
     font-family: 'Lato';
     font-size: 2rem;
+    color: #FFCC00;
 }
 
 .navbar {
@@ -41,4 +42,9 @@
 
 .mat-icon {
     vertical-align: middle;
+}
+
+#logo {
+    width: 45px;
+    margin-right: 20px;
 }

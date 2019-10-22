@@ -43,7 +43,11 @@ export class WinInputComponent implements OnInit {
       text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
       categories: categories,
-      comments: []
+      comments: [], 
+      businessValue: 3,
+      relativePenalty: 2,
+      easeRealization: 5,
+      priorityValue: 5
     })
     this.addWinForm.setValue({
       winpost:''

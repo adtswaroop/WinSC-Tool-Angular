@@ -1,0 +1,18 @@
+<div class="commentText">
+    
+    <div>{{winCondition.priorityValue}}</div>
+    <div>
+        <div id="header">
+            <p><b>{{ winCondition.userName }}:</b></p>
+        </div>
+        <div class="categoryHolder">
+            <div *ngFor="let category of winCondition.categories" id="category-labels">
+                <span [ngStyle]="{'color': category.color}">{{ category.name }}</span>
+            </div>
+        </div>
+        <div id="winConText">
+            <p> {{ winCondition.text }} </p>
+        </div>    
+    </div>
+
+</div>
