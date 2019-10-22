@@ -1,4 +1,4 @@
-<div class="commentMain">
+<div *ngIf="showWinCondition" class="commentMain">
     <app-vote [comment]="wcToComment()" style="display: table-cell;"> </app-vote>
 
     <div id="imgDiv"><img src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" style="width: 35px; padding-top: 20px;"></div>
@@ -12,9 +12,9 @@
             </div>
         </div>
         <div id="icons">
-                <i class="fas fa-pencil-alt" title="Edit Comment"></i>
-                <i class="fas fa-trash-alt" title="Delete Comment"></i>
-                <i class="fas fa-check" title="Mark as Issue Resolved"></i>
+            <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+            <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
+            <i class="fas fa-check" title="Mark as Issue Resolved"></i>
         </div>
         <div id="winConText">
             <p> {{ winCondition.text }} </p>

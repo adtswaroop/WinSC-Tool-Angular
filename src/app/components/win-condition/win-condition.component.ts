@@ -1,7 +1,7 @@
 import { Comment } from './../../classes/comment';
 import { DummyData } from './../../classes/dummy-data';
 import { WinCondition } from './../../classes/win-condition';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-win-condition',
@@ -10,10 +10,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WinConditionComponent implements OnInit {
   @Input() winCondition: WinCondition;
-
+  
+  showWinCondition:boolean;
   showComments:boolean;
   constructor() {
     this.showComments = false;
+    this.showWinCondition = true;
   }
 
   ngOnInit() {
@@ -36,6 +38,10 @@ export class WinConditionComponent implements OnInit {
       this.winCondition.comments.push(new Comment([], [], 0, 'Romi', 1, 1, [], box.value, 0, false));
       box.value = '';
     }
+  }
+
+  deleteWin() {
+    this.showWinCondition = false;
   }
 
 }
