@@ -1,0 +1,78 @@
+#prioritization-title {
+    font-weight: bold;
+    margin: 30px 20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+#button-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.btn-win {
+    margin-right: 10px;
+}
+
+.btn-benefit {
+    margin-left: 10px;
+}
+
+#slider {
+    display: flex;
+    text-align: -webkit-center;
+    margin-top: 20px;
+}
+
+#mat-slider {
+    width: 80%;
+    display: block;
+}
+
+#win-conditions {
+    display: inline-block;
+    height: 7rem;
+}
+
+#win-weights {
+    display: inline-block;
+    float: right;
+    margin-top: 25px;
+}
+
+#weight-value {
+    display: inline-block;
+    text-align: -webkit-center;
+    margin-left: 30px;
+}
+
+app-win-condition-input#weight-value input {
+    width: 60px;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb {
+    background-color: #ffcc01;
+}
+
+::ng-deep .mat-accent .mat-slider-ticks {
+    opacity: 1!important;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb-label {
+    background-color: #ffcc01;
+}
+
+::ng-deep .mat-accent .mat-slider-track-fill {
+    background-color: #ffcc01;
+    height: 5px!important;
+}
+
+::ng-deep .mat-accent .mat-slider-track-background {
+    background-color: #ced1d4;
+    opacity: 1!important;
+    height: 5px!important;
+}
+
+::ng-deep .mat-accent .mat-slider-track-wrapper {
+    height: 5px!important;
+}
