@@ -9,16 +9,16 @@ import { WinHolderComponent } from '../win-holder/win-holder.component';
 
 
 export class ProjectWinsComponent implements OnInit {
-  @ViewChild(WinHolderComponent) winHolder : WinHolderComponent;
+  @ViewChild(WinHolderComponent, { static: false }) winHolder: WinHolderComponent;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onCategoryChange(event){
-    console.log("I got it babe ");
-    let res =  new Array<string>();
+  onCategoryChange(event) {
+    console.log('I got it babe ');
+    const res =  new Array<string>();
     event.forEach(element => {
       res.push(element.name);
     });

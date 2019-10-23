@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, FormArray } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { categories } from './dummyCategories';
 
@@ -10,7 +10,7 @@ import { categories } from './dummyCategories';
 })
 export class CategoryHolderComponent implements OnInit {
 
-  categoryForm : FormGroup
+  categoryForm: FormGroup;
   categories = categories;
   categoriesSelected = [];
 
@@ -26,7 +26,7 @@ export class CategoryHolderComponent implements OnInit {
 
   private addCheckboxes() {
     this.categories.forEach((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
+      const control = new FormControl(false); // if first item set to true, else false
       (this.categoryForm.controls.categories as FormArray).push(control);
     });
   }
@@ -46,10 +46,10 @@ export class CategoryHolderComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleKey(event,box) {
-      if (event.key === 'Enter'){
-        this.categories.push({name:box.value, isMMF:false, color:''});
-        box.value = "";
+  handleKey(event, box) {
+      if (event.key === 'Enter') {
+        this.categories.push({name: box.value, isMMF: false, color: ''});
+        box.value = '';
       }
   }
 
