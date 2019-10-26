@@ -30,7 +30,11 @@ import { WinHolderPriorizationComponent } from './components/win-holder-prioriza
 import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
 import { LoginComponent } from './components/login/login.component';
 import { ServiceTesterComponent } from './components/test/service-tester/service-tester.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { RegisterComponent } from './components/register/register.component';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { appRoutingModule } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
     WinConditionInputComponent,
     WinHolderPriorizationComponent,
     LoginComponent,
-    ServiceTesterComponent
+    ServiceTesterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -66,9 +71,12 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    appRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
