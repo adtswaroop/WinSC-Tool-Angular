@@ -28,6 +28,13 @@ export class ServiceTesterComponent implements OnInit {
    console.log(user);
   }
 
+  testRegister() {
+    const obj = this.authenticationService.register('test','asdasda','fasf','xxxx');
+    obj.subscribe((data) => {
+      console.log(data);
+    })
+  }
+
   logoutUser() {
     this.authenticationService.logout();
   }
