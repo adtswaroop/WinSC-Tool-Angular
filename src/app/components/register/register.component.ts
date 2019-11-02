@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../services/authentication.service';
+import { BackendService } from './../../services/backend.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,6 @@ export class RegisterComponent implements OnInit {
       private formBuilder: FormBuilder,
       private router: Router,
       private authenticationService: AuthenticationService,
-      // TODO private backendService: BackendService,
   ) {
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) {
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
-          username: ['', Validators.required],
+          email: ['', Validators.required],
           password: ['', [Validators.required, Validators.minLength(6)]]
       });
   }
@@ -49,17 +49,17 @@ export class RegisterComponent implements OnInit {
       }
 
       this.loading = true;
-      // TODO: call backend service register here
-      /*
-      this.userService.register(this.registerForm.value)
+      const formCtl = this.registerForm.value;
+      this.authenticationService.register(formCtl.email,formCtl.password,formCtl.firstName,formCtl.lastName)
           .pipe(first())
           .subscribe(
               data => {
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/']);
               },
               error => {
                   this.loading = false;
+                  console.log(error);
               });
-      */
+
   }
 }
