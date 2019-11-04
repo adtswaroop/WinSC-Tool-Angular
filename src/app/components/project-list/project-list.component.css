@@ -1,9 +1,10 @@
 .mainDiv {
+  margin-top: 20px;
   height: 1000px;
   width: 800px;
   background-color: white;
   border: black;
-  margin: auto;
+  /* margin: auto; */
 }
 .myProject {
   top: 5%;
