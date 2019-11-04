@@ -8,9 +8,18 @@ import { DummyData } from './../../classes/dummy-data';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor() { }
+  proj1 = '';
+  proj2 = '';
+
+  constructor() {
+    // initialize service to retrieve project data
+
+    // initialize project name and project description
+    this.proj1 = 'ProjectX';
+    this.proj2 = 'ProjectY';
+   }
 
   ngOnInit() {
+    // initialize project data listener
   }
-
 }
