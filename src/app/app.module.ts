@@ -28,6 +28,7 @@ import { WinConditionComponent } from './components/win-condition/win-condition.
 import { WinConditionPriorizationComponent } from './components/win-condition-priorization/win-condition-priorization.component';
 import { WinHolderPriorizationComponent } from './components/win-holder-priorization/win-holder-priorization.component';
 import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { WinConditionInputComponent } from './components/win-condition-input/win
     WinConditionComponent,
     WinConditionPriorizationComponent,
     WinConditionInputComponent,
-    WinHolderPriorizationComponent
+    WinHolderPriorizationComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,
