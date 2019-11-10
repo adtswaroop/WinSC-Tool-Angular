@@ -30,6 +30,7 @@ import { WinHolderPriorizationComponent } from './components/win-holder-prioriza
 import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatSliderModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
