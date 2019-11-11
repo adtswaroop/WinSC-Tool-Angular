@@ -1,6 +1,7 @@
 import { Category } from './category';
 import { Comment } from './comment';
 import { WinCondition } from './win-condition';
+import { BenefitComponent } from './benefit';
 
 export class DummyData {
 
@@ -74,6 +75,10 @@ export class DummyData {
                   [this.w5c1]);
 
   public wcArr = [this.w1, this.w2, this.w3, this.w4, this.w5 ];
+
+
+  //BENEFITS
+  public benefit1 = new BenefitComponent("Aditi" , [this.cat1], "Support win-win negotiations")
 
 	constructor() {
 
