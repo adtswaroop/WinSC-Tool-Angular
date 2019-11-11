@@ -21,13 +21,13 @@
           <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
       </div>
       <div class="categoryHolder">
-          <div  id="category-labels">
+          <div  id="category-labels" style="color:#39b3b6">
              Benefits
           </div>
       </div>
         <div class="row">
           <div class="col-10" style="padding: 0px;">
-            <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+            <mat-slider id="mat-slider" min="1" max="100" step="1" value="27" (change)="updateBusinessValue($event)"></mat-slider>
         </div>
         <div  class="col-2" id="sliderValue">
           27
@@ -42,16 +42,16 @@
               <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
           </div>
           <div class="categoryHolder">
-              <div  id="category-labels">
+              <div  id="category-labels" style="color:yellowgreen">
                  Win Condition
               </div>
-              <div  id="category-labels">
+              <div  id="category-labels" style="color:orange">
                Prototype
              </div>
           </div>
             <div class="row">
             <div class="col-10" style="padding: 0px;">
-              <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+              <mat-slider id="mat-slider" min="1" max="100" step="1" value="28" (change)="updateBusinessValue($event)"></mat-slider>
           </div>
           <div  class="col-2" id="sliderValue">
             28
@@ -66,13 +66,13 @@
             <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
         </div>
         <div class="categoryHolder">
-            <div  id="category-labels">
+            <div  id="category-labels" style="color: #e74c21;">
                Admin
             </div>
         </div>
           <div class="row">
             <div class="col-10" style="padding: 0px;">
-              <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+              <mat-slider id="mat-slider" min="1" max="100" step="1" value="45" (change)="updateBusinessValue($event)"></mat-slider>
           </div>
           <div  class="col-2" id="sliderValue">
             45
