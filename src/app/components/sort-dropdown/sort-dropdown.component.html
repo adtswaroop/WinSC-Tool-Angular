@@ -1,3 +1,12 @@
-<select id="sort" (change)="changeSortState($event.target.value)">
-	<option *ngFor="let sortState of sortStates" [value]="sortState">{{sortState}}</option>
-</select>
+<div class="container">
+  <div class="row">
+    <div class="col-3 px-0 pt-2 align-middle">
+      Sort:
+    </div>
+    <div class="col-9 px-1">
+      <select id="sort" (change)="changeSortState($event.target.value)">
+      	<option *ngFor="let sortState of sortStates" [value]="sortState">{{sortState}}</option>
+      </select>
+    </div>
+  </div>
+</div>

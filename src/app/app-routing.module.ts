@@ -2,10 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectComponent } from './components/project/project.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'project-list',
+    component: ProjectListComponent
+  },
+  {
+    path: 'project',
     component: ProjectComponent
   },
   {
@@ -14,12 +19,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/project-list',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: '/home',
+    redirectTo: '/project-list',
     pathMatch: 'full'
   }
 ]
