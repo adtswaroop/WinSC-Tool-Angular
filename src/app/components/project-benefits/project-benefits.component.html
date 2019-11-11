@@ -1,1 +1,87 @@
-<p>project-benefits works!</p>
+<div id="newBenefitContainer" >
+    <input _ngcontent-xqo-c12="" class="form-control input-lg col-md-5 col-sm-5" formcontrolname="newBenfit" id="newBenfit" placeholder="Add a new benefit" type="text" ng-reflect-name="newBenfit">
+    <div class="dropdown" style="margin-right:2%">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    <button _ngcontent-xqo-c12="" class="btn btn-primary" id="post-button" type="submit" disabled="">Create</button>
+</div>
+<div id="mainBody" class="row">
+<div id="benefitsContainer" class="col-md-7">
+    <div class="benefitVal">
+        <p><b>Collaborate win-win negotiations</b></p>
+        <div id="icons">
+          <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+          <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
+      </div>
+      <div class="categoryHolder">
+          <div  id="category-labels">
+             Benefits
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-10" style="padding: 0px;">
+            <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+        </div>
+        <div  class="col-2" id="sliderValue">
+          27
+        </div>
+      </div>
+
+    </div>
+    <div class="benefitVal">
+      <p><b>Keep track of win conditions</b></p>
+            <div id="icons">
+              <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+              <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
+          </div>
+          <div class="categoryHolder">
+              <div  id="category-labels">
+                 Win Condition
+              </div>
+              <div  id="category-labels">
+               Prototype
+             </div>
+          </div>
+            <div class="row">
+            <div class="col-10" style="padding: 0px;">
+              <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+          </div>
+          <div  class="col-2" id="sliderValue">
+            28
+          </div>
+        </div>
+      
+        </div>
+    <div class="benefitVal">
+          <p><b>Help prioritize win conditions</b></p>
+          <div id="icons">
+            <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+            <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
+        </div>
+        <div class="categoryHolder">
+            <div  id="category-labels">
+               Admin
+            </div>
+        </div>
+          <div class="row">
+            <div class="col-10" style="padding: 0px;">
+              <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+          </div>
+          <div  class="col-2" id="sliderValue">
+            45
+          </div>
+        </div>
+          <!-- <div id="categoryApplied">Admin</div> -->
+
+      </div>
+</div>
+<app-category-holder class="col-3" (applyCategoryToWin) = "onCategoryChange($event)"></app-category-holder>
+
+</div>
