@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DummyData } from '../../classes/dummy-data';
 
 
 @Component({
@@ -22,13 +21,13 @@ export class WinHolderPriorizationComponent implements OnInit {
     this.businessValue = 50;
     this.relativePenalty = 50;
     this.easeRealization = 50;
-    this.winConditions = new DummyData().wcArr;
+    this.winConditions = [];
   }
 
   sortByLeastPriority(pWinConditions) {
     var clonePWinConditions = pWinConditions.slice(0);
     clonePWinConditions.sort(function(a, b){
-      
+
       var aPriority = 0; //Modify this to take the priority of a
       var bPriority = 0; //Modify this to take the priority of b
       return bPriority - aPriority;
@@ -47,7 +46,7 @@ export class WinHolderPriorizationComponent implements OnInit {
   }
 
   sort(currentSortStateChange) {
-    
+
   }
 
   updateBusinessValue(sliderChangeEvent) {

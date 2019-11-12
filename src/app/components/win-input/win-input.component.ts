@@ -33,6 +33,7 @@ export class WinInputComponent implements OnInit {
 
   addWin = () => {
     console.log(this.addWinForm.controls['winpost'].value);
+    /*
     this.addWinCondition.emit({
       upVoters: [],
       downVoters: [],
@@ -42,7 +43,7 @@ export class WinInputComponent implements OnInit {
       text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
       categories: [],
-      comments: [], 
+      comments: [],
       businessValue: 3,
       relativePenalty: 2,
       easeRealization: 5,
@@ -51,6 +52,7 @@ export class WinInputComponent implements OnInit {
     this.addWinForm.setValue({
       winpost:''
     })
+    */
   }
 
 }
