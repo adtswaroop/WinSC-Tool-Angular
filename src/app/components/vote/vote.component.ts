@@ -1,5 +1,8 @@
+import { WinconditionService } from './../../services/wincondition.service';
+import { User } from './../../classes/user';
+import { AuthenticationService } from './../../services/authentication.service';
+import { Voters } from './../../classes/voters';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import {Comment} from '../../classes/comment';
 
 @Component({
   selector: 'app-vote',
@@ -7,30 +10,54 @@ import {Comment} from '../../classes/comment';
   styleUrls: ['./vote.component.css']
 })
 export class VoteComponent implements OnInit {
-  @Input()  comment: Comment;
-  @Output() vote = new EventEmitter<number>();
+  @Input()  voters: Voters;
 
-  private  upVoters: Array<string>;
-  private  downVoters: Array<string>;
-  private  likeType: number;
+  private  upVoters: Array<User>;
+  private  downVoters: Array<User>;
+  private  userId: number;
+  private winConditionId: number;
+  private commentId: number;
+  private likeType: number;
+  private initialLikeType: number;
 
-  constructor() {
-
+  constructor(private authenticationService:AuthenticationService, private winconditionService:WinconditionService) {
+      this.userId = authenticationService.currentUserValue.id;
   }
 
   ngOnInit() {
-    this.upVoters = this.comment.upVoters;
-    this.downVoters = this.comment.downVoters;
-    this.likeType = this.comment.likeType;
+    this.upVoters = this.voters.upvoters;
+    this.downVoters = this.voters.downvoters;
+    this.winConditionId = this.voters.winConditionId;
+    this.commentId = this.voters.commmentId;
+    this.parseLikeType();
   }
 
   handleButton(i: number) {
     if (i === this.likeType) {
       this.likeType = 0;
+      this.winconditionService.handleVote(this.winConditionId,this.commentId,this.likeType);
     } else {
       this.likeType = i;
-      this.vote.emit(i);
+      this.winconditionService.handleVote(this.winConditionId,this.commentId,this.likeType);
     }
+}
+
+parseLikeType() {
+    this.likeType=0;
+    this.initialLikeType = 0;
+    this.upVoters.forEach((user) => {
+        if (user.id==this.userId){
+          this.likeType=1;
+          this.initialLikeType = 1;
+        }
+    });
+
+    this.downVoters.forEach((user) => {
+      if (user.id===this.userId) {
+        this.likeType=-1;
+        this.initialLikeType = -1;
+      }
+    });
 }
 
   generateUpVoters() {
@@ -47,7 +74,7 @@ export class VoteComponent implements OnInit {
     if (res === '' && this.upVoters.length === 0) {
       return 'Nobody upvoted';
     }
-    return res + this.upVoters.join(', ') + ' upvoted';
+    return res + this.upVoters.map((user) => user.firstName + " " + user.lastName).join(', ') + ' upvoted';
   }
 
   generateDownVoters() {
@@ -64,11 +91,12 @@ export class VoteComponent implements OnInit {
     if (res === '' && this.downVoters.length === 0) {
       return 'Nobody downvoted';
     }
-    return res + this.downVoters.join(', ') + ' downvoted';
+    console.log(this.downVoters);
+    return res + this.downVoters.map((user) => user.firstName + " " + user.lastName).join(', ') + ' downvoted';
   }
 
   getScore() {
-    return this.upVoters.length - this.downVoters.length + this.likeType;
+    return this.upVoters.length - this.downVoters.length -this.initialLikeType + this.likeType;
   }
 
 }
