@@ -1,3 +1,4 @@
+import { Voters } from './../../classes/voters';
 import { Comment } from './../../classes/comment';
 import { WinCondition } from './../../classes/win-condition';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
@@ -20,12 +21,12 @@ export class WinConditionComponent implements OnInit {
   ngOnInit() {
   }
 
-  wcToComment(){
-    // TODO: Fix this bad design, vote should not use comment, it needs a new data structure likeType,upVoters,downVoters
-      return new Comment([],[],
-                          1,"XD",
-                          31,1,
-                          [],"",5,false);
+  generateVoters(){
+      const voters =  new Voters();
+      voters.winConditionId = this.winCondition.id;
+      voters.upvoters = this.winCondition.upvoters;
+      voters.downvoters = this.winCondition.downvoters;
+      return voters;
   }
 
   toggleComments() {
