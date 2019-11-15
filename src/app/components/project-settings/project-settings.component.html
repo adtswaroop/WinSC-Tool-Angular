@@ -1,1 +1,88 @@
-<p>project-settings works!</p>
+<!doctype html>
+<html lang="en">
+  <div class="container mt-5">
+    <div class="form-group row">
+      <label for="projectNameInput" class="col-sm-3 col-form-label text-right">Project Name</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="projectNameInput" value="Winbook 2.0">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="visionInput" class="col-sm-3 col-form-label text-right">Vision</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="visionInput" value="The vision is to make a new, stable, easy-to-use version of Winbook.">
+      </div>
+    </div>
+
+    <div class="form-group row align-horizontal">
+      <div class="col">
+        <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+
+    <div class="form-group row mt-5">
+      <label for="memberList" class="col-sm-3 col-form-label text-right">Members</label>
+      <div class="col-sm-7">
+        <div class="container rounded border px-2 pt-3">
+          <div class="member-list-holder container">
+            <div *ngFor="let member of members">
+              <div class="row align-vertical p-0 mb-2">
+                <div class="col-sm-6 pt-1">
+                  {{ member.email }}
+                </div>
+                <div class="col-sm-3 pt-1">
+                  <div *ngIf="member.access === 'OWNER'; else elseBlock" class="container p-0 pt-1 pl-1" style="font-size: 10pt;">
+                    Owner
+                  </div>
+                  <ng-template #elseBlock>
+                    <div *ngIf="member.access === 'ADMIN'; else memberBlock">
+                      <select class="access-dropdown" style="font-size: 11pt;">
+                        <option value="ADMIN" selected>Admin</option>
+                        <option value="MEMBER">Member</option>
+                      </select>
+                    </div>
+                    <ng-template #memberBlock>
+                      <select class="access-dropdown" style="font-size: 11pt;">
+                        <option value="MEMBER" selected>Member</option>
+                        <option value="ADMIN">Admin</option>
+                      </select>
+                    </ng-template>
+                  </ng-template>
+                </div>
+                <div class="col-sm-2 pt-0">
+                  <button *ngIf="member.access !== 'OWNER'" type="button" class="close text-danger" aria-Label="Remove">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container border-top p-0 mt-3">
+            <input type="text" class="form-control member-input" placeholder="Add a new member's email address...">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-5">
+      <label for="dangerZone" class="col-sm-3 col-form-label text-right">Danger Zone</label>
+      <div class="col-sm-7">
+        <div class="container rounded align-horizontal border border-warning py-4">
+          <button type="submit" class="btn btn-warning mr-5">Make Public</button>
+          <button type="submit" class="btn btn-warning mr-5">Archive Project</button>
+          <button type="submit" class="btn btn-warning">Delete Project</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mt-5">
+      <div class="col align-horizontal">
+        <button type="reset" class="btn btn-secondary">Back</button>
+      </div>
+    </div>
+  </div>
+</html>
+

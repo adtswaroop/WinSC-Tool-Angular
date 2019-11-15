@@ -21,8 +21,8 @@ export class WinHolderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sortStates = ["MostLikes", "LeastLikes"];
-    this.currentSortState = "MostLikes";
+    this.sortStates = ["Most Likes", "Least Likes"];
+    this.currentSortState = "Most Likes";
     this.categories = categories;
     this.currentCategory = "None";
     this.winConditions = new DummyData().wcArr;
@@ -30,7 +30,7 @@ export class WinHolderComponent implements OnInit {
     // this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos", 1, 1, ["UI"], "win condition text 1", [])];
     // this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos", 2, 2, ["UI"], "win condition text 2", []));
     // this.winConditions.push(new WinCondition(["1"], ["1","2"], 3, "Carlos", 3, 3, ["UI"], "win condition text 3", []));
-    this.sort("MostLikes");
+    this.sort("Most Likes");
   }
 
   sortByMostLikes(pWinConditions) {
@@ -55,10 +55,10 @@ export class WinHolderComponent implements OnInit {
 
   sort(currentSortStateChange) {
     this.currentSortState = currentSortStateChange;
-    if(currentSortStateChange == "MostLikes"){
+    if(currentSortStateChange == "Most Likes"){
       this.winConditions = this.sortByMostLikes(this.winConditions);
     }
-    else if(currentSortStateChange == "LeastLikes"){
+    else if(currentSortStateChange == "Least Likes"){
       this.winConditions = this.sortByLeastLikes(this.winConditions);
     }
   }

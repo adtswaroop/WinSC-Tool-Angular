@@ -19,8 +19,10 @@
         <div id="winConText">
             <p> {{ winCondition.text }} </p>
         </div>
-        <a href="#" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
-        <a href="#" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a>
+        <a style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
+        <a style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a>
+        <!-- <a href="#" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
+        <a href="#" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a> -->
 
     </div>
 
