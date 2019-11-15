@@ -44,6 +44,8 @@
     vertical-align: middle;
 }
 
+.dropdown:hover .dropdown-menu { display: block; }
+
 #logo {
     width: 45px;
     margin-right: 20px;

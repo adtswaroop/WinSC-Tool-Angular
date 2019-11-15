@@ -29,6 +29,8 @@ import { WinConditionPriorizationComponent } from './components/win-condition-pr
 import { WinHolderPriorizationComponent } from './components/win-holder-priorization/win-holder-priorization.component';
 import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { ProjectListComponent } from './components/project-list/project-list.com
     WinConditionPriorizationComponent,
     WinConditionInputComponent,
     WinHolderPriorizationComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { ProjectListComponent } from './components/project-list/project-list.com
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatSliderModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
