@@ -1,0 +1,16 @@
+.member-list-holder {
+  overflow-y: scroll;
+  height: 110px;
+}
+
+.member-input {
+  border: 0;
+}
+
+.align-horizontal {
+  text-align: center;
+}
+
+.align-vertical {
+  vertical-align: middle;
+}

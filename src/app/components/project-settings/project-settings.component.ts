@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { members } from './dummyMembers';
 
 @Component({
   selector: 'app-project-settings',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-settings.component.css']
 })
 export class ProjectSettingsComponent implements OnInit {
+
+  members = members;
 
   constructor() { }
 
