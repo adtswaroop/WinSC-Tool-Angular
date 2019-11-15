@@ -1,86 +1,69 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 <!doctype html>
 <html lang="en">
-  <div class="container center text-center mt-5 mb-4">
+  <div class="text-center mt-5 mb-4">
     <h3>Profile</h3>
   </div>
 
-  <div class="container">
-    <div class="row bg-light p-4">
-      <div class="col-sm-1"></div>
-
+  <div class="container bg-light py-4">
+    <div class="row justify-content-center pr-4">
       <div class="col-sm-3">
         <div class="profile-img">
           <img src="../../../assets/avatar-example.jpg" alt="Profile Picture">
-          <button type="button" class="file btn btn-lg btn-primary">
+          <button type="button" class="file btn btn-sm btn-primary">
             Upload Photo
             <input type="file" name="file">
           </button>
         </div>
       </div>
 
-      <div class="col-sm-7">
+      <div class="col-sm-6 pt-2">
         <div class="form-group row">
-          <label for="nameInput" class="col-sm-3 col-form-label text-right">Name</label>
-          <div class="col-sm-8">
+          <label for="nameInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Name</label>
+          <div class="col-sm-9">
             <input type="text" class="form-control" id="nameInput" value="Danny Developer">
           </div>
         </div>
         <div class="form-group row">
-          <label for="emailInput" class="col-sm-3 col-form-label text-right">Email</label>
-          <div class="col-sm-8">
+          <label for="emailInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Email</label>
+          <div class="col-sm-9">
             <input type="email" class="form-control" id="emailInput" value="d_dev@usc.edu">
           </div>
         </div>
         <div class="form-group row">
-          <label for="orgInput" class="col-sm-3 col-form-label text-right">Organization</label>
-          <div class="col-sm-8">
+          <label for="orgInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Organization</label>
+          <div class="col-sm-9">
             <input type="text" class="form-control" id="orgInput" value="USC Center for Systems and Software Engineering">
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-sm-3">
-          </div>
-          <div class="col-sm-8">
-            <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-          </div>
-        </div>
       </div>
     </div>
 
-    <div class="row bg-light p-4 mt-5">
-      <div class="col=sm-1"></div>
-      <div class="col-sm-3"></div>
-      <div class="col-sm-8">
-        <div class="form-group row">
-          <label for="passwordInput" class="col-sm-4 col-form-label text-right">Change Password</label>
-          <div class="col-sm-7">
-            <input type="password" class="form-control" id="passwordInput" placeholder="New password">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="passwordConfirm" class="col-sm-4 col-form-label text-right"></label>
-          <div class="col-sm-7">
-            <input type="password" class="form-control" id="passwordConfirm" placeholder="Re-enter new password">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-sm-4"></div>
-          <div class="col-sm-7">
-            <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
-            <button type="submit" class="btn btn-primary">Update Password</button>
-          </div>
-        </div>
-      </div>
+    <div class="row justify-content-center my-3">
+      <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
     </div>
   </div>
+
+  <div class="container bg-light justify-content-center mt-5 py-4">
+    <div class="form-group row">
+      <label for="passwordInput" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4">Change Password</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" id="passwordInput" placeholder="New password">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="passwordConfirm" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4"></label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control pr-2" id="passwordConfirm" placeholder="Re-enter new password">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+      <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
+      <button type="submit" class="btn btn-primary">Update Password</button>
+    </div>
+  </div>
+
 </html>
 
