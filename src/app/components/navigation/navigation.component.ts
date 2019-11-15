@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+export const projects = ['Winbook 2.0', 'Project Swarm', 'Winbook Feedback'];
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class NavigationComponent implements OnInit {
+
+  projects = projects;
 
   constructor() { }
 
