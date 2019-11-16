@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DummyData } from '../../classes/dummy-data';
+import { WinHolderPriorizationService } from '../../services/win-holder-priorization/win-holder-priorization.service';
+
 
 
 @Component({
@@ -15,14 +17,18 @@ export class WinHolderPriorizationComponent implements OnInit {
   businessValue;
   relativePenalty;
   easeRealization;
+  winHolderPriorizationService;
 
-  constructor() { }
+  constructor(winHolderPriorizationService: WinHolderPriorizationService) {
+    this.winHolderPriorizationService = winHolderPriorizationService;
+  }
 
   ngOnInit() {
     this.businessValue = 50;
     this.relativePenalty = 50;
     this.easeRealization = 50;
     this.winConditions = new DummyData().wcArr;
+    this.getRequestWinConditions();
   }
 
   sortByLeastPriority(pWinConditions) {
@@ -60,6 +66,17 @@ export class WinHolderPriorizationComponent implements OnInit {
 
   updateEaseRealization(sliderChangeEvent) {
     console.log(sliderChangeEvent.value);
+  }
+
+  getRequestWinConditions() {
+
+    var pthis = this;
+
+    this.winHolderPriorizationService.getWinConditions()
+      .subscribe({next: pWinConditions => {
+        console.log(pWinConditions);
+        pthis.winConditions = pWinConditions.winConditions;
+      } });
   }
 
 }
