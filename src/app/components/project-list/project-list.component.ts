@@ -12,7 +12,7 @@ export class ProjectListComponent implements OnInit {
   proj1 = '';
   proj2 = '';
 
-  constructor() {
+  constructor(private projectListService: ProjectListService) {
     // initialize service to retrieve project data
 
     // initialize project name and project description
@@ -22,5 +22,6 @@ export class ProjectListComponent implements OnInit {
 
   ngOnInit() {
     // initialize project data listener
+    this.projectListService.getAllProjects();
   }
 }
