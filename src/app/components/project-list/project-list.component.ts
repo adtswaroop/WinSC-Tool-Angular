@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DummyData } from './../../classes/dummy-data';
+import { ProjectListService } from '../../services/project-list/project-list.service';
 
 @Component({
   selector: 'app-project-list',
