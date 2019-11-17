@@ -1,0 +1,102 @@
+
+#newBenefitContainer{
+ margin-top: 20px;   
+ display: flex;
+}
+
+#newBenfit{
+    margin-left: 3em !important;
+    margin-right: 5px;
+}
+
+#benefitsContainer{
+    margin-left: 2em !important;
+    margin-top:30px;
+}
+
+.benefitVal{
+    min-height: 10%;
+    margin-top: 5%;
+    border: inset 1px #52494933;
+    padding: 30px;
+    background: #80808014;
+    position: relative;
+}
+
+.benefitVal p{
+    margin-bottom: 0px;
+}
+
+#slider {
+    display: flex;
+    text-align: -webkit-center;
+    margin-top: 20px;
+}
+
+#mat-slider {
+    display: block;
+}
+
+#sliderValue{
+    line-height: 2.5;
+    font-weight: 900;
+    color: #990000;
+    font-size: 20px;
+}
+
+#category-labels {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 15px;
+    /* font-style: italic; */
+}
+
+#icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.fas {
+    font-size: 12px;
+    color: #007bff;
+    padding: 3px;
+}
+
+.fas:hover {
+    font-size: 15px;
+    color: black;
+    padding: 3px;
+}
+
+
+app-win-condition-input#weight-value input {
+    width: 60px;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb {
+    background-color: #ffcc01;
+}
+
+::ng-deep .mat-accent .mat-slider-ticks {
+    opacity: 1!important;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb-label {
+    background-color: #ffcc01;
+}
+
+::ng-deep .mat-accent .mat-slider-track-fill {
+    background-color: #ffcc01;
+    height: 5px!important;
+}
+
+::ng-deep .mat-accent .mat-slider-track-background {
+    background-color: #ced1d4;
+    opacity: 1!important;
+    height: 5px!important;
+}
+
+::ng-deep .mat-accent .mat-slider-track-wrapper {
+    height: 5px!important;
+}
