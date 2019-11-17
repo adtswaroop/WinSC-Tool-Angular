@@ -6,7 +6,8 @@ import { Subject } from 'rxjs';
 
 
 const GETPROJECT_URL = environment.urlBase + '/allProjects';
-const DELETEPROJECT_URL = environment.urlBase + '/delete';
+const DELETEPROJECT_URL = environment.urlBase + '/deleteProject';
+const PUTPROJECT_URL = environment.urlBase + '/putProject';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,56 @@ export class ProjectListService {
     });
   }
 
-  deleteProject(projectID: number) {
-    const deleteURL = DELETEPROJECT_URL + '/${projectID}';
-    this.http.delete(deleteURL);
+  postProject(project: Project) {
+    this.http.put(GETPROJECT_URL, {
+      name: project.name,
+      id: project.id,
+      description: project.description,
+      accessLevel: project.accessLevel,
+      vision: project.vision,
+      archieved: project.archieved,
+      deleted: project.deleted,
+      businessValueWeight: project.businessValueWeight,
+      relativePenaltyWeight: project.relativePenaltyWeight,
+      easeOfRealizationWeight: project.easeOfRealizationWeight,
+      createdAt: project.createdAt,
+      updatedAt: project.updatedAt
+    }).subscribe(data => {
+      console.log('POST request done', data);
+    }, error => {
+      console.log('error in POST method');
+    }
+    );
   }
 
+
+  updateProject(project: Project) {
+    const projectID = project.id;
+    const putURL = PUTPROJECT_URL + '/' + projectID;
+    this.http.put(putURL, {
+      name: project.name,
+      id: project.id,
+      description: project.description,
+      accessLevel: project.accessLevel,
+      vision: project.vision,
+      archieved: project.archieved,
+      deleted: project.deleted,
+      businessValueWeight: project.businessValueWeight,
+      relativePenaltyWeight: project.relativePenaltyWeight,
+      easeOfRealizationWeight: project.easeOfRealizationWeight,
+      createdAt: project.createdAt,
+      updatedAt: project.updatedAt
+    }).subscribe(data => {
+      console.log('PUT request done', data);
+    }, error => {
+      console.log('error in PUT method');
+    }
+    );
+  }
+
+
+  deleteProject(projectID: number) {
+    const deleteURL = DELETEPROJECT_URL + '/' + projectID;
+    this.http.delete(deleteURL);
+  }
 }
