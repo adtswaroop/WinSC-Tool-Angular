@@ -3,7 +3,6 @@ import { DummyData } from '../../classes/dummy-data';
 import { WinHolderPriorizationService } from '../../services/win-holder-priorization/win-holder-priorization.service';
 
 
-
 @Component({
   selector: 'app-win-holder-priorization',
   templateUrl: './win-holder-priorization.component.html',
@@ -29,12 +28,13 @@ export class WinHolderPriorizationComponent implements OnInit {
     this.easeRealization = 50;
     this.winConditions = new DummyData().wcArr;
     this.getRequestWinConditions();
+
   }
 
   sortByLeastPriority(pWinConditions) {
     var clonePWinConditions = pWinConditions.slice(0);
     clonePWinConditions.sort(function(a, b){
-      
+
       var aPriority = 0; //Modify this to take the priority of a
       var bPriority = 0; //Modify this to take the priority of b
       return bPriority - aPriority;
@@ -53,7 +53,7 @@ export class WinHolderPriorizationComponent implements OnInit {
   }
 
   sort(currentSortStateChange) {
-    
+
   }
 
   updateBusinessValue(sliderChangeEvent) {

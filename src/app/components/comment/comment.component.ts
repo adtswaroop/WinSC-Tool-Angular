@@ -1,4 +1,3 @@
-import { DummyData } from './../../classes/dummy-data';
 import { Comment } from './../../classes/comment';
 import { Component, OnInit, Input } from '@angular/core';
 // TODO: Handle long comments, limit text length

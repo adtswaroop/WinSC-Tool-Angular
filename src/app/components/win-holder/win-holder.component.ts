@@ -1,43 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WinCondition } from '../../classes/win-condition';
 import { categories } from '../category-holder/dummyCategories';
-import { DummyData } from '../../classes/dummy-data';
+import { WinconditionService } from 'src/app/services/wincondition.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-win-holder',
   templateUrl: './win-holder.component.html',
   styleUrls: ['./win-holder.component.css']
 })
-export class WinHolderComponent implements OnInit {
+export class WinHolderComponent implements OnInit, OnDestroy {
 
   sortStates;
   currentSortState;
   categories;
   currentCategory;
   winConditionsArray;
-  winConditions;
   origWinConditions;
-  constructor() {
+  private wSub: Subscription;
+  private winConditions: Array<WinCondition>;
+
+  constructor(private winconditionService: WinconditionService) {
+    this.wSub = this.winconditionService.winConditionData.subscribe((data: Array<WinCondition>) => {
+      this.winConditions = data;
+      this.sort();
+    });
   }
 
   ngOnInit() {
-    this.sortStates = ["Most Likes", "Least Likes"];
-    this.currentSortState = "Most Likes";
+    this.sortStates = [ "LeastLikes","MostLikes"];
     this.categories = categories;
     this.currentCategory = "None";
-    this.winConditions = new DummyData().wcArr;
-    this.origWinConditions = new DummyData().wcArr;
-    // this.winConditions = [new WinCondition(["1","2","3","4"], ["1"], 1, "Carlos", 1, 1, ["UI"], "win condition text 1", [])];
-    // this.winConditions.push(new WinCondition(["1","2","3"], ["1","2"], 2, "Carlos", 2, 2, ["UI"], "win condition text 2", []));
-    // this.winConditions.push(new WinCondition(["1"], ["1","2"], 3, "Carlos", 3, 3, ["UI"], "win condition text 3", []));
-    this.sort("Most Likes");
   }
 
   sortByMostLikes(pWinConditions) {
     var clonePWinConditions = pWinConditions.slice(0);
     clonePWinConditions.sort(function(a, b){
-      var aTotalVotes = a.upVoters.length - a.downVoters.length;
-      var bTotalVotes = b.upVoters.length - b.downVoters.length;
+      var aTotalVotes = a.upvoters.length - a.downvoters.length;
+      var bTotalVotes = b.upvoters.length - b.downvoters.length;
       return bTotalVotes - aTotalVotes;
     });
     return clonePWinConditions;
@@ -46,19 +46,20 @@ export class WinHolderComponent implements OnInit {
   sortByLeastLikes(pWinConditions) {
     var clonePWinConditions = pWinConditions.slice(0);
     clonePWinConditions.sort(function(a, b){
-      var aTotalVotes = a.upVoters.length - a.downVoters.length;
-      var bTotalVotes = b.upVoters.length - b.downVoters.length;
+      var aTotalVotes = a.upvoters.length - a.downvoters.length;
+      var bTotalVotes = b.upvoters.length - b.downvoters.length;
       return aTotalVotes - bTotalVotes;
     });
     return clonePWinConditions;
   }
 
-  sort(currentSortStateChange) {
-    this.currentSortState = currentSortStateChange;
-    if(currentSortStateChange == "Most Likes"){
+
+  sort() {
+
+    if(this.currentSortState == "MostLikes"){
       this.winConditions = this.sortByMostLikes(this.winConditions);
     }
-    else if(currentSortStateChange == "Least Likes"){
+    else if(this.currentSortState  == "LeastLikes"){
       this.winConditions = this.sortByLeastLikes(this.winConditions);
     }
   }
@@ -79,7 +80,7 @@ export class WinHolderComponent implements OnInit {
   createWinConditionHandler(pEvent) {
     var newWinCondition = pEvent;
     this.winConditions = this.createWinCondition(newWinCondition, this.winConditions);
-    this.sort(this.currentSortState);
+    this.sort();
   }
 
   createWinCondition(pWinCondition, pWinConditions) {
@@ -87,5 +88,10 @@ export class WinHolderComponent implements OnInit {
     clonePWinConditions.push(pWinCondition);
     return clonePWinConditions;
   }
+
+  ngOnDestroy(): void {
+    this.wSub.unsubscribe();
+  }
+
 
 }

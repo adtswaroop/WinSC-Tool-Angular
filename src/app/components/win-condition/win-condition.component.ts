@@ -1,5 +1,4 @@
 import { Comment } from './../../classes/comment';
-import { DummyData } from './../../classes/dummy-data';
 import { WinCondition } from './../../classes/win-condition';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
@@ -10,7 +9,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class WinConditionComponent implements OnInit {
   @Input() winCondition: WinCondition;
-  
+
   showWinCondition:boolean;
   showComments:boolean;
   constructor() {
@@ -23,10 +22,10 @@ export class WinConditionComponent implements OnInit {
 
   wcToComment(){
     // TODO: Fix this bad design, vote should not use comment, it needs a new data structure likeType,upVoters,downVoters
-      return new Comment(this.winCondition.upVoters,this.winCondition.downVoters,
-                          this.winCondition.likeType,this.winCondition.userName,
-                          this.winCondition.userId,this.winCondition.winConditionId,
-                          this.winCondition.categories,"",5,false);
+      return new Comment([],[],
+                          1,"XD",
+                          31,1,
+                          [],"",5,false);
   }
 
   toggleComments() {
