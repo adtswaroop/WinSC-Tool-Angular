@@ -16,12 +16,24 @@ export class WinCondition {
     public categories: Array<Category>;
     public comments: Array<Comment>;
 
+  /*
   constructor(json) {
     Object.assign(this,json);
   }
+  */
 
-
-
-
-
+	constructor($id: number, $projectId: number, $user: User, $text: string, $businessValue: number, $relativePenalty: number, $easeRealization: number, $prioritizationScore: number, $upvoters: Array<User>, $downvoters: Array<User>, $categories: Array<Category>, $comments: Array<Comment>) {
+		this.id = $id;
+		this.projectId = $projectId;
+		this.user = $user;
+		this.text = $text;
+		this.businessValue = $businessValue;
+		this.relativePenalty = $relativePenalty;
+		this.easeRealization = $easeRealization;
+		this.prioritizationScore = $prioritizationScore;
+		this.upvoters = $upvoters;
+		this.downvoters = $downvoters;
+		this.categories = $categories;
+		this.comments = $comments;
+	}
 }
