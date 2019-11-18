@@ -13,7 +13,7 @@ export class WinconditionService {
 
 
   constructor(private backendService: BackendService) {
-    this.updateWinConditions(); //TODO: Fix this, we should parse all projects etc...
+    //this.updateWinConditions(); //TODO: Fix this, we should parse all projects etc...
     console.log("Wincondition constructor called");
   }
 
@@ -25,6 +25,7 @@ export class WinconditionService {
           return new WinCondition(elem);
       });
       */
+     console.log("Received win conditions : "+data)
       this.winConditionSource.next(data);
     });
     return obj;
