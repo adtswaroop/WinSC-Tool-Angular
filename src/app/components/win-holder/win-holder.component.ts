@@ -18,7 +18,7 @@ export class WinHolderComponent implements OnInit, OnDestroy {
   winConditionsArray;
   origWinConditions;
   private wSub: Subscription;
-  private winConditions: Array<WinCondition>;
+  public winConditions: Array<WinCondition>;
 
   constructor(private winconditionService: WinconditionService) {
     this.wSub = this.winconditionService.winConditionData.subscribe((data: Array<WinCondition>) => {
@@ -28,9 +28,10 @@ export class WinHolderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sortStates = [ "LeastLikes","MostLikes"];
+    this.sortStates = ["MostLikes", "LeastLikes"];
     this.categories = categories;
     this.currentCategory = "None";
+    this.currentSortState = "MostLikes";
   }
 
   sortByMostLikes(pWinConditions) {
@@ -56,6 +57,8 @@ export class WinHolderComponent implements OnInit, OnDestroy {
 
   sort() {
 
+    // TODO: This wont work if we don't re-request the data from the backend after each vote, which will be too heavy for the server.
+    // We should somehow use the votecomponent score to sort the win conditions. Idea: use viewchildren to get score from wincondition component.
     if(this.currentSortState == "MostLikes"){
       this.winConditions = this.sortByMostLikes(this.winConditions);
     }
