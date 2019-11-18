@@ -30,4 +30,24 @@ export class WinconditionService {
     });
     return obj;
   }
+
+  handleVote(winConditionId:number , commentId:number, voteType:number) {
+    if (winConditionId && commentId) {
+      console.error("Critical Error! Vote component should have either winconditionID or commentId, not BOTH" );
+      return false;
+    }
+    let obj;
+    if (winConditionId) {
+        obj = this.backendService.voteWinCondition(winConditionId,voteType);
+    } else if (commentId) {
+        obj = this.backendService.voteWinConditionComment(commentId,voteType);
+    } else{
+      console.error("Critical error! Vote object doesn't have winconditionId or commentId");
+      return false;
+    }
+    obj.subscribe((data) => {
+      console.log("Vote response: "+data);
+    })
+
+  }
 }
