@@ -86,7 +86,6 @@ export class DummyData {
 
   public wcArr = [this.w1, this.w2, this.w3, this.w4, this.w5 ];
 
-<<<<<<< HEAD
   // project list array and associated individual project elements
   public project1 = new Project("Project Pineapple", 1234, "Pineapple is good", "public", "Pineapple vision",
   false, false, 1, 4, 5, new Date('December 17, 2018 03:24:00'), new Date('September 17, 2019 04:24:22'));
@@ -98,11 +97,9 @@ export class DummyData {
   false, false, 0, 2, 4, new Date('November 17, 2018 03:24:00'), new Date());
 
   public projectArr = [this.project1, this.project2, this.project3];
-=======
 
   //BENEFITS
   public benefit1 = new BenefitComponent("Aditi" , [this.cat1], "Support win-win negotiations")
->>>>>>> master
 
 	constructor() {
 
