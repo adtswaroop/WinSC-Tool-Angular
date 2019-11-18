@@ -1,8 +1,8 @@
+import { DummyData } from './../../classes/dummy-data';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
-export const projects = ['Winbook 2.0', 'Project Swarm', 'Winbook Feedback'];
 
 @Component({
   selector: 'app-navigation',
@@ -12,7 +12,7 @@ export const projects = ['Winbook 2.0', 'Project Swarm', 'Winbook Feedback'];
 
 export class NavigationComponent implements OnInit {
 
-  projects = projects;
+  projects = new DummyData().projectArr;
 
   constructor(private auth: AuthenticationService, private router: Router) { }
 

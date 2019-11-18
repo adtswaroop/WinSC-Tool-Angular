@@ -92,13 +92,13 @@ export class DummyData {
   public benefit1 = new Benefit("Aditi" , [this.cat1], "Support win-win negotiations")
 
   // project list array and associated individual project elements
-  public project1 = new Project("Project Pineapple", 1234, "Pineapple is good", "public", "Pineapple vision",
+  public project1 = new Project("Project Pineapple", 1, "Pineapple is good", "public", "Pineapple vision",
   false, false, 1, 4, 5, new Date('December 17, 2018 03:24:00'), new Date('September 17, 2019 04:24:22'));
 
-  public project2 = new Project("Project Apple", 5678, "Apple is good", "private", "Apple vision",
+  public project2 = new Project("Project Apple", 2, "Apple is good", "private", "Apple vision",
   false, false, 2, 5, 3, new Date(), new Date());
 
-  public project3 = new Project("Project Lemon", 9011, "Lemon is good", "public", "Lemon vision",
+  public project3 = new Project("Project Lemon", 3, "Lemon is good", "public", "Lemon vision",
   false, false, 0, 2, 4, new Date('November 17, 2018 03:24:00'), new Date());
 
   public projectArr = [this.project1, this.project2, this.project3];
