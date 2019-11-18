@@ -27,12 +27,8 @@ const routes: Routes = [
       path: '',
       redirectTo: '/project-list',
       pathMatch: 'full'
-    },
-    {
-      path: '**',
-      redirectTo: '/project-list',
-      pathMatch: 'full'
     }
+
   ] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
