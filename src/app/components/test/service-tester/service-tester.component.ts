@@ -40,8 +40,4 @@ export class ServiceTesterComponent implements OnInit {
     this.authenticationService.logout();
   }
 
-  testAllWinConditions() {
-    this.winconditionService.updateWinConditions();
-  }
-
 }
