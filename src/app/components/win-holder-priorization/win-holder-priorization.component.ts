@@ -26,7 +26,7 @@ export class WinHolderPriorizationComponent implements OnInit {
     this.businessValue = 50;
     this.relativePenalty = 50;
     this.easeRealization = 50;
-    this.winConditions = new DummyData().wcArr;
+    this.winConditions = [];
     this.getRequestWinConditions();
 
   }
