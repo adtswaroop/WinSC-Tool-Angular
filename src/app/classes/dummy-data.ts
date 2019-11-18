@@ -1,6 +1,7 @@
 import { Category } from './category';
 import { Comment } from './comment';
 import { WinCondition } from './win-condition';
+import { Project } from './project';
 import { BenefitComponent } from './benefit';
 
 export class DummyData {
@@ -76,7 +77,7 @@ export class DummyData {
 
   // fifth win condition
   public w5c1 = new Comment(['Kam', 'Alex' , 'Yicheng'], ['Romi', 'Doruk'], -1, 'Aditi', 1, 5, this.categoryArray3,
-                          'Which part of a project can be made pbulic?', 100, false);
+                          'Which part of a project can be made public?', 100, false);
 
 
   public w5 = new WinCondition(['Alavaro', 'Kam', 'Romi' , 'Alp'], ['Kam'], 1, 'Yicheng', 2, 5, this.categoryArray3,
@@ -85,9 +86,23 @@ export class DummyData {
 
   public wcArr = [this.w1, this.w2, this.w3, this.w4, this.w5 ];
 
+<<<<<<< HEAD
+  // project list array and associated individual project elements
+  public project1 = new Project("Project Pineapple", 1234, "Pineapple is good", "public", "Pineapple vision",
+  false, false, 1, 4, 5, new Date('December 17, 2018 03:24:00'), new Date('September 17, 2019 04:24:22'));
+
+  public project2 = new Project("Project Apple", 5678, "Apple is good", "private", "Apple vision",
+  false, false, 2, 5, 3, new Date(), new Date());
+
+  public project3 = new Project("Project Lemon", 9011, "Lemon is good", "public", "Lemon vision",
+  false, false, 0, 2, 4, new Date('November 17, 2018 03:24:00'), new Date());
+
+  public projectArr = [this.project1, this.project2, this.project3];
+=======
 
   //BENEFITS
   public benefit1 = new BenefitComponent("Aditi" , [this.cat1], "Support win-win negotiations")
+>>>>>>> master
 
 	constructor() {
 
