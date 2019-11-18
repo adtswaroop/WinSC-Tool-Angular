@@ -1,3 +1,4 @@
+import { ProjectGuard } from './helpers/project.guard';
 import { AuthGuard } from './helpers/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,8 +15,9 @@ const routes: Routes = [
       component: ProjectListComponent
     },
     {
-      path: 'project',
-      component: ProjectComponent
+      path: 'project/:id',
+      component: ProjectComponent,
+      canActivate: [ProjectGuard]
     },
     {
       path: 'profile',
