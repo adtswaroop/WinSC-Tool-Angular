@@ -1,3 +1,4 @@
+import { ProjectService } from './project/project.service';
 import { Injectable } from '@angular/core';
 import {BackendService} from './backend.service';
 import { BehaviorSubject, ObjectUnsubscribedError } from 'rxjs';
@@ -11,14 +12,18 @@ export class WinconditionService {
   private winConditionSource = new BehaviorSubject<Array<WinCondition>>([]);
   public winConditionData = this.winConditionSource.asObservable();
 
-
-  constructor(private backendService: BackendService) {
-    //this.updateWinConditions(); //TODO: Fix this, we should parse all projects etc...
-    console.log("Wincondition constructor called");
+  constructor(private backendService: BackendService, private projectService: ProjectService) {
+    this.projectService.getActiveProject.subscribe((projectId) => {
+        this.updateWinConditions(projectId);
+    });
   }
 
-  updateWinConditions(){
-    const obj = this.backendService.getAllWinConditions(1);
+  updateWinConditions(projectId){
+    if (projectId<0) {
+      this.winConditionSource.next([]);
+      return;
+    }
+    const obj = this.backendService.getAllWinConditions(projectId);
     obj.subscribe((data) => {
       /*
       const winConditionArray = data.map((elem)=> {

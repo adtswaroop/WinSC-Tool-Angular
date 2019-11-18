@@ -19,7 +19,8 @@ export class ProjectService {
   projectList: Project[];
   private getProjectListData = new BehaviorSubject<Project[]>([]);
   getProjectList = this.getProjectListData.asObservable();
-
+  private activeProjectData = new BehaviorSubject<number>(-1);
+  getActiveProject = this.activeProjectData.asObservable();
   constructor(private http: HttpClient) { }
 
   getAllProjects() {
@@ -81,5 +82,13 @@ export class ProjectService {
   deleteProject(projectID: number) {
     const deleteURL = DELETEPROJECT_URL + '/' + projectID;
     this.http.delete(deleteURL);
+  }
+
+  setActiveProject(projectID: number) {
+    this.activeProjectData.next(projectID);
+  }
+
+  getActiveProjectAsNumber(){
+    return this.activeProjectData.value;
   }
 }
