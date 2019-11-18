@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Project } from '../../classes/project';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 
 const GETPROJECT_URL = environment.urlBase + '/allProjects';
@@ -17,7 +17,7 @@ const PUTPROJECT_URL = environment.urlBase + '/putProject';
 export class ProjectListService {
 
   projectList: Project[];
-  private getProjectListData = new Subject<Project[]>();
+  private getProjectListData = new BehaviorSubject<Project[]>([]);
   getProjectList = this.getProjectListData.asObservable();
 
   constructor(private http: HttpClient) { }
