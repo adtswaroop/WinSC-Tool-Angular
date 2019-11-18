@@ -14,7 +14,7 @@ const PUTPROJECT_URL = environment.urlBase + '/putProject';
 })
 
 
-export class ProjectListService {
+export class ProjectService {
 
   projectList: Project[];
   private getProjectListData = new BehaviorSubject<Project[]>([]);
