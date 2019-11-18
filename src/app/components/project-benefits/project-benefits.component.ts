@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BenefitComponent } from '../../classes/benefit';
+import { Benefit } from '../../classes/benefit';
 import { categories } from '../category-holder/dummyCategories';
 import { DummyData } from './../../classes/dummy-data';
 
@@ -10,7 +10,7 @@ import { DummyData } from './../../classes/dummy-data';
   styleUrls: ['./project-benefits.component.css']
 })
 export class ProjectBenefitsComponent implements OnInit {
-  @Input() BenefitComponent = BenefitComponent;
+  @Input() Benefit = Benefit;
   // sortStates;
   // currentSortState;
 
@@ -19,7 +19,7 @@ export class ProjectBenefitsComponent implements OnInit {
   ngOnInit() {
     // this.sortStates = ["Sort By", "Most Likes", "Least Likes"];
     // this.currentSortState = "Sort By";
-   
+
   }
 
   onCategoryChange(event) {
@@ -28,7 +28,6 @@ export class ProjectBenefitsComponent implements OnInit {
     event.forEach(element => {
       res.push(element.name);
     });
-    //this.BenefitComponent.categories(res);
   }
 
 }
