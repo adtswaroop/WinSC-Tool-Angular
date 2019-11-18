@@ -1,7 +1,7 @@
 import { Category } from './category';
 import { Comment } from './comment';
 import { WinCondition } from './win-condition';
-import { BenefitComponent } from './benefit';
+import { Benefit } from './benefit';
 
 export class DummyData {
 
@@ -20,6 +20,7 @@ export class DummyData {
   public categoryArray5 = [this.cat4];
   public categoryArray6 = [this.cat5];
 
+  /*
   public c1 = new Comment(['Aditi', 'Romi'], ['Alex'], 1, 'Alp', 1, 5, this.categoryArray1,
                           'This feature is really good', 100, false);
   public c2 = new Comment(['Aditi', 'Romi'], ['Alex'], 0, 'Romi', 1, 5, this.categoryArray1,
@@ -84,10 +85,10 @@ export class DummyData {
                   [this.w5c1]);
 
   public wcArr = [this.w1, this.w2, this.w3, this.w4, this.w5 ];
-
+   */
 
   //BENEFITS
-  public benefit1 = new BenefitComponent("Aditi" , [this.cat1], "Support win-win negotiations")
+  public benefit1 = new Benefit("Aditi" , [this.cat1], "Support win-win negotiations")
 
 	constructor() {
 
