@@ -9,7 +9,7 @@ export class WinCondition {
     public text: string;
     public businessValue: number;
     public relativePenalty: number;
-    public easeRealization: number;
+    public easeOfRealization: number;
     public prioritizationScore: number;
     public upvoters: Array<User>;
     public downvoters: Array<User>;
@@ -29,7 +29,7 @@ export class WinCondition {
 		this.text = $text;
 		this.businessValue = $businessValue;
 		this.relativePenalty = $relativePenalty;
-		this.easeRealization = $easeRealization;
+		this.easeOfRealization = $easeRealization;
 		this.prioritizationScore = $prioritizationScore;
 		this.upvoters = $upvoters;
 		this.downvoters = $downvoters;
