@@ -8,17 +8,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class WinConditionInputComponent implements OnInit {
 
   @Input() value: number;
+  @Input() winConditionId: number;
   @Input() label: string;
   @Input() type: string;
-  @Output() valueChange = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  changeValue() {
-  
+  changeValue(newValue) {
+    console.log("Wincondition Id: "+this.winConditionId+" "+this.label+" value is updated to: ");
+    console.log(newValue);
   }
 
 }
