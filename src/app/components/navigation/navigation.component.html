@@ -16,7 +16,7 @@
               <b>My Projects:</b>
             </div>
           </div>
-          <div *ngFor="let project of projects">
+          <div *ngFor="let project of joinedProjects">
             <a class="dropdown-item container py-1" role="button" routerLink="/project/{{project.id}}">
               {{ project.name }}
             </a>

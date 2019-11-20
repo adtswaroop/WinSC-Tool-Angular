@@ -8,8 +8,9 @@
     <div class="myProject pb-4">
       <div id="innerText">
         <div id="listHeading"><b>My Projects</b></div>
-        <ul style="list-style-type:none;">
-          <a class="projectLink" style="margin: 5px 0;" routerLink="/project">Winbook 2.0</a>
+
+        <ul style="list-style-type:none;" *ngFor="let project of joinedProjectList">
+          <a class="projectLink" style="margin: 5px 0;" routerLink="/project/{{project.id}}">{{project.name}}</a>
           <!-- <li>Winbook feedback and issues</li> -->
         </ul>
         <div class="row mb-5"></div>
@@ -22,20 +23,13 @@
       <div id="innerText">
         <div id="listHeading"><b>Join a Project</b></div>
         <ul id="joinList" style="list-style-type:none; margin: 10px 0;">
-          <li>
-            <div class="listItem mb-4">
-              <a href="#" class="button mt-2 ml-5">Join</a>
-              <div id="projectName"><b>Project Pineapple</b></div>
-              <div id="projectDesc">This is a secret project. Only invited members can join.</div>
-            </div>
-          </li>
-          <li>
-            <div class="listItem mb-4">
-              <a href="#" class="button mt-2 ml-5">Join</a>
-              <div id="projectName"><b>WinSC Comments & Feedback</b></div>
-              <div id="projectDesc">Join to give feedback to the WinSC developer team.</div>
-            </div>
-          </li>
+            <li *ngFor="let project of otherProjectList">
+                <div class="listItem mb-4">
+                    <button (click)="joinProject(project.id)" class="button mt-2 ml-5">Join</button>
+                    <div id="projectName"><b>{{project.name}}</b></div>
+                    <div id="projectDesc">{{project.description}}</div>
+                  </div>
+              </li>
           <!-- <li>
             <div class="listItem">
               <a href="#" class="button mt-2">Join</a>

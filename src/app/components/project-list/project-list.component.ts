@@ -11,8 +11,11 @@ import { Project } from './../../classes/project';
 })
 export class ProjectListComponent implements OnInit, OnDestroy {
 
-  private projectServiceSub: Subscription;
-  projectList: Project[];
+  private joinedProjectSub: Subscription;
+  private otherProjectSub: Subscription;
+
+  otherProjectList: Project[];
+  joinedProjectList: Project[];
   // proj1 = '';
   // proj2 = '';
 
@@ -20,9 +23,12 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     // initialize service to retrieve project data
 
     // initialize project name and project description
-    this.projectServiceSub = this.projectService.getProjectList.subscribe(data => {
-      this.projectList = data;
+    this.joinedProjectSub = this.projectService.joinedProjectList.subscribe(data => {
+      this.joinedProjectList = data;
     });
+    this.otherProjectSub = this.projectService.otherProjectList.subscribe((data => {
+      this.otherProjectList = data;
+    }));
     // dynamically added div based on projects retrieved.
 
     // this.proj1 = 'ProjectX';
@@ -30,11 +36,19 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    // initialize project data listener
-    this.projectService.getAllProjects();
+
+  }
+
+  joinProject(projectId) {
+    const joinobs = this.projectService.joinProject(projectId);
+    joinobs.subscribe((data) => {
+      console.log(data);
+      this.projectService.getAllProjects();
+    });
   }
 
   ngOnDestroy(): void {
-    this.projectServiceSub.unsubscribe();
+    this.joinedProjectSub.unsubscribe();
+    this.otherProjectSub.unsubscribe();
   }
 }

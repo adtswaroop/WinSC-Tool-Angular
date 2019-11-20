@@ -2,6 +2,7 @@ import { DummyData } from './../../classes/dummy-data';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/services/project/project.service';
 
 
 @Component({
@@ -12,9 +13,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavigationComponent implements OnInit {
 
-  projects = new DummyData().projectArr;
+  joinedProjects = [];
 
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+    private projectService: ProjectService) {
+      this.projectService.joinedProjectList.subscribe((data) => {
+        this.joinedProjects = data;
+        console.log("Received projects of len "+data.length);
+      });
+    }
 
   ngOnInit() {
   }

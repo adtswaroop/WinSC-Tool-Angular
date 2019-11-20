@@ -5,7 +5,7 @@ import { Project } from '../../classes/project';
 import { Subject, BehaviorSubject } from 'rxjs';
 
 
-const GETPROJECT_URL = environment.urlBase + '/allProjects';
+const GETPROJECT_URL = environment.urlBase + '/projects';
 const DELETEPROJECT_URL = environment.urlBase + '/deleteProject';
 const PUTPROJECT_URL = environment.urlBase + '/putProject';
 
@@ -16,18 +16,25 @@ const PUTPROJECT_URL = environment.urlBase + '/putProject';
 
 export class ProjectService {
 
-  projectList: Project[];
-  private getProjectListData = new BehaviorSubject<Project[]>([]);
-  getProjectList = this.getProjectListData.asObservable();
+  private joinedProjectListData = new BehaviorSubject<Project[]>([]);
+  joinedProjectList = this.joinedProjectListData.asObservable();
+  private otherProjectListData = new BehaviorSubject<Project[]>([]);
+  otherProjectList = this.otherProjectListData.asObservable();
   private activeProjectData = new BehaviorSubject<number>(-1);
   getActiveProject = this.activeProjectData.asObservable();
-  constructor(private http: HttpClient) { }
+  projectsFetched: boolean;
+  constructor(private http: HttpClient) {
+    this.projectsFetched = false;
+  }
 
   getAllProjects() {
-    const projectListResponse = this.http.get<Array<Project>>(GETPROJECT_URL);
+    const projectListResponse = this.http.get<any>(GETPROJECT_URL);
     projectListResponse.subscribe((data) => {
-      this.projectList = data;
-      this.getProjectListData.next(this.projectList);
+      console.log("Received projects");
+      console.log(data);
+      this.projectsFetched = true;
+      this.joinedProjectListData.next(data.joinedProjects);
+      this.otherProjectListData.next(data.otherProjects);
     });
   }
 
@@ -76,6 +83,10 @@ export class ProjectService {
       console.log('error in PUT method');
     }
     );
+  }
+
+  joinProject(projectId: number) {
+    return this.http.get<any>(`${environment.urlBase}/project/${projectId}/join`);
   }
 
 
