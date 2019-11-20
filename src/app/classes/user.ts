@@ -5,4 +5,8 @@ export class User {
   lastName: string;
   type: string;
   token: string;
+
+	constructor() {
+	}
+
 }

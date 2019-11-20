@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { WinCondition } from 'src/app/classes/win-condition';
+import { User } from 'src/app/classes/user';
+import { WinconditionService } from 'src/app/services/wincondition.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 // import { WinCondition } from 'src/app/classes/win-condition';
 
 @Component({
@@ -17,8 +20,10 @@ export class WinInputComponent implements OnInit {
   @Output() currentCategoryChange = new EventEmitter<string>();
   @Output() addWinCondition = new EventEmitter<WinCondition>();
 
-  constructor(private fb: FormBuilder) {
-    this.addWinForm = this.fb.group({
+  constructor(private fb: FormBuilder,
+              private winConditionService: WinconditionService,
+              private authService: AuthenticationService) {
+      this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
    }
@@ -31,28 +36,11 @@ export class WinInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  addWin = () => {
-    console.log(this.addWinForm.controls['winpost'].value);
-    /*
-    this.addWinCondition.emit({
-      upVoters: [],
-      downVoters: [],
-      likeType: 0,
-      userName: 'Romi',
-      userId: 1,
-      text:this.addWinForm.controls['winpost'].value,
-      winConditionId: 0,
-      categories: [],
-      comments: [],
-      businessValue: 3,
-      relativePenalty: 2,
-      easeRealization: 5,
-      priorityValue: 5
-    })
-    this.addWinForm.setValue({
-      winpost:''
-    })
-    */
+  addWin() {
+    const wcText = this.addWinForm.controls['winpost'].value;
+    const user = this.authService.currentUserValue;
+    const wc = new WinCondition(0,0,user,wcText,0,0,0,0,[],[],[],[]);
+    this.winConditionService.createWincondition(wc);
   }
 
 }

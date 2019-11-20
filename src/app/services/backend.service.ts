@@ -43,4 +43,8 @@ export class BackendService {
       return this.http.get<any>(`${environment.urlBase}/winconditioncomment/${commentId}/unvote`);
     }
   }
+
+  createWinCondition(winCondition: WinCondition, projectId: number) {
+    return this.http.post<any>(`${environment.urlBase}/project/${projectId}/wincondition`, winCondition);
+  }
 }
