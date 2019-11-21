@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectComponent } from './components/project/project.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 const routes: Routes = [
   {
     path: 'project-list',
     component: ProjectListComponent
+  },
+  {
+    path: 'add-project',
+    component: AddProjectComponent
   },
   {
     path: 'project',
@@ -27,7 +32,7 @@ const routes: Routes = [
     redirectTo: '/project-list',
     pathMatch: 'full'
   }
-]
+];
 
 @NgModule({
   declarations: [],

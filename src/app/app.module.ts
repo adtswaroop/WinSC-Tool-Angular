@@ -31,6 +31,7 @@ import { WinConditionInputComponent } from './components/win-condition-input/win
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AppRoutingModule } from './app-routing.module';
     WinConditionInputComponent,
     WinHolderPriorizationComponent,
     ProjectListComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,
