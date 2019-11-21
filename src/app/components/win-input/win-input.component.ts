@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { WinCondition } from 'src/app/classes/win-condition';
-// import { WinCondition } from 'src/app/classes/win-condition';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { categories } from '../category-holder/dummyCategories';
 
 @Component({
   selector: 'app-win-input',
@@ -17,6 +18,11 @@ export class WinInputComponent implements OnInit {
   @Output() currentCategoryChange = new EventEmitter<string>();
   @Output() addWinCondition = new EventEmitter<WinCondition>();
 
+  dropdownList = [];
+  selectedItems = [];
+  selectedCategories = [];
+  dropdownSettings = {};
+
   constructor(private fb: FormBuilder) {
     this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
@@ -26,13 +32,29 @@ export class WinInputComponent implements OnInit {
    changeCategory(pCategory) {
      this.currentCategory = pCategory;
      this.currentCategoryChange.emit(pCategory);
+     this.dropdownList = this.categories;
    }
 
   ngOnInit() {
+    this.dropdownList = categories;
+    this.selectedItems = [];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: false,
+      enableCheckAll: false
+    };
+  }
+
+  onItemSelect(item: any) {
+    this.selectedCategories.push(categories.find(category => category.id == item.id));
   }
 
   addWin = () => {
-    console.log(this.addWinForm.controls['winpost'].value);
     this.addWinCondition.emit({
       upVoters: [],
       downVoters: [],
@@ -41,7 +63,7 @@ export class WinInputComponent implements OnInit {
       userId: 1,
       text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
-      categories: [],
+      categories: this.selectedCategories,
       comments: [], 
       businessValue: 3,
       relativePenalty: 2,
@@ -51,6 +73,8 @@ export class WinInputComponent implements OnInit {
     this.addWinForm.setValue({
       winpost:''
     })
+    this.selectedItems = [];
+    this.selectedCategories = [];
   }
 
 }

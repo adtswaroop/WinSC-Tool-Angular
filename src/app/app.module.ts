@@ -31,8 +31,9 @@ import { WinConditionInputComponent } from './components/win-condition-input/win
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AddProjectComponent } from './components/add-project/add-project.component';
-import { NgbdModalContent } from './components/project-list/project-list.component'
+import { NgbdModalContent } from './components/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NgbdModalContent } from './components/project-list/project-list.compone
     ReactiveFormsModule,
     MatSliderModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent],

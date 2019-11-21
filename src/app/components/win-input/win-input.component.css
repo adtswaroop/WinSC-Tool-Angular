@@ -18,3 +18,7 @@
 .form-group {
     display: flex;
 }
+
+#multiselect {
+    width: 30%;
+}

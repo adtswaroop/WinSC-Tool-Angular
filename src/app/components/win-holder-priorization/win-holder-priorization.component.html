@@ -31,13 +31,17 @@
         </div>
     </div>
 
-
+    <div id="weight-titles">
+        <span class="title">Business value</span>
+        <span class="title">Relative Penalty</span>
+        <span class="title">Ease of Realization</span>
+    </div>
     <div *ngFor="let winCondition of winConditions">
         <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
         <div class="col-5" id="win-weights">
-            <app-win-condition-input id="weight-value" label="Business value"></app-win-condition-input>
-            <app-win-condition-input id="weight-value" label="Relative penalty"></app-win-condition-input>
-            <app-win-condition-input id="weight-value" label="Ease of Realization"></app-win-condition-input>
+            <app-win-condition-input id="weight-value"></app-win-condition-input>
+            <app-win-condition-input id="weight-value"></app-win-condition-input>
+            <app-win-condition-input id="weight-value"></app-win-condition-input>
         </div>
     </div>
 

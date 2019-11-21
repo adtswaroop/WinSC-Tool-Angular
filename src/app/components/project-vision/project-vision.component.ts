@@ -22,7 +22,6 @@ export class ProjectVisionComponent implements OnInit {
   }
 
   addVision = () => {
-    console.log(this.addVisionForm.controls['vision'].value);
     document.getElementById("save-button").style.display = 'none';
     this.addVisionForm.setValue({
       vision:this.addVisionForm.controls['vision'].value

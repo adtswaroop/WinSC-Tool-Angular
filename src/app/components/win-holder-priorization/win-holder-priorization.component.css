@@ -66,7 +66,17 @@
 #weight-value {
     display: inline-block;
     text-align: -webkit-center;
-    margin-left: 30px;
+    margin-left: 2rem;
+}
+
+#weight-titles {
+    float: right;
+    margin-right: 9.5rem;
+}
+
+.title {
+    padding-left: 10px;
+    font-weight: bold;
 }
 
 app-win-condition-input#weight-value input {

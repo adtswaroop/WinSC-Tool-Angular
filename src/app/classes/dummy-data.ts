@@ -6,12 +6,12 @@ import { BenefitComponent } from './benefit';
 
 export class DummyData {
 
-  public cat1 = new Category('Prototype', false, '#FEA60F');
+  public cat1 = new Category(1, 'Prototype', 1, '#FEA60F', false);
   public categoryArray1 = [this.cat1];
-  public cat2 = new Category('Win Condition', false, '#AFD459');
-  public cat3 = new Category('Comments', false, '#690f56');
-  public cat4 = new Category('Admin', false, '#e84c22');
-  public cat5 = new Category('Benefits', false, '#33b0b4');
+  public cat2 = new Category(2, 'Win Condition', 1, '#AFD459', false);
+  public cat3 = new Category(3, 'Comments', 1, '#690f56', false);
+  public cat4 = new Category(4, 'Admin', 1, '#e84c22', false);
+  public cat5 = new Category(5, 'Benefits', 1, '#33b0b4', false);
 
 
 
