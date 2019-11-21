@@ -1,69 +1,69 @@
 <!doctype html>
 <html lang="en">
-  <div class="text-center mt-5 mb-4">
+<div class="text-center mt-5 mb-4">
     <h3>Profile</h3>
-  </div>
+</div>
 
-  <div class="container bg-light py-4">
+<div class="container bg-light py-4">
     <div class="row justify-content-center pr-4">
-      <div class="col-sm-3">
-        <div class="profile-img">
-          <img src="../../../assets/avatar-example.jpg" alt="Profile Picture">
-          <button type="button" class="file btn btn-sm btn-primary">
-            Upload Photo
-            <input type="file" name="file">
-          </button>
+        <div class="col-sm-3">
+            <div class="profile-img">
+                <img [src]="url ? url : '../../../assets/avatar-example.jpg'" alt="Profile Picture">
+                <div id="upload_btn" class="file btn btn-sm btn-primary">
+                    Upload Photo
+                    <input type="file" (change)="onPhotoUpload($event)" accept="image/jpeg, image/png">
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="col-sm-6 pt-2">
-        <div class="form-group row">
-          <label for="nameInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Name</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="nameInput" value="Danny Developer">
-          </div>
+        <div class="col-sm-6 pt-2">
+            <div class="form-group row">
+                <label for="nameInput" class="col-sm-3 col-form-label text-right p-0 pt-2">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nameInput" value="Alex">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="emailInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="emailInput" value="Hahn">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="orgInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Email</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="orgInput" value="hahnas@usc.edu">
+                </div>
+            </div>
         </div>
-        <div class="form-group row">
-          <label for="emailInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Email</label>
-          <div class="col-sm-9">
-            <input type="email" class="form-control" id="emailInput" value="d_dev@usc.edu">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="orgInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Organization</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="orgInput" value="USC Center for Systems and Software Engineering">
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="row justify-content-center my-3">
-      <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
     </div>
-  </div>
+</div>
 
-  <div class="container bg-light justify-content-center mt-5 py-4">
+<div class="container bg-light justify-content-center mt-5 py-4">
     <div class="form-group row">
-      <label for="passwordInput" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4">Change Password</label>
-      <div class="col-sm-6">
-        <input type="password" class="form-control" id="passwordInput" placeholder="New password">
-      </div>
+        <label for="passwordInput" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4">Change Password</label>
+        <div class="col-sm-6">
+            <input type="password" class="form-control" id="passwordInput" placeholder="New password">
+        </div>
     </div>
 
     <div class="form-group row">
-      <label for="passwordConfirm" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4"></label>
-      <div class="col-sm-6">
-        <input type="password" class="form-control pr-2" id="passwordConfirm" placeholder="Re-enter new password">
-      </div>
+        <label for="passwordConfirm" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4"></label>
+        <div class="col-sm-6">
+            <span id="password-warning"></span>
+            <input type="password" class="form-control pr-2" id="passwordConfirm" placeholder="Re-enter new password" (keyup)="confirmPassword($event,box)">
+        </div>
     </div>
 
     <div class="row justify-content-center mt-4">
-      <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
-      <button type="submit" class="btn btn-primary">Update Password</button>
+        <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="submit" class="btn btn-primary">Update Password</button>
     </div>
-  </div>
+</div>
 
 </html>
-

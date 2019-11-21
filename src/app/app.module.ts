@@ -32,6 +32,8 @@ import { ProjectListComponent } from './components/project-list/project-list.com
 import { ProfileComponent } from './components/profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AddProjectComponent } from './components/add-project/add-project.component';
+import { NgbdModalContent } from './components/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     WinConditionInputComponent,
     WinHolderPriorizationComponent,
     ProjectListComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddProjectComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +76,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgMultiSelectDropDownModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    NgbdModalContent
+  ]
 })
 export class AppModule { }
