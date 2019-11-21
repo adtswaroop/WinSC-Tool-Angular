@@ -5,7 +5,7 @@
     <form id="category-form" [formGroup]="categoryForm" (ngSubmit)="applyCategory()">
         <label formArrayName="categories" *ngFor="let category of categoryForm.controls.categories.controls; let i = index">
           <input type="checkbox" [formControlName]="i">
-          <span id="category-name" [ngStyle]="{'color': categories[i].color}">{{categories[i].name}} <span [hidden]="!categories[i].isMMF"> (MMF)</span></span>
+          <span id="category-name" [ngStyle]="{'background-color': categories[i].color}">{{categories[i].name}} <span [hidden]="!categories[i].isMMF"> (MMF)</span></span>
           <i class="fas fa-times" id="delete-category" (click)="deleteCategory()"></i>
         </label>
 
@@ -18,24 +18,4 @@
         </div>
         <button id="apply-category" type="submit" class="btn btn-primary">Filter</button>
     </form>
-    <!-- <form id="category-form" [formGroup]='applyCategoryForm' (ngSubmit)="applyCategory()">
-        <div *ngFor="let category of categories">
-            <div class="form-check">
-                <input class="form-check-input" id="categorycheck" type="checkbox" value="" formControlName='categorycheck'>
-                <label class="form-check-label" id="categoryname">
-                {{ category.name }}
-              </label>
-            </div>
-        </div>
-        <label formArrayName="categories" *ngFor="let category of applyCategoryForm.controls.categories.controls; let i = index">
-            <input type="checkbox" [formControlName]="i">
-            {{categories[i].name}}
-          </label>
-
-
-        <div class="category-input">
-            <input #box (keyup)="handleKey($event,box)" class="text" type="text" placeholder="Enter a new category...">
-        </div>
-        <button id="apply-category" [disabled]='!applyCategoryForm.valid' type="submit" class="btn btn-primary">Apply</button>
-    </form> -->
 </div>

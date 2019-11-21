@@ -1,20 +1,19 @@
-
-#newBenefitContainer{
- margin-top: 20px;   
- display: flex;
+#newBenefitContainer {
+    margin-top: 20px;
+    display: flex;
 }
 
-#newBenfit{
+#newBenfit {
     margin-left: 3em !important;
     margin-right: 5px;
 }
 
-#benefitsContainer{
+#benefitsContainer {
     margin-left: 2em !important;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
-.benefitVal{
+.benefitVal {
     min-height: 10%;
     margin-top: 5%;
     border: inset 1px #52494933;
@@ -23,7 +22,7 @@
     position: relative;
 }
 
-.benefitVal p{
+.benefitVal p {
     margin-bottom: 0px;
 }
 
@@ -37,7 +36,7 @@
     display: block;
 }
 
-#sliderValue{
+#sliderValue {
     line-height: 2.5;
     font-weight: 900;
     color: #990000;
@@ -47,7 +46,9 @@
 #category-labels {
     display: inline-block;
     margin-right: 10px;
-    font-size: 15px;
+    font-size: 13px;
+    color: white;
+    padding: 3px;
     /* font-style: italic; */
 }
 
@@ -68,7 +69,6 @@
     color: black;
     padding: 3px;
 }
-
 
 app-win-condition-input#weight-value input {
     width: 60px;
