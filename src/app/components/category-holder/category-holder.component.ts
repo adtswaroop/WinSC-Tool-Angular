@@ -62,18 +62,4 @@ export class CategoryHolderComponent implements OnInit {
   deleteCategory() {
   }
 
-  // applyCategory() {
-  //   const selectedCategories = this.categoryForm.value.orders
-  //     .map((v, i) => v ? this.categories[i].name : null)
-  //     .filter(v => v !== null);
-  //   // this.applyCategoryToWin.emit({
-  //   //   text: 'Category1',
-  //   //   isMMF: false,
-  //   //   color: '#ffff'
-  //   // })
-  //   // this.applyCategoryForm.setValue({
-  //   //   categorycheck:''
-  //   // })
-  // }
-
 }
