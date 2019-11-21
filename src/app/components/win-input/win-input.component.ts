@@ -1,20 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { WinCondition } from 'src/app/classes/win-condition';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { categories } from '../category-holder/dummyCategories';
+import { IDropdownSettings, MultiSelectComponent } from 'ng-multiselect-dropdown';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-win-input',
   templateUrl: './win-input.component.html',
   styleUrls: ['./win-input.component.css']
 })
+
 export class WinInputComponent implements OnInit {
 
   addWinForm : FormGroup
-  @Input() categories: Array<Category>;
+  private categories: Array<Category>;
   @Input() currentCategory: string;
+  @ViewChild('multiSelectx', {static:false}) multiSelect;
+
   @Output() currentCategoryChange = new EventEmitter<string>();
   @Output() addWinCondition = new EventEmitter<WinCondition>();
 
@@ -23,7 +27,8 @@ export class WinInputComponent implements OnInit {
   selectedCategories = [];
   dropdownSettings = {};
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private categoryService: CategoryService, private router: Router) {
+
     this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
@@ -36,7 +41,15 @@ export class WinInputComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.dropdownList = categories;
+    this.categoryService.getCategories.subscribe((data) => {
+      this.categories = data;
+      this.dropdownList = data;
+      if (this.multiSelect) {
+        this.multiSelect.data = data;
+        console.log(this.multiSelect);
+      }
+  });
+    this.dropdownList = this.categories;
     this.selectedItems = [];
     this.dropdownSettings = {
       singleSelection: false,
@@ -51,7 +64,7 @@ export class WinInputComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    this.selectedCategories.push(categories.find(category => category.id == item.id));
+    this.selectedCategories.push(this.categories.find(category => category.id == item.id));
   }
 
   addWin = () => {
@@ -64,7 +77,7 @@ export class WinInputComponent implements OnInit {
       text:this.addWinForm.controls['winpost'].value,
       winConditionId: 0,
       categories: this.selectedCategories,
-      comments: [], 
+      comments: [],
       businessValue: 3,
       relativePenalty: 2,
       easeRealization: 5,
@@ -76,5 +89,4 @@ export class WinInputComponent implements OnInit {
     this.selectedItems = [];
     this.selectedCategories = [];
   }
-
 }
