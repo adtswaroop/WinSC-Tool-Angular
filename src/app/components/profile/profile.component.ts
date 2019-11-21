@@ -23,4 +23,12 @@ export class ProfileComponent implements OnInit {
       }
     }
   }
+
+  confirmPassword(event, box) {
+    if((<HTMLInputElement> document.getElementById("passwordInput")).value !=  event.target.value) {
+      document.getElementById("password-warning").innerHTML = "Password doesn't match";
+    } else {
+      document.getElementById("password-warning").innerHTML = "";
+    }
+  }
 }
