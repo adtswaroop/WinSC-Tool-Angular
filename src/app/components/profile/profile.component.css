@@ -5,14 +5,15 @@
 .profile-img img {
   object-fit: cover;
   object-position: center;
-  width: 175px;
+  width: 170px;
+  height: 155px;
 }
 
 .profile-img .file {
   position: relative;
   overflow: hidden;
-  margin-top: -20.1%;
-  width: 175px;
+  margin-top: -20%;
+  width: 170px;
   border: none;
   border-radius: 0;
   font-size: 15px;
@@ -21,7 +22,7 @@
 }
 
 .profile-img .file:hover {
-  opacity: 0.8;
+  opacity: 0.9;
   cursor: pointer;
 }
 
