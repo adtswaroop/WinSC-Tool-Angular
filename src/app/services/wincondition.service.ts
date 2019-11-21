@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {BackendService} from './backend.service';
 import { BehaviorSubject, ObjectUnsubscribedError } from 'rxjs';
 import { WinCondition } from '../classes/win-condition';
+import { Comment } from '../classes/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,8 @@ export class WinconditionService {
           return new WinCondition(elem);
       });
       */
-     console.log('Received win conditions : ' + data);
+     console.log('Received win conditions : ');
+     console.log(data);
      this.winConditionSource.next(data);
     });
     return obj;
@@ -59,11 +61,22 @@ export class WinconditionService {
   createWincondition(wincondition: WinCondition) {
     const obs = this.backendService.createWinCondition(wincondition,this.activeProjectId);
     obs.subscribe((data) => {
+      /*
       const arr = this.winConditionSource.value;
       arr.push(wincondition);
       this.winConditionSource.next(arr);
+      // TODO: this won't work because we don't know the id of newly created win condition, we can't post comments to it
+      */
+      this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
     }, (error) => {
       console.log('Failed to add a new wincondition');
+    });
+  }
+
+  createWinConditionComment(winconditionID: number, comment: Comment) {
+    const obs = this.backendService.createWinConditionComment(winconditionID, comment);
+    obs.subscribe((data) => {
+      this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
     });
   }
 }

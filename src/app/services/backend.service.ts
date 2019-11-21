@@ -3,6 +3,7 @@ import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { WinCondition } from '../classes/win-condition';
+import { Comment } from '../classes/comment';
 
 
 @Injectable({
@@ -46,5 +47,9 @@ export class BackendService {
 
   createWinCondition(winCondition: WinCondition, projectId: number) {
     return this.http.post<any>(`${environment.urlBase}/project/${projectId}/wincondition`, winCondition);
+  }
+
+  createWinConditionComment(winConditionId: number, comment: Comment) {
+    return this.http.post<any>(`${environment.urlBase}/wincondition/${winConditionId}/comment`, comment);
   }
 }
