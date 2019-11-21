@@ -32,6 +32,7 @@ import { ProjectListComponent } from './components/project-list/project-list.com
 import { ProfileComponent } from './components/profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddProjectComponent } from './components/add-project/add-project.component';
+import { NgbdModalContent } from './components/project-list/project-list.component'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
     WinHolderPriorizationComponent,
     ProjectListComponent,
     ProfileComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,9 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    NgbdModalContent
+  ]
 })
 export class AppModule { }

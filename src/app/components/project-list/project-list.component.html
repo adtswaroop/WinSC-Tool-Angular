@@ -24,18 +24,19 @@
         <ul id="joinList" style="list-style-type:none; margin: 10px 0;">
           <li>
             <div class="listItem mb-4">
-              <a href="#" class="button mt-2 ml-5">Join</a>
-              <div id="projectName"><b>Project Pineapple</b></div>
+              <button type="button" (click)="openModal()" class="btn btn-primary button mt-2 ml-5">Join</button>
+              <div id="projectName"><b>{{proj1}}</b></div>
               <div id="projectDesc">This is a secret project. Only invited members can join.</div>
             </div>
           </li>
           <li>
             <div class="listItem mb-4">
-              <a href="#" class="button mt-2 ml-5">Join</a>
+              <button type="button" (click)="openModal()" class="btn btn-primary button mt-2 ml-5">Join</button>
               <div id="projectName"><b>WinSC Comments & Feedback</b></div>
               <div id="projectDesc">Join to give feedback to the WinSC developer team.</div>
             </div>
           </li>
+
           <!-- <li>
             <div class="listItem">
               <a href="#" class="button mt-2">Join</a>
