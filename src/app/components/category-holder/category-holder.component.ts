@@ -35,30 +35,37 @@ export class CategoryHolderComponent implements OnInit {
     const selectedOrderIds = this.categoryForm.value.categories
       .map((v, i) => v ? this.categories[i] : null)
       .filter(v => v !== null);
-    console.log(selectedOrderIds);
     this.applyCategoryToWin.emit(selectedOrderIds);
-    // this.applyCategoryForm.setValue({
-    //   categorycheck:''
-    // })
+    console.log(this.categoryForm.value.categories.map((v, i) => v ? this.categories[i] : null));
   }
-
 
   ngOnInit() {
   }
 
   handleKey(event, box) {
       if (event.key === 'Enter') {
-        this.categories.push({name: box.value, isMMF: false, color: ''});
+        var isMMF = false;
+        if ((<HTMLInputElement> document.getElementById('mmf-input')).checked) {
+          isMMF = true;
+        }
+        this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
         box.value = '';
+
+        this.categoryForm = this.formBuilder.group({
+          categories: new FormArray([])
+        });
+    
+        this.addCheckboxes();
       }
+  }
+
+  deleteCategory() {
   }
 
   // applyCategory() {
   //   const selectedCategories = this.categoryForm.value.orders
   //     .map((v, i) => v ? this.categories[i].name : null)
   //     .filter(v => v !== null);
-  //   console.log(selectedCategories);
-  //   // console.log(this.applyCategoryForm.controls['categorycheck'].valueChanges);
   //   // this.applyCategoryToWin.emit({
   //   //   text: 'Category1',
   //   //   isMMF: false,

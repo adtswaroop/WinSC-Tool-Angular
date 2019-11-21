@@ -74,7 +74,6 @@ export class WinHolderPriorizationComponent implements OnInit {
 
     this.winHolderPriorizationService.getWinConditions()
       .subscribe({next: pWinConditions => {
-        console.log(pWinConditions);
         pthis.winConditions = pWinConditions.winConditions;
       } });
   }

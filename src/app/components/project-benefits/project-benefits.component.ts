@@ -23,7 +23,6 @@ export class ProjectBenefitsComponent implements OnInit {
   }
 
   onCategoryChange(event) {
-    console.log('I got it babe ');
     const res =  new Array<string>();
     event.forEach(element => {
       res.push(element.name);
