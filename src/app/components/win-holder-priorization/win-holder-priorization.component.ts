@@ -34,7 +34,7 @@ export class WinHolderPriorizationComponent implements OnInit {
   sortByLeastPriority(pWinConditions) {
     var clonePWinConditions = pWinConditions.slice(0);
     clonePWinConditions.sort(function(a, b){
-      
+
       var aPriority = 0; //Modify this to take the priority of a
       var bPriority = 0; //Modify this to take the priority of b
       return bPriority - aPriority;
@@ -53,19 +53,7 @@ export class WinHolderPriorizationComponent implements OnInit {
   }
 
   sort(currentSortStateChange) {
-    
-  }
 
-  updateBusinessValue(sliderChangeEvent) {
-    console.log(sliderChangeEvent.value);
-  }
-
-  updateRelativePenalty(sliderChangeEvent) {
-    console.log(sliderChangeEvent.value);
-  }
-
-  updateEaseRealization(sliderChangeEvent) {
-    console.log(sliderChangeEvent.value);
   }
 
   getRequestWinConditions() {
