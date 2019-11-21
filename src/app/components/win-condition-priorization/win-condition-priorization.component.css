@@ -69,3 +69,9 @@
 #winConText>p {
     display: inline-block;
 }
+
+#category-tag {
+    color: white;
+    padding: 3px;
+    font-size: 13px;
+}
