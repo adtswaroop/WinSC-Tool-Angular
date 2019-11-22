@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
-import { categories } from './dummyCategories';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-holder',
@@ -11,17 +12,15 @@ import { categories } from './dummyCategories';
 export class CategoryHolderComponent implements OnInit {
 
   categoryForm: FormGroup;
-  categories = categories;
+  categories: Category[];
   categoriesSelected = [];
 
   @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.categoryForm = this.formBuilder.group({
-      categories: new FormArray([])
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private router:Router) {
+    this.categoryService.getCategories.subscribe((data) => {
+        this.categories = data;
     });
-
-    this.addCheckboxes();
   }
 
   private addCheckboxes() {
@@ -40,6 +39,10 @@ export class CategoryHolderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.categoryForm = this.formBuilder.group({
+      categories: new FormArray([])
+    });
+    this.addCheckboxes();
   }
 
   handleKey(event, box) {
@@ -48,13 +51,17 @@ export class CategoryHolderComponent implements OnInit {
         if ((<HTMLInputElement> document.getElementById('mmf-input')).checked) {
           isMMF = true;
         }
-        this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
+        const color = (<HTMLInputElement> document.getElementById('category-color')).value;
+        const id = this.categoryService.generateNewId();
+        const cat = new Category(id,box.value,1,color,isMMF);
+        //this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
+        this.categoryService.addCategory(cat);
         box.value = '';
 
         this.categoryForm = this.formBuilder.group({
           categories: new FormArray([])
         });
-    
+
         this.addCheckboxes();
       }
   }
