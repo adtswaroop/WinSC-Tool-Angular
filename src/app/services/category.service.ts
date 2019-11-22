@@ -19,4 +19,14 @@ export class CategoryService {
     arr.push(category);
     this.categoryData.next(arr);
   }
+
+  generateNewId (){
+    let maxId = 1;
+    this.categoryData.value.forEach((element) => {
+      if (element.id > maxId) {
+        maxId = element.id;
+      }
+    });
+    return maxId + 1;
+  }
 }

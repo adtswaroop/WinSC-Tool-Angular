@@ -52,7 +52,8 @@ export class CategoryHolderComponent implements OnInit {
           isMMF = true;
         }
         const color = (<HTMLInputElement> document.getElementById('category-color')).value;
-        const cat = new Category(box.id,box.value,1,color,isMMF);
+        const id = this.categoryService.generateNewId();
+        const cat = new Category(id,box.value,1,color,isMMF);
         //this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
         this.categoryService.addCategory(cat);
         box.value = '';
