@@ -52,4 +52,9 @@ export class BackendService {
   createWinConditionComment(winConditionId: number, comment: Comment) {
     return this.http.post<any>(`${environment.urlBase}/wincondition/${winConditionId}/comment`, comment);
   }
+
+  updatePrioritizationValuesWinConditions() {
+    // Fix, put the correct URL for this function request
+    return this.http.put<any>(`${environment.urlBase}/wincondition/${winConditionId}/comment`, comment);
+  }
 }
