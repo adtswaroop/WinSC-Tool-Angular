@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Project } from '../../classes/project';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { BackendService } from '../backend.service';
 
 
 const GETPROJECT_URL = environment.urlBase + '/projects';
@@ -23,7 +24,7 @@ export class ProjectService {
   private activeProjectData = new BehaviorSubject<number>(-1);
   getActiveProject = this.activeProjectData.asObservable();
   projectsFetched: boolean;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private backendService: BackendService) {
     this.projectsFetched = false;
   }
 
@@ -101,5 +102,12 @@ export class ProjectService {
 
   getActiveProjectAsNumber(){
     return this.activeProjectData.value;
+  }
+
+  createProject(project: Project) {
+      const obs = this.backendService.createProject(project);
+      obs.subscribe((data)=> {
+          this.getAllProjects();
+      });
   }
 }
