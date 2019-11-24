@@ -79,11 +79,4 @@ export class WinconditionService {
       this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
     });
   }
-
-  updatePrioritizationValuesWinConditions(winconditions: Array<WinCondition>) {
-    const obs = this.backendService.updatePrioritizationValuesWinConditions(winconditions: Array<WinCondition>);
-    obs.subscribe((data) => {
-      this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
-    });
-  }
 }

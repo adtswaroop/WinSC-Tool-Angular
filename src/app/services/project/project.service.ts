@@ -60,6 +60,7 @@ export class ProjectService {
     );
   }
 
+
   updateProject(project: Project) {
     const projectID = project.id;
     const putURL = PUTPROJECT_URL + '/' + projectID;
@@ -78,7 +79,6 @@ export class ProjectService {
       updatedAt: project.updatedAt
     }).subscribe(data => {
       console.log('PUT request done', data);
-      this.getAllProjects();
     }, error => {
       console.log('error in PUT method');
     }
@@ -102,5 +102,4 @@ export class ProjectService {
   getActiveProjectAsNumber(){
     return this.activeProjectData.value;
   }
-
 }

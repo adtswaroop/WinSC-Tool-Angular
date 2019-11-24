@@ -1,5 +1,4 @@
 import { Subscription } from 'rxjs';
-import { ProjectService } from './../../services/project/project.service';
 import { WinconditionService } from './../../services/wincondition.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,24 +13,15 @@ export class WinHolderPriorizationComponent implements OnInit {
   sortStates;
   currentSortState;
   winConditions;
-  project;
   businessValue;
   relativePenalty;
   easeRealization;
   winHolderPriorizationService;
   private wSub: Subscription;
-  private pSub: Subscription;
 
-  constructor(private winconditionService :WinconditionService, private projectService :ProjectService) {
+  constructor(private winconditionService :WinconditionService) {
     this.wSub = this.winconditionService.winConditionData.subscribe((data) => {
         this.winConditions = data;
-    });
-    this.pSub = this.projectService.joinedProjectListData.subscribe((data) => {
-        for (let i = 0; i < data.length; i++) {
-          if(data[i].id == this.projectService.activeProjectData){
-            this.project = data[i];
-          }
-        }
     });
   }
 
@@ -64,12 +54,6 @@ export class WinHolderPriorizationComponent implements OnInit {
 
   sort(currentSortStateChange) {
 
-  }
-
-  updatePrioritizationValuesProjectWinConditions() {
-    this.winconditionService.updatePrioritizationValuesWinConditions(this.winConditions);
-    // We need to add the project to update here
-    this.winconditionService.updateProject();
   }
 
   updateBusinessValue(sliderChangeEvent) {
