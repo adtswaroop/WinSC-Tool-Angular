@@ -14,7 +14,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body" ngbAutofocus>
-      <p>Project admin has been notified for reviewing join request</p>
+      <p>You have successfully joined to the project.</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -69,8 +69,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   joinProject(projectId) {
     const joinobs = this.projectService.joinProject(projectId);
     joinobs.subscribe((data) => {
-      console.log(data);
       this.projectService.getAllProjects();
+      this.openModal();
     });
   }
 
