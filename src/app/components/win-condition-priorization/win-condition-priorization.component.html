@@ -8,7 +8,7 @@
             </div>
             <div class="categoryHolder">
                 <div *ngFor="let category of winCondition.categories" id="category-labels">
-                    <span [ngStyle]="{'color': category.color}">{{ category.name }}</span>
+                    <span id="category-tag" [ngStyle]="{'background-color': category.color}">{{ category.name }}</span>
                 </div>
             </div>
             <div id="winConText">

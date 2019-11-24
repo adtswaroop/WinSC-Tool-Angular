@@ -56,18 +56,6 @@ export class WinHolderPriorizationComponent implements OnInit {
 
   }
 
-  updateBusinessValue(sliderChangeEvent) {
-    console.log(sliderChangeEvent.value);
-  }
-
-  updateRelativePenalty(sliderChangeEvent) {
-    console.log(sliderChangeEvent.value);
-  }
-
-  updateEaseRealization(sliderChangeEvent) {
-    console.log(sliderChangeEvent.value);
-  }
-
   changeValue(){
 
   }

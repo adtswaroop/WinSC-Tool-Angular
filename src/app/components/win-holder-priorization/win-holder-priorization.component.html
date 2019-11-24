@@ -16,22 +16,29 @@
         <div id="slider">
             <div class="col-4">
                 <span>Business value</span>
-                <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="businessValue" (change)="updateBusinessValue($event)"></mat-slider>
+                <input [(ngModel)]="businessValue" class="slider-input">
+                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="businessValue" ></mat-slider>
             </div>
 
             <div class="col-4">
                 <span>Relative Penalty</span>
-                <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="relativePenalty" (change)="updateRelativePenalty($event)"></mat-slider>
+                <input [(ngModel)]="relativePenalty" class="slider-input">
+                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="relativePenalty"></mat-slider>
             </div>
 
             <div class="col-4">
                 <span>Ease of Realization</span>
-                <mat-slider id="mat-slider" min="1" max="100" step="1" [value]="easeRealization" (change)="updateEaseRealization($event)"></mat-slider>
+                <input [(ngModel)]="easeRealization" class="slider-input">
+                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="easeRealization"></mat-slider>
             </div>
         </div>
     </div>
 
-
+    <div id="weight-titles">
+        <span class="title">Business value</span>
+        <span class="title">Relative Penalty</span>
+        <span class="title">Ease of Realization</span>
+    </div>
     <div *ngFor="let winCondition of winConditions">
         <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
         <div class="col-5" id="win-weights">

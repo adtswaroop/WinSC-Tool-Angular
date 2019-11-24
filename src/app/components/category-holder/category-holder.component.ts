@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
-import { categories } from './dummyCategories';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-holder',
@@ -11,17 +12,15 @@ import { categories } from './dummyCategories';
 export class CategoryHolderComponent implements OnInit {
 
   categoryForm: FormGroup;
-  categories = categories;
+  categories: Category[];
   categoriesSelected = [];
 
   @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.categoryForm = this.formBuilder.group({
-      categories: new FormArray([])
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private router:Router) {
+    this.categoryService.getCategories.subscribe((data) => {
+        this.categories = data;
     });
-
-    this.addCheckboxes();
   }
 
   private addCheckboxes() {
@@ -35,38 +34,39 @@ export class CategoryHolderComponent implements OnInit {
     const selectedOrderIds = this.categoryForm.value.categories
       .map((v, i) => v ? this.categories[i] : null)
       .filter(v => v !== null);
-    console.log(selectedOrderIds);
     this.applyCategoryToWin.emit(selectedOrderIds);
-    // this.applyCategoryForm.setValue({
-    //   categorycheck:''
-    // })
+    console.log(this.categoryForm.value.categories.map((v, i) => v ? this.categories[i] : null));
   }
 
-
   ngOnInit() {
+    this.categoryForm = this.formBuilder.group({
+      categories: new FormArray([])
+    });
+    this.addCheckboxes();
   }
 
   handleKey(event, box) {
       if (event.key === 'Enter') {
-        this.categories.push({name: box.value, isMMF: false, color: ''});
+        var isMMF = false;
+        if ((<HTMLInputElement> document.getElementById('mmf-input')).checked) {
+          isMMF = true;
+        }
+        const color = (<HTMLInputElement> document.getElementById('category-color')).value;
+        const id = this.categoryService.generateNewId();
+        const cat = new Category(id,box.value,1,color,isMMF);
+        //this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
+        this.categoryService.addCategory(cat);
         box.value = '';
+
+        this.categoryForm = this.formBuilder.group({
+          categories: new FormArray([])
+        });
+
+        this.addCheckboxes();
       }
   }
 
-  // applyCategory() {
-  //   const selectedCategories = this.categoryForm.value.orders
-  //     .map((v, i) => v ? this.categories[i].name : null)
-  //     .filter(v => v !== null);
-  //   console.log(selectedCategories);
-  //   // console.log(this.applyCategoryForm.controls['categorycheck'].valueChanges);
-  //   // this.applyCategoryToWin.emit({
-  //   //   text: 'Category1',
-  //   //   isMMF: false,
-  //   //   color: '#ffff'
-  //   // })
-  //   // this.applyCategoryForm.setValue({
-  //   //   categorycheck:''
-  //   // })
-  // }
+  deleteCategory() {
+  }
 
 }

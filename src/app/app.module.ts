@@ -37,6 +37,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { appRoutingModule } from './app.routing';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AddProjectComponent } from './components/add-project/add-project.component';
+import { NgbdModalContent } from './components/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { appRoutingModule } from './app.routing';
     ProfileComponent,
     LoginComponent,
     ServiceTesterComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddProjectComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
@@ -75,12 +80,16 @@ import { appRoutingModule } from './app.routing';
     FormsModule,
     ReactiveFormsModule,
     MatSliderModule,
+    appRoutingModule,
     HttpClientModule,
-    appRoutingModule
+    NgMultiSelectDropDownModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    NgbdModalContent
+  ]
 })
 export class AppModule { }
