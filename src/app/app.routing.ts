@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, canActivate: [AuthGuard], children:[
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
       path: 'profile',
       component: ProfileComponent
+    },
+    {
+      path: 'add-project',
+      component: AddProjectComponent
     },
     {
       path: '',
