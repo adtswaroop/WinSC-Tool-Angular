@@ -14,7 +14,7 @@ export class WinconditionService {
   public winConditionData = this.winConditionSource.asObservable();
   private activeProjectId;
   constructor(private backendService: BackendService, private projectService: ProjectService) {
-    this.projectService.getActiveProject.subscribe((projectId) => {
+    this.projectService.getActiveProjectId.subscribe((projectId) => {
         this.updateWinConditions(projectId);
         this.activeProjectId = projectId;
     });

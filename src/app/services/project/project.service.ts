@@ -17,12 +17,15 @@ const PUTPROJECT_URL = environment.urlBase + '/putProject';
 
 export class ProjectService {
 
+  initialProject = new Project("Waiting..",0,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
   private joinedProjectListData = new BehaviorSubject<Project[]>([]);
   joinedProjectList = this.joinedProjectListData.asObservable();
   private otherProjectListData = new BehaviorSubject<Project[]>([]);
   otherProjectList = this.otherProjectListData.asObservable();
   private activeProjectData = new BehaviorSubject<number>(-1);
-  getActiveProject = this.activeProjectData.asObservable();
+  getActiveProjectId = this.activeProjectData.asObservable();
+  private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
+  getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
   constructor(private http: HttpClient, private backendService: BackendService) {
     this.projectsFetched = false;
@@ -36,6 +39,7 @@ export class ProjectService {
       this.projectsFetched = true;
       this.joinedProjectListData.next(data.joinedProjects);
       this.otherProjectListData.next(data.otherProjects);
+      this.updateActiveProjectObject();
     });
   }
 
@@ -98,11 +102,26 @@ export class ProjectService {
 
   setActiveProject(projectID: number) {
     this.activeProjectData.next(projectID);
+    this.updateActiveProjectObject();
+
+  }
+
+  updateActiveProjectObject() {
+    const joinedProjectArr = this.joinedProjectListData.value;
+    const projectID = this.activeProjectData.value;
+    joinedProjectArr.forEach((element)=> {
+      if (element.id == projectID) {
+        this.activeProjectObjectData.next(element);
+        console.log("Active project object is updated");
+      }
+    });
   }
 
   getActiveProjectAsNumber(){
     return this.activeProjectData.value;
   }
+
+
 
   createProject(project: Project) {
       const obs = this.backendService.createProject(project);
