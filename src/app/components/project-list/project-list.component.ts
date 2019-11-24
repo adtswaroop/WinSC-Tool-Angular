@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { DummyData } from './../../classes/dummy-data';
 import { ProjectService } from './../../services/project/project.service';
 import { Subscription } from 'rxjs';
 import { Project } from './../../classes/project';
@@ -42,7 +41,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    proj1 = '';
   // proj2 = '';
 
-  constructor(private projectService: ProjectService, private modalService: Ng) {
+  constructor(private projectService: ProjectService, private modalService: NgbModal) {
     // initialize service to retrieve project data
 
     // initialize project name and project description
@@ -54,7 +53,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     }));
     // dynamically added div based on projects retrieved.
 
-    this.proj1 = this.joinedProjectList[0].name;
+    this.proj1 = 'Project Pineapple';
     // this.proj2 = 'ProjectY';
    }
 
