@@ -114,12 +114,18 @@ export class ProjectService {
   updateActiveProjectObject() {
     const joinedProjectArr = this.joinedProjectListData.value;
     const projectID = this.activeProjectData.value;
+    let projectFound = false;
     joinedProjectArr.forEach((element)=> {
       if (element.id == projectID) {
         this.activeProjectObjectData.next(element);
-        console.log("Active project object is updated");
+        projectFound = true;
+        console.log("Active project found");
       }
     });
+    if (!projectFound && this.projectsFetched) {
+      console.log("Nonexistent project called");
+      this.router.navigate(["project-list"]);
+    }
   }
 
   getActiveProjectAsNumber(){
