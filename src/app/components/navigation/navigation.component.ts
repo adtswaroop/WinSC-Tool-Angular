@@ -1,6 +1,9 @@
+import { DummyData } from './../../classes/dummy-data';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/services/project/project.service';
 
-export const projects = ['Winbook 2.0', 'Project Swarm', 'Winbook Feedback'];
 
 @Component({
   selector: 'app-navigation',
@@ -10,10 +13,24 @@ export const projects = ['Winbook 2.0', 'Project Swarm', 'Winbook Feedback'];
 
 export class NavigationComponent implements OnInit {
 
-  projects = projects;
+  joinedProjects = [];
 
-  constructor() { }
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+    private projectService: ProjectService) {
+      this.projectService.joinedProjectList.subscribe((data) => {
+        this.joinedProjects = data;
+        console.log("Received projects of len "+data.length);
+      });
+    }
 
   ngOnInit() {
   }
+
+  logout(){
+      this.auth.logout();
+      this.router.navigate(['/login']);
+  }
+
 }

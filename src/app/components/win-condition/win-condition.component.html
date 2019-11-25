@@ -1,10 +1,10 @@
 <div *ngIf="showWinCondition" class="commentMain">
-    <app-vote [comment]="wcToComment()" style="display: table-cell;"> </app-vote>
+    <app-vote [voters]="generateVoters()" style="display: table-cell;"> </app-vote>
 
     <div id="imgDiv"><img src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" style="width: 35px; padding-top: 20px;"></div>
     <div class="commentText">
         <div id="header">
-            <p><b>{{ winCondition.userName }}:</b></p>
+            <p><b>{{ winCondition.user.firstName + " " + winCondition.user.lastName}}:</b></p>
         </div>
         <div class="categoryHolder">
             <div *ngFor="let category of winCondition.categories" id="category-labels">

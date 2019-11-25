@@ -1,7 +1,8 @@
+import { Voters } from './../../classes/voters';
 import { Comment } from './../../classes/comment';
-import { DummyData } from './../../classes/dummy-data';
 import { WinCondition } from './../../classes/win-condition';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { WinconditionService } from 'src/app/services/wincondition.service';
 
 @Component({
   selector: 'app-win-condition',
@@ -10,10 +11,12 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class WinConditionComponent implements OnInit {
   @Input() winCondition: WinCondition;
-  
+
   showWinCondition:boolean;
   showComments:boolean;
-  constructor() {
+  constructor(
+    private winconditionService: WinconditionService
+  ) {
     this.showComments = false;
     this.showWinCondition = true;
   }
@@ -21,12 +24,12 @@ export class WinConditionComponent implements OnInit {
   ngOnInit() {
   }
 
-  wcToComment(){
-    // TODO: Fix this bad design, vote should not use comment, it needs a new data structure likeType,upVoters,downVoters
-      return new Comment(this.winCondition.upVoters,this.winCondition.downVoters,
-                          this.winCondition.likeType,this.winCondition.userName,
-                          this.winCondition.userId,this.winCondition.winConditionId,
-                          this.winCondition.categories,"",5,false);
+  generateVoters(){
+      const voters =  new Voters();
+      voters.winConditionId = this.winCondition.id;
+      voters.upvoters = this.winCondition.upvoters;
+      voters.downvoters = this.winCondition.downvoters;
+      return voters;
   }
 
   toggleComments() {
@@ -35,7 +38,8 @@ export class WinConditionComponent implements OnInit {
 
   handleCommentAdd(event,box) {
     if (event.key === 'Enter' && box.value.length > 0) { // TODO: Proper value check
-      this.winCondition.comments.push(new Comment([], [], 0, 'Romi', 1, 1, [], box.value, 0, false));
+      const comment = new Comment([], [], 0, 'Romi', 1, 1, [], box.value, 0, false)
+      this.winconditionService.createWinConditionComment(this.winCondition.id, comment);
       box.value = '';
     }
   }

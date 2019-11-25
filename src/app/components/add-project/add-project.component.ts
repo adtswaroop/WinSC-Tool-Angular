@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from 'src/app/classes/project';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-project',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProjectComponent implements OnInit {
 
-  constructor() { }
+  projectName: string;
+  projectDesc: string;
+  projectVision: string;
+  accessLevel: string;
+  loading = false;
+  constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  addProject() {
+    let newProject = new Project(this.projectName,0,this.projectDesc,this.accessLevel,this.projectVision,false,false,0,0,0,new Date(),new Date());
+    this.projectService.createProject(newProject);
+    this.router.navigate(['project-list']);
   }
 
 }

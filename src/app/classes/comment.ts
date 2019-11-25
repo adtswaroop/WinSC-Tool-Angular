@@ -1,4 +1,5 @@
 import { Category } from './category';
+import { User } from './user';
 
 export class Comment {
   public upVoters: Array<string>;
@@ -6,6 +7,7 @@ export class Comment {
   public likeType: number; // 1 user upvoted, 0 netural, -1 user downvoted
   public userName: string; // Full name of the user
   public userId: number;
+  public user: User;
   public commentId: number;
   public categories: Array<Category>;
   public text: string;

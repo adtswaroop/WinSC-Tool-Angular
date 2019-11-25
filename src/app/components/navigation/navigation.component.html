@@ -16,9 +16,9 @@
               <b>My Projects:</b>
             </div>
           </div>
-          <div *ngFor="let project of projects">
-            <a class="dropdown-item container py-1" role="button" routerLink="/project">
-              {{ project }}
+          <div *ngFor="let project of joinedProjects">
+            <a class="dropdown-item container py-1" role="button" routerLink="/project/{{project.id}}">
+              {{ project.name }}
             </a>
           </div>
           <div class="dropdown-divider mb-0"></div>
@@ -29,7 +29,7 @@
         <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" (click)="logout()" href="/login">Logout</a>
       </li>
     </ul>
   </div>

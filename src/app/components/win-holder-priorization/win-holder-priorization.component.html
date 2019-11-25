@@ -42,9 +42,9 @@
     <div *ngFor="let winCondition of winConditions">
         <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
         <div class="col-5" id="win-weights">
-            <app-win-condition-input id="weight-value"></app-win-condition-input>
-            <app-win-condition-input id="weight-value"></app-win-condition-input>
-            <app-win-condition-input id="weight-value"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Business value" [winConditionId]="winCondition.id" [value]="winCondition.businessValue"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Relative penalty" [winConditionId]="winCondition.id" [value]="winCondition.relativePenalty"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Ease of Realization" [winConditionId]="winCondition.id" [value]="winCondition.easeOfRealization" ></app-win-condition-input>
         </div>
     </div>
 

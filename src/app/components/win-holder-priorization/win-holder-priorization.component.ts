@@ -1,7 +1,6 @@
+import { Subscription } from 'rxjs';
+import { WinconditionService } from './../../services/wincondition.service';
 import { Component, OnInit } from '@angular/core';
-import { DummyData } from '../../classes/dummy-data';
-import { WinHolderPriorizationService } from '../../services/win-holder-priorization/win-holder-priorization.service';
-
 
 
 @Component({
@@ -18,17 +17,18 @@ export class WinHolderPriorizationComponent implements OnInit {
   relativePenalty;
   easeRealization;
   winHolderPriorizationService;
+  private wSub: Subscription;
 
-  constructor(winHolderPriorizationService: WinHolderPriorizationService) {
-    this.winHolderPriorizationService = winHolderPriorizationService;
+  constructor(private winconditionService :WinconditionService) {
+    this.wSub = this.winconditionService.winConditionData.subscribe((data) => {
+        this.winConditions = data;
+    });
   }
 
   ngOnInit() {
     this.businessValue = 50;
     this.relativePenalty = 50;
     this.easeRealization = 50;
-    this.winConditions = new DummyData().wcArr;
-    this.getRequestWinConditions();
   }
 
   sortByLeastPriority(pWinConditions) {
@@ -56,14 +56,13 @@ export class WinHolderPriorizationComponent implements OnInit {
 
   }
 
-  getRequestWinConditions() {
+  changeValue(){
 
-    var pthis = this;
-
-    this.winHolderPriorizationService.getWinConditions()
-      .subscribe({next: pWinConditions => {
-        pthis.winConditions = pWinConditions.winConditions;
-      } });
   }
+
+  ngOnDestroy(): void {
+    this.wSub.unsubscribe();
+  }
+
 
 }

@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { WinCondition } from 'src/app/classes/win-condition';
+import { User } from 'src/app/classes/user';
+import { WinconditionService } from 'src/app/services/wincondition.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { IDropdownSettings, MultiSelectComponent } from 'ng-multiselect-dropdown';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
@@ -26,10 +29,12 @@ export class WinInputComponent implements OnInit {
   selectedItems = [];
   selectedCategories = [];
   dropdownSettings = {};
-
-  constructor(private fb: FormBuilder, private categoryService: CategoryService, private router: Router) {
-
-    this.addWinForm = this.fb.group({
+  constructor(private fb: FormBuilder,
+              private winConditionService: WinconditionService,
+              private authService: AuthenticationService,
+              private categoryService: CategoryService,
+              private router: Router) {
+      this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
    }
@@ -67,26 +72,10 @@ export class WinInputComponent implements OnInit {
     this.selectedCategories.push(this.categories.find(category => category.id == item.id));
   }
 
-  addWin = () => {
-    this.addWinCondition.emit({
-      upVoters: [],
-      downVoters: [],
-      likeType: 0,
-      userName: 'Romi',
-      userId: 1,
-      text:this.addWinForm.controls['winpost'].value,
-      winConditionId: 0,
-      categories: this.selectedCategories,
-      comments: [],
-      businessValue: 3,
-      relativePenalty: 2,
-      easeRealization: 5,
-      priorityValue: 5
-    })
-    this.addWinForm.setValue({
-      winpost:''
-    })
-    this.selectedItems = [];
-    this.selectedCategories = [];
+  addWin() {
+    const wcText = this.addWinForm.controls['winpost'].value;
+    const user = this.authService.currentUserValue;
+    const wc = new WinCondition(0,0,user,wcText,0,0,0,0,[],[],[],[]);
+    this.winConditionService.createWincondition(wc);
   }
 }

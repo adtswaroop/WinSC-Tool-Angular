@@ -1,8 +1,8 @@
 import { Category } from './category';
 import { Comment } from './comment';
 import { WinCondition } from './win-condition';
+import { Benefit } from './benefit';
 import { Project } from './project';
-import { BenefitComponent } from './benefit';
 
 export class DummyData {
 
@@ -21,6 +21,7 @@ export class DummyData {
   public categoryArray5 = [this.cat4];
   public categoryArray6 = [this.cat5];
 
+  /*
   public c1 = new Comment(['Aditi', 'Romi'], ['Alex'], 1, 'Alp', 1, 5, this.categoryArray1,
                           'This feature is really good', 100, false);
   public c2 = new Comment(['Aditi', 'Romi'], ['Alex'], 0, 'Romi', 1, 5, this.categoryArray1,
@@ -85,21 +86,22 @@ export class DummyData {
                   [this.w5c1]);
 
   public wcArr = [this.w1, this.w2, this.w3, this.w4, this.w5 ];
+   */
+
+  //BENEFITS
+  public benefit1 = new Benefit("Aditi" , [this.cat1], "Support win-win negotiations")
 
   // project list array and associated individual project elements
-  public project1 = new Project("Project Pineapple", 1234, "Pineapple is good", "public", "Pineapple vision",
+  public project1 = new Project("Project Pineapple", 1, "Pineapple is good", "public", "Pineapple vision",
   false, false, 1, 4, 5, new Date('December 17, 2018 03:24:00'), new Date('September 17, 2019 04:24:22'));
 
-  public project2 = new Project("Project Apple", 5678, "Apple is good", "private", "Apple vision",
+  public project2 = new Project("Project Apple", 2, "Apple is good", "private", "Apple vision",
   false, false, 2, 5, 3, new Date(), new Date());
 
-  public project3 = new Project("Project Lemon", 9011, "Lemon is good", "public", "Lemon vision",
+  public project3 = new Project("Project Lemon", 3, "Lemon is good", "public", "Lemon vision",
   false, false, 0, 2, 4, new Date('November 17, 2018 03:24:00'), new Date());
 
   public projectArr = [this.project1, this.project2, this.project3];
-
-  //BENEFITS
-  public benefit1 = new BenefitComponent("Aditi" , [this.cat1], "Support win-win negotiations")
 
 	constructor() {
 

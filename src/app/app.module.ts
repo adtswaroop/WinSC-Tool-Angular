@@ -10,6 +10,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectTabComponent } from './components/project-tab/project-tab.component';
 import { ProjectWinsComponent } from './components/project-wins/project-wins.component';
@@ -30,7 +31,13 @@ import { WinHolderPriorizationComponent } from './components/win-holder-prioriza
 import { WinConditionInputComponent } from './components/win-condition-input/win-condition-input.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './components/login/login.component';
+import { ServiceTesterComponent } from './components/test/service-tester/service-tester.component';
+import { HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { RegisterComponent } from './components/register/register.component';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { appRoutingModule } from './app.routing';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { NgbdModalContent } from './components/project-list/project-list.component';
@@ -59,6 +66,9 @@ import { NgbdModalContent } from './components/project-list/project-list.compone
     WinHolderPriorizationComponent,
     ProjectListComponent,
     ProfileComponent,
+    LoginComponent,
+    ServiceTesterComponent,
+    RegisterComponent,
     AddProjectComponent,
     NgbdModalContent
   ],
@@ -71,11 +81,14 @@ import { NgbdModalContent } from './components/project-list/project-list.compone
     FormsModule,
     ReactiveFormsModule,
     MatSliderModule,
-    AppRoutingModule,
+    appRoutingModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent],
   entryComponents: [
     NgbdModalContent

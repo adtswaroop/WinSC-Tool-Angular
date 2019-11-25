@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { DummyData } from './../../classes/dummy-data';
-import { ProjectListService } from '../../services/project-list/project-list.service';
+import { ProjectService } from './../../services/project/project.service';
 import { Subscription } from 'rxjs';
 import { Project } from './../../classes/project';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +14,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body" ngbAutofocus>
-      <p>Project admin has been notified for reviewing join request</p>
+      <p>You have successfully joined to the project.</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -34,17 +33,24 @@ export class NgbdModalContent {
 })
 export class ProjectListComponent implements OnInit, OnDestroy {
 
-  private projectListSub: Subscription;
-  projectList: Project[];
-  proj1: string;
+  private joinedProjectSub: Subscription;
+  private otherProjectSub: Subscription;
 
-  constructor(private projectListService: ProjectListService, private modalService: NgbModal) {
+  otherProjectList: Project[];
+  joinedProjectList: Project[];
+   proj1 = '';
+  // proj2 = '';
+
+  constructor(private projectService: ProjectService, private modalService: NgbModal) {
     // initialize service to retrieve project data
 
     // initialize project name and project description
-    this.projectListSub = this.projectListService.getProjectList.subscribe(data => {
-      this.projectList = data;
+    this.joinedProjectSub = this.projectService.joinedProjectList.subscribe(data => {
+      this.joinedProjectList = data;
     });
+    this.otherProjectSub = this.projectService.otherProjectList.subscribe((data => {
+      this.otherProjectList = data;
+    }));
     // dynamically added div based on projects retrieved.
 
     this.proj1 = 'Project Pineapple';
@@ -57,11 +63,19 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    // initialize project data listener
-    this.projectListService.getAllProjects();
+
+  }
+
+  joinProject(projectId) {
+    const joinobs = this.projectService.joinProject(projectId);
+    joinobs.subscribe((data) => {
+      this.projectService.getAllProjects();
+      this.openModal();
+    });
   }
 
   ngOnDestroy(): void {
-    this.projectListSub.unsubscribe();
+    this.joinedProjectSub.unsubscribe();
+    this.otherProjectSub.unsubscribe();
   }
 }
