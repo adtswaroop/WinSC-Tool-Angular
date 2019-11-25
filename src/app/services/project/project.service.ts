@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Project } from '../../classes/project';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { BackendService } from '../backend.service';
+import { Router } from '@angular/router';
 
 
 const GETPROJECT_URL = environment.urlBase + '/projects';
@@ -27,7 +28,7 @@ export class ProjectService {
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
-  constructor(private http: HttpClient, private backendService: BackendService) {
+  constructor(private http: HttpClient, private backendService: BackendService, private router: Router) {
     this.projectsFetched = false;
   }
 
@@ -96,8 +97,12 @@ export class ProjectService {
 
 
   deleteProject(projectID: number) {
-    const deleteURL = DELETEPROJECT_URL + '/' + projectID;
-    this.http.delete(deleteURL);
+    const obs = this.backendService.deleteProject(projectID);
+    obs.subscribe((data) => {
+        this.router.navigate(['project-list']);
+        const newProjectList = this.joinedProjectListData.value.filter((object) => object.id !== projectID);
+        this.joinedProjectListData.next(newProjectList);
+    });
   }
 
   setActiveProject(projectID: number) {

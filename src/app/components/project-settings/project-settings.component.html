@@ -4,14 +4,14 @@
     <div class="form-group row">
         <label for="projectNameInput" class="col-sm-3 col-form-label text-right">Project Name</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="projectNameInput" value="Winbook 2.0">
+            <input type="text" class="form-control" id="projectNameInput" value="{{activeProject.name}}">
         </div>
     </div>
 
     <div class="form-group row">
         <label for="visionInput" class="col-sm-3 col-form-label text-right">Vision</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="visionInput" value="The vision is to make a new, stable, easy-to-use version of Winbook.">
+            <input type="text" class="form-control" id="visionInput" value="{{activeProject.vision}}">
         </div>
     </div>
 
@@ -73,7 +73,7 @@
             <div class="container rounded align-horizontal border border-warning py-4">
                 <button type="submit" class="btn btn-warning mr-5">Make Public</button>
                 <button type="submit" class="btn btn-warning mr-5">Archive Project</button>
-                <button type="submit" class="btn btn-danger">Delete Project</button>
+                <button type="submit" class="btn btn-danger" (click)="deleteProject()">Delete Project</button>
             </div>
         </div>
     </div>

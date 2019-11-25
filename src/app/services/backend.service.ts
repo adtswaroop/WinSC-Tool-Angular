@@ -56,6 +56,10 @@ export class BackendService {
 
   createProject(project: Project) {
     return this.http.post<any>(`${environment.urlBase}/project`, project);
+  }
+
+  deleteProject(projectId: number) {
+    return this.http.delete<any>(`${environment.urlBase}/project/${projectId}`);
 
   }
 }
