@@ -2,31 +2,43 @@ import { Injectable } from '@angular/core';
 import { categories } from '../components/category-holder/dummyCategories';
 import { BehaviorSubject } from 'rxjs';
 import { Category } from '../classes/category';
+import { BackendService } from './backend.service';
+import { ProjectService } from './project/project.service';
 
-const cat: Category[] = categories;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private categoryData = new BehaviorSubject<Category[]>(cat);
+
+  private activeProjectId;
+  private categoryData = new BehaviorSubject<Category[]>([]);
   getCategories = this.categoryData.asObservable();
-  constructor() {
-  }
-
-  addCategory(category: Category) {
-    const arr = this.categoryData.value;
-    arr.push(category);
-    this.categoryData.next(arr);
-  }
-
-  generateNewId (){
-    let maxId = 1;
-    this.categoryData.value.forEach((element) => {
-      if (element.id > maxId) {
-        maxId = element.id;
-      }
+  constructor(private backendService: BackendService, private projectService: ProjectService) {
+    this.projectService.getActiveProjectId.subscribe((projectId)=>{
+        this.getAllCategories(projectId);
+        this.activeProjectId = projectId;
     });
-    return maxId + 1;
+  }
+
+
+  getAllCategories(projectId: number) {
+    if (projectId < 0) {
+      this.categoryData.next([]);
+      return;
+    }
+    const obj = this.backendService.getAllCategories(projectId);
+    obj.subscribe((data)=> {
+        this.categoryData.next(data);
+    });
+  }
+
+  createCategory(category: Category) {
+    const obs = this.backendService.createCategory(this.activeProjectId, category);
+    obs.subscribe((data) => {
+      let categoryArr = this.categoryData.value;
+      categoryArr.push(data);
+      this.categoryData.next(categoryArr);
+    });
   }
 }

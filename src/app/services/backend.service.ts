@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { WinCondition } from '../classes/win-condition';
 import { Comment } from '../classes/comment';
 import { Project } from '../classes/project';
+import { Category } from '../classes/category';
 
 
 @Injectable({
@@ -60,6 +61,13 @@ export class BackendService {
 
   deleteProject(projectId: number) {
     return this.http.delete<any>(`${environment.urlBase}/project/${projectId}`);
+  }
 
+  getAllCategories(projectId: number) {
+    return this.http.get<any>(`${environment.urlBase}/project/${projectId}/categories`);
+  }
+
+  createCategory(projectId: number, category: Category) {
+    return this.http.post<any>(`${environment.urlBase}/project/${projectId}/category`, category);
   }
 }

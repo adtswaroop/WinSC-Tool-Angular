@@ -47,15 +47,13 @@ export class CategoryHolderComponent implements OnInit {
 
   handleKey(event, box) {
       if (event.key === 'Enter') {
-        var isMMF = false;
+        var type = 'regular';
         if ((<HTMLInputElement> document.getElementById('mmf-input')).checked) {
-          isMMF = true;
+          type = 'mmf';
         }
-        const color = (<HTMLInputElement> document.getElementById('category-color')).value;
-        const id = this.categoryService.generateNewId();
-        const cat = new Category(id,box.value,1,color,isMMF);
-        //this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
-        this.categoryService.addCategory(cat);
+        const color = (<HTMLInputElement> document.getElementById('category-color')).value.substring(1);
+        const cat = new Category(0,box.value,1,color,type);
+        this.categoryService.createCategory(cat);
         box.value = '';
 
         this.categoryForm = this.formBuilder.group({
@@ -64,6 +62,10 @@ export class CategoryHolderComponent implements OnInit {
 
         this.addCheckboxes();
       }
+  }
+
+  addHashToCategory(categoryStr: string) {
+    return "#"+categoryStr;
   }
 
   deleteCategory() {

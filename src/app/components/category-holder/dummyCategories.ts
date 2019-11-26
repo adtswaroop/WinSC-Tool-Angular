@@ -2,14 +2,14 @@ export const categories = [
   {
     id: 1,
     name: 'Admin',
-    isMMF: false,
+    type: 'regular',
     color: '#E74C22',
     projectId: 1,
   },
   {
     id: 2,
     name: 'Prototype',
-    isMMF: false,
+    type: 'regular',
     color: '#FEA60F',
     projectId: 1,
 
@@ -17,7 +17,7 @@ export const categories = [
   {
     id: 3,
     name: 'Win Condition',
-    isMMF: false,
+    type: 'regular',
     color: '#AFD459',
     projectId: 1,
 
@@ -25,7 +25,7 @@ export const categories = [
   {
     id: 4,
     name: 'Benefits',
-    isMMF: false,
+    type: 'regular',
     color: '#1CA9AD',
     projectId: 1,
 
@@ -33,7 +33,7 @@ export const categories = [
   {
     id: 5,
     name: 'Comments',
-    isMMF: false,
+    type: 'regular',
     color: '#690F56',
     projectId: 1,
   }
