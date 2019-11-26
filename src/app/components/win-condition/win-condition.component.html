@@ -8,7 +8,7 @@
         </div>
         <div class="categoryHolder">
             <div *ngFor="let category of winCondition.categories" id="category-labels">
-                <span style="color: white; padding: 3px; font-size: 13px;" [ngStyle]="{'background-color': category.color}">{{ category.name }}</span>
+                <span style="color: white; padding: 3px; font-size: 13px;" [ngStyle]="{'background-color': addHashToCategory(category.color)}">{{ category.name }}</span>
             </div>
         </div>
         <div id="icons">

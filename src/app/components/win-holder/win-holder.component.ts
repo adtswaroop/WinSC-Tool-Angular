@@ -68,6 +68,7 @@ export class WinHolderComponent implements OnInit, OnDestroy {
   }
 
   categorize(currentCategoryChange : Array<string>){
+    return;
     if (currentCategoryChange.length===0) {
       this.winConditions = this.origWinConditions.slice();
       return;
