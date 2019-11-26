@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 const GETPROJECT_URL = environment.urlBase + '/projects';
 const DELETEPROJECT_URL = environment.urlBase + '/deleteProject';
-const PUTPROJECT_URL = environment.urlBase + '/putProject';
+const PUTPROJECT_URL = environment.urlBase + '/project';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,11 @@ const PUTPROJECT_URL = environment.urlBase + '/putProject';
 export class ProjectService {
 
   initialProject = new Project("Waiting..",0,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
-  private joinedProjectListData = new BehaviorSubject<Project[]>([]);
+  public joinedProjectListData = new BehaviorSubject<Project[]>([]);
   joinedProjectList = this.joinedProjectListData.asObservable();
   private otherProjectListData = new BehaviorSubject<Project[]>([]);
   otherProjectList = this.otherProjectListData.asObservable();
-  private activeProjectData = new BehaviorSubject<number>(-1);
+  public activeProjectData = new BehaviorSubject<number>(-1);
   getActiveProjectId = this.activeProjectData.asObservable();
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
@@ -85,8 +85,10 @@ export class ProjectService {
       updatedAt: project.updatedAt
     }).subscribe(data => {
       console.log('PUT request done', data);
+      this.getAllProjects();
     }, error => {
       console.log('error in PUT method');
+      console.log(error);
     }
     );
   }

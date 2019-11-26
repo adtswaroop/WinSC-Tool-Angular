@@ -62,4 +62,9 @@ export class BackendService {
     return this.http.delete<any>(`${environment.urlBase}/project/${projectId}`);
 
   }
+
+  updatePrioritizationValuesWinCondition(winConditionId: number, wincondition: WinCondition) {
+    // Fix, put the correct URL for this function request
+    return this.http.put<any>(`${environment.urlBase}/wincondition/${winConditionId}`, wincondition);
+  }
 }
