@@ -81,14 +81,12 @@ export class WinconditionService {
   }
 
   updatePrioritizationValuesWinConditions(winconditions: Array<WinCondition>) {
-    for (let i = 0; i < winconditions.length; i++) {
-      var obs = this.backendService.updatePrioritizationValuesWinCondition(winconditions[i].id, winconditions[i]);
+      const requestBody = {'winConditions': winconditions};
+      const obs = this.backendService.updatePrioritizationValuesWinConditions(requestBody);
       obs.subscribe((data) => {
-        var obsNumber = i+1;
-        if(winconditions.length == (obsNumber)){
-          this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
-        }
+          this.updateWinConditions(this.activeProjectId);
+      }, (error) => {
+        console.log(error);
       });
-    }
   }
 }

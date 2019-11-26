@@ -63,8 +63,8 @@ export class BackendService {
 
   }
 
-  updatePrioritizationValuesWinCondition(winConditionId: number, wincondition: WinCondition) {
+  updatePrioritizationValuesWinConditions(winconditions: any) {
     // Fix, put the correct URL for this function request
-    return this.http.put<any>(`${environment.urlBase}/wincondition/${winConditionId}`, wincondition);
+    return this.http.post<any>(`${environment.urlBase}/wincondition/updateWinConditions`, winconditions);
   }
 }
