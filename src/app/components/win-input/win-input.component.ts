@@ -76,6 +76,8 @@ export class WinInputComponent implements OnInit {
     const wcText = this.addWinForm.controls['winpost'].value;
     const user = this.authService.currentUserValue;
     const wc = new WinCondition(0,0,user,wcText,0,0,0,0,[],[],[],[]);
+    const categorIds = this.selectedCategories.map((element) => element.id);
+    wc.categoryIds = categorIds;
     this.winConditionService.createWincondition(wc);
   }
 }

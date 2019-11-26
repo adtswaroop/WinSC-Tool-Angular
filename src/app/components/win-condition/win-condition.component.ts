@@ -48,4 +48,8 @@ export class WinConditionComponent implements OnInit {
     this.showWinCondition = false;
   }
 
+  addHashToCategory(categoryStr: string) {
+    return "#"+categoryStr;
+  }
+
 }
