@@ -22,7 +22,6 @@ export class WinInputComponent implements OnInit {
   @Input() currentCategory: string;
   @ViewChild('multiSelectx', {static:false}) multiSelect;
 
-  @Output() currentCategoryChange = new EventEmitter<string>();
   @Output() addWinCondition = new EventEmitter<WinCondition>();
 
   dropdownList = [];
@@ -37,12 +36,6 @@ export class WinInputComponent implements OnInit {
       this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
-   }
-
-   changeCategory(pCategory) {
-     this.currentCategory = pCategory;
-     this.currentCategoryChange.emit(pCategory);
-     this.dropdownList = this.categories;
    }
 
   ngOnInit() {
