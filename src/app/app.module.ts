@@ -41,6 +41,8 @@ import { appRoutingModule } from './app.routing';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { NgbdModalContent } from './components/project-list/project-list.component';
+import { MatSnackBarModule } from '@angular/material';
+import { SnackbarService } from './services/snackbar.service';
 
 @NgModule({
   declarations: [
@@ -84,11 +86,13 @@ import { NgbdModalContent } from './components/project-list/project-list.compone
     appRoutingModule,
     HttpClientModule,
     NgMultiSelectDropDownModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    SnackbarService],
   bootstrap: [AppComponent],
   entryComponents: [
     NgbdModalContent

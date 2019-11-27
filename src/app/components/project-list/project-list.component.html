@@ -23,9 +23,9 @@
       <div id="innerText">
         <div id="listHeading"><b>Join a Project</b></div>
         <ul id="joinList" style="list-style-type:none; margin: 10px 0;">
-          <li *ngFor="let project of otherProjectList">
+          <li *ngFor="let project of otherProjectList; let i = index">
               <div class="listItem mb-4" >
-                  <button type="button" (click)="joinProject(project.id)" class="btn btn-primary button mt-2 ml-5">Join</button>
+                  <button type="button" (click)="joinProject(project.id, i)" class="btn btn-primary button mt-2 ml-5">Join</button>
                   <div id="projectName"><b>{{project.name}}</b></div>
                   <div id="projectDesc">{{project.description}}</div>
                 </div>

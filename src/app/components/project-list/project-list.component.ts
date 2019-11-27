@@ -38,8 +38,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   otherProjectList: Project[];
   joinedProjectList: Project[];
-   proj1 = '';
-  // proj2 = '';
 
   constructor(private projectService: ProjectService, private modalService: NgbModal) {
     // initialize service to retrieve project data
@@ -52,25 +50,22 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       this.otherProjectList = data;
     }));
     // dynamically added div based on projects retrieved.
-
-    this.proj1 = 'Project Pineapple';
     // this.proj2 = 'ProjectY';
    }
 
-   openModal() {
+   openModal(i) {
       const modalRef = this.modalService.open(NgbdModalContent);
-      modalRef.componentInstance.projectName = this.proj1;
+      modalRef.componentInstance.projectName = this.otherProjectList[i].name;
    }
 
   ngOnInit() {
-
   }
 
-  joinProject(projectId) {
+  joinProject(projectId, i) {
     const joinobs = this.projectService.joinProject(projectId);
     joinobs.subscribe((data) => {
       this.projectService.getAllProjects();
-      this.openModal();
+      this.openModal(i);
     });
   }
 

@@ -5,6 +5,7 @@ import { Project } from '../../classes/project';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { Router } from '@angular/router';
+import { SnackbarService } from './../../services/snackbar.service';
 
 
 const GETPROJECT_URL = environment.urlBase + '/projects';
@@ -28,7 +29,8 @@ export class ProjectService {
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
-  constructor(private http: HttpClient, private backendService: BackendService, private router: Router) {
+  constructor(private http: HttpClient, private backendService: BackendService, private router: Router,
+              private snackBarService: SnackbarService) {
     this.projectsFetched = false;
   }
 
