@@ -38,7 +38,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   otherProjectList: Project[];
   joinedProjectList: Project[];
-   proj1 = '';
   // proj2 = '';
 
   constructor(private projectService: ProjectService, private modalService: NgbModal) {
@@ -52,8 +51,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       this.otherProjectList = data;
     }));
     // dynamically added div based on projects retrieved.
-
-    this.proj1 = 'Project Pineapple';
     // this.proj2 = 'ProjectY';
    }
 
