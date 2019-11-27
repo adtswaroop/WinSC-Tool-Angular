@@ -43,9 +43,6 @@ export class ProjectService {
       this.joinedProjectListData.next(data.joinedProjects);
       this.otherProjectListData.next(data.otherProjects);
       this.updateActiveProjectObject();
-    }, error => {
-      console.log('error in POST method');
-      this.snackBarService.showSnackBar('Error in Network Call for getting all projects');
     });
   }
 
@@ -67,7 +64,6 @@ export class ProjectService {
       console.log('POST request done', data);
     }, error => {
       console.log('error in POST method');
-      this.snackBarService.showSnackBar('Error in Network Call');
     }
     );
   }
@@ -93,7 +89,6 @@ export class ProjectService {
       console.log('PUT request done', data);
     }, error => {
       console.log('error in PUT method');
-      this.snackBarService.showSnackBar('Error in Network Call for updating project');
     }
     );
   }
@@ -109,8 +104,6 @@ export class ProjectService {
         this.router.navigate(['project-list']);
         const newProjectList = this.joinedProjectListData.value.filter((object) => object.id !== projectID);
         this.joinedProjectListData.next(newProjectList);
-    }, error => {
-      this.snackBarService.showSnackBar('Error in Network Call for deleting project');
     });
   }
 
@@ -147,8 +140,6 @@ export class ProjectService {
       const obs = this.backendService.createProject(project);
       obs.subscribe((data)=> {
           this.getAllProjects();
-      }, error => {
-        this.snackBarService.showSnackBar('Error in Network Call for creating project');
       });
   }
 }
