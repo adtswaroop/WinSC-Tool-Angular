@@ -15,8 +15,6 @@ export class CategoryHolderComponent implements OnInit {
   categories: Category[];
   categoriesSelected = new Set<Category>();
 
-  @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
-
   constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private router:Router) {
     this.categoryService.getCategories.subscribe((data) => {
         this.categories = data;

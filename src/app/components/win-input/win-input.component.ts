@@ -19,10 +19,7 @@ export class WinInputComponent implements OnInit {
 
   addWinForm : FormGroup
   private categories: Array<Category>;
-  @Input() currentCategory: string;
   @ViewChild('multiSelectx', {static:false}) multiSelect;
-
-  @Output() addWinCondition = new EventEmitter<WinCondition>();
 
   dropdownList = [];
   selectedItems = [];

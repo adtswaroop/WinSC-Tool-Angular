@@ -41,11 +41,6 @@ export class WinHolderComponent implements OnInit, OnDestroy {
     this.currentSortState = state;
   }
 
-  createWinConditionHandler(pEvent) {
-    var newWinCondition = pEvent;
-    this.winConditions = this.createWinCondition(newWinCondition, this.winConditions);
-  }
-
   createWinCondition(pWinCondition, pWinConditions) {
     var clonePWinConditions = pWinConditions.slice(0);
     clonePWinConditions.push(pWinCondition);
