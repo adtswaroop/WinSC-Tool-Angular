@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './../../classes/user';
+import { AuthenticationService } from './../../services/authentication.service'
 
 @Component({
   selector: 'app-project-tab',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectTabComponent implements OnInit {
 
-  constructor() { }
+  currUser: User;
+  showSetting = true;
+
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
+    this.currUser = this.authService.currentUserValue;
+    if (this.currUser.type == 'regular') {
+      this.showSetting = false;
+    }
   }
-
 }
