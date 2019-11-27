@@ -32,10 +32,11 @@ export class WinconditionService {
           return new WinCondition(elem);
       });
       */
-     console.log('------------Received win conditions : ');
-     console.log(data);
+
      this.winConditionSource.next(data);
     });
+
+
     return obj;
   }
 
@@ -82,17 +83,15 @@ export class WinconditionService {
 
   updatePrioritizationValuesWinConditions(winconditions: Array<WinCondition>) {
       const requestBody = {'winConditions': winconditions};
-      console.log("----------");
-      console.log("updatePrioritizationValuesWinConditions");
-      console.log(winconditions[0].businessValue);
-      console.log("----------");
-      /*
+
+      
+      
       const obs = this.backendService.updatePrioritizationValuesWinConditions(requestBody);
       obs.subscribe((data) => {
           this.updateWinConditions(this.activeProjectId);
       }, (error) => {
         console.log(error);
       });
-      */
+      
   }
 }

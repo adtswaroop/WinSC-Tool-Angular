@@ -16,20 +16,20 @@
         <div id="slider">
             <div class="col-4">
                 <span>Business value</span>
-                <input [(ngModel)]="businessValue" class="slider-input">
-                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="businessValue" ></mat-slider>
+                <input [(ngModel)]="project.businessValueWeight" class="slider-input">
+                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.businessValueWeight" ></mat-slider>
             </div>
 
             <div class="col-4">
                 <span>Relative Penalty</span>
-                <input [(ngModel)]="relativePenalty" class="slider-input">
-                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="relativePenalty"></mat-slider>
+                <input [(ngModel)]="project.relativePenaltyWeight" class="slider-input">
+                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.relativePenaltyWeight"></mat-slider>
             </div>
 
             <div class="col-4">
                 <span>Ease of Realization</span>
-                <input [(ngModel)]="easeRealization" class="slider-input">
-                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="easeRealization"></mat-slider>
+                <input [(ngModel)]="project.easeOfRealizationWeight" class="slider-input">
+                <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.easeOfRealizationWeight"></mat-slider>
             </div>
         </div>
     </div>

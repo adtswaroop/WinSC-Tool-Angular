@@ -84,7 +84,6 @@ export class ProjectService {
       createdAt: project.createdAt,
       updatedAt: project.updatedAt
     }).subscribe(data => {
-      console.log('PUT request done', data);
       this.getAllProjects();
     }, error => {
       console.log('error in PUT method');
