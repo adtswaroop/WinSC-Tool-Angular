@@ -38,7 +38,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   otherProjectList: Project[];
   joinedProjectList: Project[];
-  // proj2 = '';
 
   constructor(private projectService: ProjectService, private modalService: NgbModal) {
     // initialize service to retrieve project data
@@ -60,7 +59,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-
   }
 
   joinProject(projectId, i) {

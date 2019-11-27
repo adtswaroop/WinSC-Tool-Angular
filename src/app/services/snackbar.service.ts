@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable({
@@ -6,9 +6,10 @@ import { MatSnackBar } from '@angular/material';
 })
 export class SnackbarService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(public snackBar: MatSnackBar, private zone: NgZone) { }
 
   showSnackBar(msg: string) {
-    this.snackBar.open(msg, null, {duration: 3000});
+    this.zone.run(() => {this.snackBar.open(msg, null, {duration: 3000});
+    });
   }
 }
