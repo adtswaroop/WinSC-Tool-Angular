@@ -44,6 +44,11 @@
     text-decoration: none;
     float: right;
 }
+
+.projectLink {
+  margin-top: 10px;
+  color: #990000;
+}
 .listItem {
   height: 3em;
   width: 70%;

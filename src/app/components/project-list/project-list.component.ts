@@ -57,20 +57,20 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     // this.proj2 = 'ProjectY';
    }
 
-   openModal() {
+   openModal(i) {
       const modalRef = this.modalService.open(NgbdModalContent);
-      modalRef.componentInstance.projectName = this.proj1;
+      modalRef.componentInstance.projectName = this.otherProjectList[i].name;
    }
 
   ngOnInit() {
 
   }
 
-  joinProject(projectId) {
+  joinProject(projectId, i) {
     const joinobs = this.projectService.joinProject(projectId);
     joinobs.subscribe((data) => {
       this.projectService.getAllProjects();
-      this.openModal();
+      this.openModal(i);
     });
   }
 
