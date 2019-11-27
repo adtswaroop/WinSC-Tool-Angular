@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WinCondition } from '../../classes/win-condition';
-import { categories } from '../category-holder/dummyCategories';
 import { WinconditionService } from 'src/app/services/wincondition.service';
 import { Subscription } from 'rxjs';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/classes/category';
 
 @Component({
   selector: 'app-win-holder',
@@ -13,24 +14,26 @@ export class WinHolderComponent implements OnInit, OnDestroy {
 
   sortStates;
   currentSortState;
-  categories;
   currentCategory;
   winConditionsArray;
   origWinConditions;
+  selectedCategories: Array<Category>;
   private wSub: Subscription;
+  private cSub: Subscription;
   public winConditions: Array<WinCondition>;
 
-  constructor(private winconditionService: WinconditionService) {
+  constructor(private winconditionService: WinconditionService, private categoryService: CategoryService) {
     this.wSub = this.winconditionService.winConditionData.subscribe((data: Array<WinCondition>) => {
       this.winConditions = data;
-      this.sort();
+    });
+
+    this.cSub = this.categoryService.getSelectedCategories.subscribe((data) => {
+      this.selectedCategories = data;
     });
   }
 
   ngOnInit() {
     this.sortStates = ["MostLikes", "LeastLikes"];
-    this.categories = categories;
-    this.currentCategory = "None";
     this.currentSortState = "MostLikes";
   }
 
@@ -67,19 +70,6 @@ export class WinHolderComponent implements OnInit, OnDestroy {
     }
   }
 
-  categorize(currentCategoryChange : Array<string>){
-    return;
-    if (currentCategoryChange.length===0) {
-      this.winConditions = this.origWinConditions.slice();
-      return;
-    }
-    this.winConditions = this.origWinConditions.filter((item) => {
-            return item.categories.find((cat) => {
-                return currentCategoryChange.includes(cat.name);
-            });
-
-    });
-  }
 
   createWinConditionHandler(pEvent) {
     var newWinCondition = pEvent;
@@ -95,6 +85,7 @@ export class WinHolderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.wSub.unsubscribe();
+    this.cSub.unsubscribe();
   }
 
 

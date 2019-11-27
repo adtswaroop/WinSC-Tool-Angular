@@ -13,7 +13,7 @@ export class CategoryHolderComponent implements OnInit {
 
   categoryForm: FormGroup;
   categories: Category[];
-  categoriesSelected = [];
+  categoriesSelected = new Set<Category>();
 
   @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
 
@@ -31,11 +31,7 @@ export class CategoryHolderComponent implements OnInit {
   }
 
   applyCategory() {
-    const selectedOrderIds = this.categoryForm.value.categories
-      .map((v, i) => v ? this.categories[i] : null)
-      .filter(v => v !== null);
-    this.applyCategoryToWin.emit(selectedOrderIds);
-    console.log(this.categoryForm.value.categories.map((v, i) => v ? this.categories[i] : null));
+    this.categoryService.setSelectedCategories(Array.from(this.categoriesSelected));
   }
 
   ngOnInit() {
@@ -62,6 +58,15 @@ export class CategoryHolderComponent implements OnInit {
 
         this.addCheckboxes();
       }
+  }
+
+  handleCheck(event, category) {
+    const checked = event.target.checked;
+    if (checked) {
+      this.categoriesSelected.add(category);
+    } else {
+      this.categoriesSelected.delete(category);
+    }
   }
 
   addHashToCategory(categoryStr: string) {

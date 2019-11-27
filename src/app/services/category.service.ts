@@ -14,6 +14,8 @@ export class CategoryService {
   private activeProjectId;
   private categoryData = new BehaviorSubject<Category[]>([]);
   getCategories = this.categoryData.asObservable();
+  private selectedCategoriesData = new BehaviorSubject<Category[]>([]);
+  getSelectedCategories = this.selectedCategoriesData.asObservable();
   constructor(private backendService: BackendService, private projectService: ProjectService) {
     this.projectService.getActiveProjectId.subscribe((projectId)=>{
         this.getAllCategories(projectId);
@@ -40,5 +42,9 @@ export class CategoryService {
       categoryArr.push(data);
       this.categoryData.next(categoryArr);
     });
+  }
+
+  setSelectedCategories(categories: Category[]) {
+    this.selectedCategoriesData.next(categories);
   }
 }
