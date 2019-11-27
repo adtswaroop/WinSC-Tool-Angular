@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { User } from '../../classes/user';
+import { ProfileService } from '../../services/profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   url = null;
+  private currUserSub: Subscription;
+  public currUser: User;
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { 
+    this.currUserSub = this.profileService.userData.subscribe((data: User) => {
+      this.currUser = data;
+    });
+  }
 
   ngOnInit() { }
 
@@ -30,5 +39,9 @@ export class ProfileComponent implements OnInit {
     } else {
       document.getElementById("password-warning").innerHTML = "";
     }
+  }
+
+  ngOnDestroy(): void {
+    this.currUserSub.unsubscribe();
   }
 }
