@@ -70,4 +70,11 @@ export class BackendService {
   createCategory(projectId: number, category: Category) {
     return this.http.post<any>(`${environment.urlBase}/project/${projectId}/category`, category);
   }
+
+
+
+  updatePrioritizationValuesWinConditions(winconditions: any) {
+    // Fix, put the correct URL for this function request
+    return this.http.post<any>(`${environment.urlBase}/wincondition/updateWinConditions`, winconditions);
+  }
 }
