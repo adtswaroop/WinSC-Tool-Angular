@@ -1,7 +1,7 @@
 <div>
     <div id="button-container">
         <div id="prioritization-buttons">
-            <button id="btn-save" class="btn btn-primary" (click)="updatePrioritizationValuesProjectWinConditions()">Save</button>
+            <button id="btn-save" class="btn btn-primary" (click)="updatePrioritizationValuesProjectWinConditions()" [disabled]="enableSave">Save</button>
             <button id="btn-prioritize" class="btn btn-primary" (click)="changeValue()">Prioritize</button>
         </div>
         <div id="select-buttons">
@@ -16,19 +16,19 @@
         <div id="slider">
             <div class="col-4">
                 <span>Business value</span>
-                <input [(ngModel)]="project.businessValueWeight" class="slider-input">
+                <input [(ngModel)]="project.businessValueWeight" (input)="validateProjectValues(); inputValidateValueProjectBusiness($event.target.value)" [ngClass]="inputProjectBusinessClass">
                 <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.businessValueWeight" ></mat-slider>
             </div>
 
             <div class="col-4">
                 <span>Relative Penalty</span>
-                <input [(ngModel)]="project.relativePenaltyWeight" class="slider-input">
+                <input [(ngModel)]="project.relativePenaltyWeight" (input)="validateProjectValues(); inputValidateValueProjectPenalty($event.target.value)" [ngClass]="inputProjectPenaltyClass">
                 <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.relativePenaltyWeight"></mat-slider>
             </div>
 
             <div class="col-4">
                 <span>Ease of Realization</span>
-                <input [(ngModel)]="project.easeOfRealizationWeight" class="slider-input">
+                <input [(ngModel)]="project.easeOfRealizationWeight" (input)="validateProjectValues(); inputValidateValueProjectEase($event.target.value)" [ngClass]="inputProjectEaseClass">
                 <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.easeOfRealizationWeight"></mat-slider>
             </div>
         </div>
@@ -42,9 +42,9 @@
     <div *ngFor="let winCondition of winConditions">
         <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
         <div class="col-5" id="win-weights">
-            <app-win-condition-input id="weight-value" label="Business value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event"></app-win-condition-input>
-            <app-win-condition-input id="weight-value" label="Relative penalty" [value]="winCondition.relativePenalty" [winCondition]="winCondition" (winConditionChange)="winCondition=$event"></app-win-condition-input>
-            <app-win-condition-input id="weight-value" label="Ease of Realization" [value]="winCondition.easeOfRealization" [winCondition]="winCondition" (winConditionChange)="winCondition=$event"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Business value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()" ></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Relative penalty" [value]="winCondition.relativePenalty" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+            <app-win-condition-input id="weight-value" label="Ease of Realization" [value]="winCondition.easeOfRealization" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
         </div>
     </div>
 

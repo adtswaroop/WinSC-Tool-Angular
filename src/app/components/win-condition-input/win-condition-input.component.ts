@@ -13,13 +13,22 @@ export class WinConditionInputComponent implements OnInit {
   @Input() label: string;
   @Input() type: string;
   @Output() winConditionChange = new EventEmitter<WinCondition>();
+  @Output() enableSaveButton = new EventEmitter<boolean>();
+  inputClass;
+  inputValid;
 
-  constructor() { }
+  constructor() { 
+    this.inputClass = {};
+  }
 
   ngOnInit() {
+    this.inputValidateValue(this.value);
   }
 
   changeValue(newValue) {
+    
+    this.inputValidateValue(newValue);
+
     if(this.label == "Business value"){
       this.winCondition.businessValue = newValue;
     }
@@ -30,6 +39,45 @@ export class WinConditionInputComponent implements OnInit {
       this.winCondition.easeOfRealization = newValue;
     }
     this.winConditionChange.emit(this.winCondition);
+  }
+
+  inputValidateValue(pValue){
+    this.inputValid = this.validateValue(pValue);
+    if(this.validateValue(pValue)){
+      this.enableSaveButton.emit(false);
+      console.log("valid");
+      this.inputClass = {};
+    }
+    else {
+      this.enableSaveButton.emit(true);
+      this.enableSaveButton.emit(true);
+      console.log("invalid");
+      this.inputClass = {"input-red":true};
+    }
+  }
+
+  validateValue(pValue){
+    var valid = true;
+    if(!this.validateMinValue(pValue)){
+      valid = false;
+    }
+    if(!this.validateMaxValue(pValue)){
+      valid = false;
+    }
+    
+    return valid;
+  }
+
+  validateMinValue(pValue) {
+    return pValue >=0;
+  }
+
+  validateMaxValue(pValue) {
+    return pValue <=100;
+  }
+
+  validateNonEmpty(pValue) {
+    return pValue != 0;
   }
 
 }

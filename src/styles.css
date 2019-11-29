@@ -28,3 +28,7 @@ body {
     background-color: #990000 !important;
     border-color: #990000 !important;
 }
+
+.input-red {
+	border: 5px solid red !important;;
+}

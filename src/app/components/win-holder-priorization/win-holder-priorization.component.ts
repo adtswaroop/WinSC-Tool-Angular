@@ -12,12 +12,16 @@ import { Component, OnInit } from '@angular/core';
 export class WinHolderPriorizationComponent implements OnInit {
 
   sortStates;
+  enableSave;
   currentSortState;
   winConditions;
   project;
   winHolderPriorizationService;
   private wSub: Subscription;
   private pSub: Subscription;
+  inputProjectBusinessClass;
+  inputProjectPenaltyClass;
+  inputProjectEaseClass;
 
   constructor(private winconditionService :WinconditionService, private projectService :ProjectService) {
     this.wSub = this.winconditionService.winConditionData.subscribe((data) => {
@@ -27,6 +31,13 @@ export class WinHolderPriorizationComponent implements OnInit {
     this.pSub = this.projectService.getActiveProjectObject.subscribe((data) => {
       this.project = data;
     });
+
+    this.enableSave=false;
+
+    this.validateWinconditionsValues();
+    this.inputProjectBusinessClass = {"slider-input": true};
+    this.inputProjectPenaltyClass = {"slider-input": true};
+    this.inputProjectEaseClass = {"slider-input": true};
   }
 
   ngOnInit() {
@@ -71,5 +82,83 @@ export class WinHolderPriorizationComponent implements OnInit {
     this.projectService.updateProject(this.project);
   }
 
+  setEnableSave(enableSave){
+    this.enableSave=enableSave;
+  }
 
+  validateWinconditionsValues(){
+    var allWinconditionsValid = true;
+    for (let i = 0; i < this.winConditions.length && allWinconditionsValid == true; i++) {
+      allWinconditionsValid = (this.validateValue(this.winConditions[i].businessValue) && this.validateValue(this.winConditions[i].relativePenalty)) && this.validateValue(this.winConditions[i].easeOfRealization);
+      console.log(this.winConditions);
+      if(this.winConditions[i].businessValue == -1){
+        console.log(-1);
+        console.log(this.winConditions[i]);
+      }
+    }
+    var disable = !allWinconditionsValid;
+    console.log(disable);
+    this.setEnableSave(disable);
+  }
+
+  validateProjectValues(){
+    var allValuesValid = true;
+    
+    allValuesValid = (this.validateValue(this.project.businessValueWeight) && this.validateValue(this.project.relativePenaltyWeight)) && this.validateValue(this.project.easeOfRealizationWeight);
+    
+    var disable = !allValuesValid;
+    console.log(disable);
+    this.setEnableSave(disable);
+  }
+
+  validateValue(pValue){
+    var valid = true;
+    if(!this.validateMinValue(pValue)){
+      valid = false;
+    }
+    if(!this.validateMaxValue(pValue)){
+      valid = false;
+    }
+    
+    return valid;
+  }
+
+  validateMinValue(pValue) {
+    return pValue >=0;
+  }
+
+  validateMaxValue(pValue) {
+    return pValue <=100;
+  }
+
+  validateNonEmpty(pValue) {
+    return pValue != 0;
+  }
+
+  inputValidateValueProjectBusiness(pValue){
+    if(this.validateValue(pValue)){
+      this.inputProjectBusinessClass = {"slider-input": true};
+    }
+    else {
+      this.inputProjectBusinessClass = {"input-red":true, "slider-input": true};
+    }
+  }
+
+  inputValidateValueProjectPenalty(pValue){
+    if(this.validateValue(pValue)){
+      this.inputProjectPenaltyClass = {"slider-input": true};
+    }
+    else {
+      this.inputProjectPenaltyClass = {"input-red":true,"slider-input": true};
+    }
+  }
+
+  inputValidateValueProjectEase(pValue){
+    if(this.validateValue(pValue)){
+      this.inputProjectEaseClass = {"slider-input": true};
+    }
+    else {
+      this.inputProjectEaseClass = {"input-red":true, "slider-input": true};
+    }
+  }
 }
