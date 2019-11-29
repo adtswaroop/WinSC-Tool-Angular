@@ -1,39 +1,40 @@
 <div class="mainDiv container ml-5">
-  <div class="container row justify-content-end">
-    <a routerLink="/add-project" class="button">
+    <div class="container row justify-content-end">
+        <a routerLink="/add-project" class="btn btn-primary button">
       + New Project
     </a>
-  </div>
-  <div class="container row mb-5">
-    <div class="myProject pb-4">
-      <div id="innerText">
-        <div id="listHeading"><b>My Projects</b></div>
+    </div>
+    <div class="container row mb-5">
+        <div class="myProject pb-4">
+            <div id="innerText">
+                <div id="listHeading"><b>My Projects</b></div>
 
-        <ul style="list-style-type:none;" *ngFor="let project of joinedProjectList">
-          <a class="projectLink" style="margin: 5px 0;" routerLink="/project/{{project.id}}">{{project.name}}</a>
-          <!-- <li>Winbook feedback and issues</li> -->
-        </ul>
-        <div class="row mb-5"></div>
-        <div class="row mb-5 mt-5"></div>
-      </div>
+                <ul style="list-style-type:none;" *ngFor="let project of joinedProjectList">
+                    <a class="projectLink" style="margin: 5px 0;" routerLink="/project/{{project.id}}">{{project.name}}</a>
+                    <!-- <li>Winbook feedback and issues</li> -->
+                </ul>
+                <div class="row mb-5"></div>
+                <div class="row mb-5 mt-5"></div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="container row">
-    <div class="joinProject pb-5">
-      <div id="innerText">
-        <div id="listHeading"><b>Join a Project</b></div>
-        <ul id="joinList" style="list-style-type:none; margin: 10px 0;">
-          <li *ngFor="let project of otherProjectList; let i = index">
-              <div class="listItem mb-4" >
-                  <button type="button" (click)="joinProject(project.id, i)" class="btn btn-primary button mt-2 ml-5">Join</button>
-                  <div id="projectName"><b>{{project.name}}</b></div>
-                  <div id="projectDesc">{{project.description}}</div>
-                </div>
-          </li>
-          <div class="row mb-5"></div>
-          <div class="row mb-5 mt-5"></div>
-        </ul>
-      </div>
+    <div class="container row">
+        <div class="joinProject pb-5">
+            <div id="innerText">
+                <input type="text" class="form-control" id="searchProject" placeholder="Search">
+                <div id="listHeading"><b>Join a Project</b></div>
+                <ul id="joinList" style="list-style-type:none; margin: 10px 0;">
+                    <li *ngFor="let project of otherProjectList; let i = index">
+                        <div class="listItem mb-4">
+                            <button type="button" (click)="joinProject(project.id, i)" class="btn btn-primary button mt-2 ml-5">Join</button>
+                            <div id="projectName"><b>{{project.name}}</b></div>
+                            <div id="projectDesc">{{project.description}}</div>
+                        </div>
+                    </li>
+                    <div class="row mb-5"></div>
+                    <div class="row mb-5 mt-5"></div>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
