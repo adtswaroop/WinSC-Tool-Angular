@@ -13,9 +13,7 @@ export class CategoryHolderComponent implements OnInit {
 
   categoryForm: FormGroup;
   categories: Category[];
-  categoriesSelected = [];
-
-  @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
+  categoriesSelected = new Set<Category>();
 
   constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private router:Router) {
     this.categoryService.getCategories.subscribe((data) => {
@@ -31,11 +29,7 @@ export class CategoryHolderComponent implements OnInit {
   }
 
   applyCategory() {
-    const selectedOrderIds = this.categoryForm.value.categories
-      .map((v, i) => v ? this.categories[i] : null)
-      .filter(v => v !== null);
-    this.applyCategoryToWin.emit(selectedOrderIds);
-    console.log(this.categoryForm.value.categories.map((v, i) => v ? this.categories[i] : null));
+    this.categoryService.setSelectedCategories(Array.from(this.categoriesSelected));
   }
 
   ngOnInit() {
@@ -62,6 +56,15 @@ export class CategoryHolderComponent implements OnInit {
 
         this.addCheckboxes();
       }
+  }
+
+  handleCheck(event, category) {
+    const checked = event.target.checked;
+    if (checked) {
+      this.categoriesSelected.add(category);
+    } else {
+      this.categoriesSelected.delete(category);
+    }
   }
 
   addHashToCategory(categoryStr: string) {
