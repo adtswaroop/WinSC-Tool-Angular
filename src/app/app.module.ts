@@ -45,6 +45,7 @@ import { MatSnackBarModule } from '@angular/material';
 import { SnackbarService } from './services/snackbar.service';
 import { WinConditionFilterPipe } from './pipes/win-condition-filter.pipe';
 import { WinConditionSortPipe } from './pipes/win-condition-sort.pipe';
+import { ProjectFilterPipe } from './pipes/project-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { WinConditionSortPipe } from './pipes/win-condition-sort.pipe';
     AddProjectComponent,
     NgbdModalContent,
     WinConditionFilterPipe,
-    WinConditionSortPipe
+    WinConditionSortPipe,
+    ProjectFilterPipe
   ],
   imports: [
     BrowserModule,

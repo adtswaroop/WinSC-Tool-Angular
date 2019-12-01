@@ -38,6 +38,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   otherProjectList: Project[];
   joinedProjectList: Project[];
+  searchWord: string;
 
   constructor(private projectService: ProjectService, private modalService: NgbModal) {
     // initialize service to retrieve project data
