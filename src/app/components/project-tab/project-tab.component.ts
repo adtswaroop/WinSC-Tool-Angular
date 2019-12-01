@@ -17,8 +17,8 @@ export class ProjectTabComponent implements OnInit {
   ngOnInit() {
     this.currUser = this.authService.currentUserValue;
     console.log(this.currUser);
-    if (this.currUser.type == 'regular') {
-      this.showSetting = false;
-    }
+    // if (this.currUser.type == 'regular') {
+    //   this.showSetting = false;
+    // }
   }
 }
