@@ -21,10 +21,10 @@
     <div class="container row">
         <div class="joinProject pb-5">
             <div id="innerText">
-                <input type="text" class="form-control" id="searchProject" placeholder="Search">
+                <input type="text" class="form-control" id="searchProject" placeholder="Search" [(ngModel)]="searchWord">
                 <div id="listHeading"><b>Join a Project</b></div>
                 <ul id="joinList" style="list-style-type:none; margin: 10px 0;">
-                    <li *ngFor="let project of otherProjectList; let i = index">
+                    <li *ngFor="let project of otherProjectList | projectFilter: searchWord ; let i = index ">
                         <div class="listItem mb-4">
                             <button type="button" (click)="joinProject(project.id, i)" class="btn btn-primary button mt-2 ml-5">Join</button>
                             <div id="projectName"><b>{{project.name}}</b></div>
