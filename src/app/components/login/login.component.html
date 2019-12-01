@@ -1,4 +1,7 @@
-<h2>Login</h2>
+<div class="text-center mt-5 mb-4">
+  <h2>Login</h2>
+</div>
+<div class="container bg-light py-4 col-md-8">
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="username">Username</label>
@@ -14,6 +17,7 @@
             <div *ngIf="f.password.errors.required">Password is required</div>
         </div>
     </div>
+    <div class="row justify-content-center my-3">
     <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
@@ -21,4 +25,6 @@
         </button>
         <a routerLink="/register" class="btn btn-link">Register</a>
     </div>
+  </div>
 </form>
+</div>
