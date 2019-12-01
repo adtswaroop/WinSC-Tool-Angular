@@ -45,7 +45,13 @@ export class WinConditionComponent implements OnInit {
   }
 
   deleteWin() {
-    this.showWinCondition = false;
+    console.log("Deleting win condition id: "+this.winCondition.id);
+    const promise = this.winconditionService.deleteWinCondition(this.winCondition);
+    promise.then(()=>{
+      this.showWinCondition = false;
+    }, () => {
+      console.log("Wincondition delete error");
+    });
   }
 
   addHashToCategory(categoryStr: string) {

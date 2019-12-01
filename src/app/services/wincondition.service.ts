@@ -74,6 +74,26 @@ export class WinconditionService {
     });
   }
 
+  deleteWinCondition(winCondition: WinCondition) {
+    const promise = new Promise((resolve, reject) => {
+      const obs = this.backendService.deleteWinCondition(winCondition.id);
+      obs.subscribe((data) => {
+
+          if (data === 0){
+            console.log("Rejecting promise because wc wasn't ours");
+            reject();
+          } else {
+            console.log("Delete successful");
+            resolve();
+          }
+      }, (error) => {
+          console.log("Rejecting because of a failure in http error");
+          reject();
+      });
+    });
+    return promise;
+  }
+
   createWinConditionComment(winconditionID: number, comment: Comment) {
     const obs = this.backendService.createWinConditionComment(winconditionID, comment);
     obs.subscribe((data) => {
@@ -84,14 +104,14 @@ export class WinconditionService {
   updatePrioritizationValuesWinConditions(winconditions: Array<WinCondition>) {
       const requestBody = {'winConditions': winconditions};
 
-      
-      
+
+
       const obs = this.backendService.updatePrioritizationValuesWinConditions(requestBody);
       obs.subscribe((data) => {
           this.updateWinConditions(this.activeProjectId);
       }, (error) => {
         console.log(error);
       });
-      
+
   }
 }
