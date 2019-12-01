@@ -25,10 +25,22 @@ export class ProfileComponent implements OnInit {
   }
 
   confirmPassword(event, box) {
-    if((<HTMLInputElement> document.getElementById("passwordInput")).value !=  event.target.value) {
+    if((<HTMLInputElement> document.getElementById("passwordConfirm")).value !=  event.target.value) {
       document.getElementById("password-warning").innerHTML = "Password doesn't match";
+      (<HTMLButtonElement> document.getElementById("update-password")).disabled = true;
     } else {
       document.getElementById("password-warning").innerHTML = "";
+      (<HTMLButtonElement> document.getElementById("update-password")).disabled = false;
+    }
+  }
+
+  reconfirmPassword(event, box) {
+    if((<HTMLInputElement> document.getElementById("passwordInput")).value !=  event.target.value) {
+      document.getElementById("password-warning").innerHTML = "Password doesn't match";
+      (<HTMLButtonElement> document.getElementById("update-password")).disabled = true;
+    } else {
+      document.getElementById("password-warning").innerHTML = "";
+      (<HTMLButtonElement> document.getElementById("update-password")).disabled = false;
     }
   }
 }
