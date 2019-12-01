@@ -71,7 +71,11 @@ export class CategoryHolderComponent implements OnInit {
     return "#"+categoryStr;
   }
 
-  deleteCategory() {
+  deleteCategory(category: Category) {
+    const dialogResult = confirm("Delete category " + category.name + " ?");
+    if (dialogResult) {
+      this.categoryService.deleteCategory(category.id);
+    }
   }
 
 }

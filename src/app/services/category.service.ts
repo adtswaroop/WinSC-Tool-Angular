@@ -47,4 +47,16 @@ export class CategoryService {
   setSelectedCategories(categories: Category[]) {
     this.selectedCategoriesData.next(categories);
   }
+
+  deleteCategory(categoryId: number) {
+
+      const obs = this.backendService.deleteCategory(categoryId);
+      obs.subscribe((data) => {
+          console.log("Category delete data was: " + data);
+          let categoryArr = this.categoryData.value;
+          this.categoryData.next(categoryArr.filter((category) => category.id !== categoryId));
+      }, (error) => {
+          console.log("Rejecting because of a failure in http error");
+    });
+  }
 }
