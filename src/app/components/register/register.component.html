@@ -19,12 +19,10 @@
     </div>
     <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <input type="email" formControlName="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Username is required</div>
-        </div>
-        <div *ngIf="submitted && f.email.invalid" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Username is required</div>
+            <div *ngIf="f.email.errors.email">A valid email is required</div>
         </div>
     </div>
     <div class="form-group">
