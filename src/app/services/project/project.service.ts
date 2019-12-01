@@ -29,6 +29,10 @@ export class ProjectService {
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
+
+  projectCreatedService = new BehaviorSubject<boolean>(false);
+  projectCreated = this.projectCreatedService.asObservable();
+
   constructor(private http: HttpClient, private backendService: BackendService, private router: Router,
               private snackBarService: SnackbarService) {
     this.projectsFetched = false;
@@ -137,9 +141,11 @@ export class ProjectService {
 
 
   createProject(project: Project) {
+      this.projectCreatedService.next(true);
       const obs = this.backendService.createProject(project);
-      obs.subscribe((data)=> {
+      obs.subscribe((data) => {
           this.getAllProjects();
+          this.projectCreatedService.next(false);
       });
   }
 }
