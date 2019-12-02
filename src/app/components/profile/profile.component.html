@@ -20,27 +20,27 @@
             <div class="form-group row">
                 <label for="nameInput" class="col-sm-3 col-form-label text-right p-0 pt-2">First Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nameInput" value={{currUser?.firstName}}>
+                    <input type="text" class="form-control" id="firstNameInput" placeholder={{currUser?.firstName}}>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="emailInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Last Name</label>
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" id="emailInput" value={{currUser?.lastName}}>
+                    <input type="text" class="form-control" id="lastNameInput" placeholder={{currUser?.lastName}}>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="orgInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Email</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="orgInput" value={{currUser?.email}}>
+                    <input type="email" class="form-control" id="emailInput" placeholder={{currUser?.email}}>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row justify-content-center my-3">
-        <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="reset" id="cancelChanges" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="submit" id="saveChanges" class="btn btn-primary" disabled="disabled">Save Changes</button>
     </div>
 </div>
 

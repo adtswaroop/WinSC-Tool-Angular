@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../../classes/user';
 import { ProfileService } from '../../services/profile.service';
 import { Subscription } from 'rxjs';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
+// import { $ } from 'protractor';
+
+declare var $:any;
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +24,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    $(document).ready(function () {
+      validate();
+      $('#firstNameInput, #lastNameInput, #emailInput').change(validate);
+    });
+  
+    function validate() {
+      if ($('#firstNameInput').val().length > 0 ||
+          $('#lastNameInput').val().length > 0 ||
+          $('#emailInput').val().length > 0) {
+            $('#saveChanges').prop("disabled", false);
+            $('#cancelChanges').prop("disabled", false);
+      } else {
+        $('#saveChanges').prop("disabled", true);
+        $('#cancelChanges').prop("disabled", true);
+      }
+    }
+  }
 
   onPhotoUpload(event) {
     if (event.target.files && event.target.files[0]) {
