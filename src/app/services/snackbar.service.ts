@@ -9,7 +9,7 @@ export class SnackbarService {
   constructor(public snackBar: MatSnackBar, private zone: NgZone) { }
 
   showSnackBar(msg: string) {
-    this.zone.run(() => {this.snackBar.open(msg, null, {duration: 3000});
+    this.zone.run(() => {this.snackBar.open(msg, null, {duration: 5000});
     });
   }
 }
