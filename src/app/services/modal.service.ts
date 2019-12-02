@@ -15,8 +15,8 @@ export class ModalService {
       data: new ModalConfirmData({
         title: 'CONFIRM',
         content: message,
-        confirmButtonLabel: 'Confirm',
-        closeButtonLabel: 'Close'
+        confirmButtonLabel: 'Yes',
+        closeButtonLabel: 'No'
       })
     });
 
