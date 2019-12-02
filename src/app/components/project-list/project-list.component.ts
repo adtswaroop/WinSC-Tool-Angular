@@ -61,7 +61,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    }
 
    openConfirmModal() {
-    this.customModal.openConfirmModal('Sample Modal', (answer: boolean) => {
+    this.customModal.openConfirmModal('Sample Modal, check console.log, confirm will print Yes otherwise, No', (answer: boolean) => {
       if (answer) {
         console.log('Yes');
         return;
