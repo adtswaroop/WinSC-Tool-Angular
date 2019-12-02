@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Benefit } from '../../classes/benefit';
+import { BenefitBackend } from '../../services/benefitbackend.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { categories } from '../category-holder/dummyCategories';
 import { DummyData } from './../../classes/dummy-data';
+import { BackendService } from 'src/app/services/backend.service';
 
 
 @Component({
@@ -11,6 +13,8 @@ import { DummyData } from './../../classes/dummy-data';
   styleUrls: ['./project-benefits.component.css']
 })
 export class ProjectBenefitsComponent implements OnInit {
+  
+  data:any = {};
   @Input() Benefit = Benefit;
   // sortStates;
   // currentSortState;
@@ -20,7 +24,7 @@ export class ProjectBenefitsComponent implements OnInit {
   selectedCategories = [];
   dropdownSettings = {};
 
-  constructor() { }
+  constructor( private serviceCall : BenefitBackend) { }
 
   ngOnInit() {
     // this.sortStates = ["Sort By", "Most Likes", "Least Likes"];
@@ -37,6 +41,12 @@ export class ProjectBenefitsComponent implements OnInit {
       allowSearchFilter: false,
       enableCheckAll: false
     };
+
+    this.serviceCall.getAllBenefits(10).subscribe(
+      data=>{this.data = data},
+      err=>{console.log(err)},
+      ()=>console.log(this.data)
+    );
   }
 
   onItemSelect(item: any) {
@@ -49,5 +59,7 @@ export class ProjectBenefitsComponent implements OnInit {
       res.push(element.name);
     });
   }
+
+
 
 }
