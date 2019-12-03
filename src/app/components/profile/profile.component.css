@@ -6,14 +6,14 @@
     object-fit: cover;
     object-position: center;
     width: 170px;
-    height: 155px;
+    height: 140px;
 }
 
 .profile-img .file {
     position: relative;
     overflow: hidden;
-    margin-top: -20%;
     width: 170px;
+    height: 31px;
     border: none;
     border-radius: 0;
     font-size: 15px;
@@ -35,4 +35,20 @@
 
 #password-warning {
     color: red;
+}
+
+#email-warning {
+    color: red;
+}
+
+#info-confirmation {
+    color: gold;
+}
+
+#pw-confirmation {
+    color: gold;
+}
+
+::placeholder {
+    opacity: 0.3;
 }

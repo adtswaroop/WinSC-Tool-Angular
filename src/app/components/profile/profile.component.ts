@@ -1,17 +1,78 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { User } from '../../classes/user';
+import { ProfileService } from '../../services/profile.service';
+import { Subscription } from 'rxjs';
+
+declare var $:any;
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   url = null;
+  private currUserSub: Subscription;
+  public currUser: User;
 
-  constructor() { }
+  constructor(private profileService: ProfileService) {
+    this.currUserSub = this.profileService.userData.subscribe((data: User) => {
+      this.currUser = data;
+    });
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+    $(document).ready(function () {
+      // validate();
+      $('#firstNameInput, #lastNameInput, #emailInput').keyup(validate);
+      // validatePW();
+      $('#passwordInput, #passwordConfirm').keyup(validatePW);
+      // validateEmail();
+      $('#emailInput').keyup(validateEmail);
+    });
+
+    function validate() {
+      if ($('#firstNameInput').val().length > 0 || $('#lastNameInput').val().length > 0 || $('#emailInput').val().length > 0) {
+        document.getElementById("info-confirmation").innerHTML = "";
+        $('#saveChanges').prop("disabled", false);
+        $('#cancelChanges').prop("disabled", false);
+      } else {
+        $('#saveChanges').prop("disabled", true);
+        $('#cancelChanges').prop("disabled", true);
+      }
+    }
+
+    function validateEmail() {
+      var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,}$/i;
+      if ($('#emailInput').val().length != 0 && !testEmail.test($('#emailInput').val())) {
+        document.getElementById("email-warning").innerHTML = "Please enter a valid email address.";
+        $('#saveChanges').prop("disabled", true);
+      } else {
+        document.getElementById("email-warning").innerHTML = "";
+      }
+    }
+
+    function validatePW() {
+      if ($('#passwordInput').val().length > 0 || $('#passwordConfirm').val().length > 0) {
+        document.getElementById("pw-confirmation").innerHTML = "";
+
+        if ($('#passwordInput').val() == $('#passwordConfirm').val()) {
+          document.getElementById("password-warning").innerHTML = "";
+          $('#updatePassword').prop("disabled", false);
+          $('#cancelPassword').prop("disabled", false);
+        } else {
+          document.getElementById("password-warning").innerHTML = "Passwords do not match.";
+          $('#updatePassword').prop("disabled", true);
+          $('#cancelPassword').prop("disabled", false);
+        }
+      } else {
+        document.getElementById("password-warning").innerHTML = "";
+        $('#updatePassword').prop("disabled", true);
+        $('#cancelPassword').prop("disabled", true);
+      }
+    }
+  }
 
   onPhotoUpload(event) {
     if (event.target.files && event.target.files[0]) {
@@ -19,28 +80,59 @@ export class ProfileComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event:any) => {
-          this.url = event.target.result;
+        this.url = event.target.result;
       }
     }
   }
 
-  confirmPassword(event, box) {
-    if((<HTMLInputElement> document.getElementById("passwordConfirm")).value !=  event.target.value) {
-      document.getElementById("password-warning").innerHTML = "Password doesn't match";
-      (<HTMLButtonElement> document.getElementById("update-password")).disabled = true;
-    } else {
-      document.getElementById("password-warning").innerHTML = "";
-      (<HTMLButtonElement> document.getElementById("update-password")).disabled = false;
-    }
+  cancelInfo() {
+    $('#firstNameInput').val(null);
+    $('#lastNameInput').val(null);
+    $('#emailInput').val(null);
+    $('#saveChanges').prop("disabled", true);
+    $('#cancelChanges').prop("disabled", true);
   }
 
-  reconfirmPassword(event, box) {
-    if((<HTMLInputElement> document.getElementById("passwordInput")).value !=  event.target.value) {
-      document.getElementById("password-warning").innerHTML = "Password doesn't match";
-      (<HTMLButtonElement> document.getElementById("update-password")).disabled = true;
-    } else {
-      document.getElementById("password-warning").innerHTML = "";
-      (<HTMLButtonElement> document.getElementById("update-password")).disabled = false;
-    }
+  saveInfo() {
+    var userInfo = new User();
+
+    if ($('#firstNameInput').val() != "") userInfo.firstName = $('#firstNameInput').val();
+    if ($('#lastNameInput').val() != "") userInfo.lastName = $('#lastNameInput').val();
+    if ($('#emailInput').val() != "") userInfo.email = $('#emailInput').val();
+
+    this.profileService.putUserData(userInfo);
+    document.getElementById('info-confirmation').innerHTML = "Profile update complete!"
+
+    $('#firstNameInput').val(null);
+    $('#lastNameInput').val(null);
+    $('#emailInput').val(null);
+
+    $('#saveChanges').prop("disabled", true);
+    $('#cancelChanges').prop("disabled", true);
+  }
+
+  cancelPW() {
+    $('#passwordInput').val(null);
+    $('#passwordConfirm').val(null);
+    $('#updatePassword').prop("disabled", true);
+    $('#cancelPassword').prop("disabled", true);
+    document.getElementById('password-warning').innerHTML = "";
+  }
+
+  updatePW() {
+    var userInfo = new User();
+    userInfo.password = $('#passwordConfirm').val();
+
+    this.profileService.putUserData(userInfo);
+    document.getElementById('pw-confirmation').innerHTML = "Password update complete!";
+
+    $('#passwordInput').val(null);
+    $('#passwordConfirm').val(null);
+    $('#updatePassword').prop("disabled", true);
+    $('#cancelPassword').prop("disbaled", true);
+  }
+
+  ngOnDestroy(): void {
+    this.currUserSub.unsubscribe();
   }
 }
