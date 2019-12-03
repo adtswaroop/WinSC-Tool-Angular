@@ -32,6 +32,7 @@
             <div class="form-group row">
                 <label for="orgInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Email</label>
                 <div class="col-sm-9">
+                    <span id="email-warning"></span>
                     <input type="email" class="form-control" id="emailInput" placeholder={{currUser?.email}}>
                 </div>
             </div>
@@ -56,13 +57,13 @@
         <label for="passwordConfirm" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4"></label>
         <div class="col-sm-6">
             <span id="password-warning"></span>
-            <input type="password" class="form-control pr-2" id="passwordConfirm" placeholder="Re-enter new password" (keyup)="confirmPassword($event,box)">
+            <input type="password" class="form-control pr-2" id="passwordConfirm" placeholder="Re-enter new password">
         </div>
     </div>
 
     <div class="row justify-content-center mt-4">
-        <button type="reset" class="btn btn-secondary mr-2">Cancel</button>
-        <button type="submit" class="btn btn-primary">Update Password</button>
+        <button type="reset" id="cancelPassword" class="btn btn-secondary mr-2">Cancel</button>
+        <button type="submit" id="updatePassword" class="btn btn-primary">Update Password</button>
     </div>
 </div>
 

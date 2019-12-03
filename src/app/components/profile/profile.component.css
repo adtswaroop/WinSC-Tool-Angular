@@ -36,3 +36,11 @@
 #password-warning {
     color: red;
 }
+
+#email-warning {
+    color: red;
+}
+
+::placeholder {
+    opacity: 0.3;
+}
