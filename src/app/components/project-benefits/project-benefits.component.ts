@@ -31,6 +31,7 @@ export class ProjectBenefitsComponent implements OnInit {
   constructor( private serviceCall : BackendService, private projectService: ProjectService) {
     this.projectService.getActiveProjectId.subscribe((projectId) => {
       this.currentProjectId = projectId;
+      this.getAllBenefits();
    });
   }
 
@@ -49,8 +50,6 @@ export class ProjectBenefitsComponent implements OnInit {
       allowSearchFilter: false,
       enableCheckAll: false
     };
-
-   this.getAllBenefits();
     
   }
 
@@ -81,6 +80,7 @@ showBenefits(benefits){
 createNewBenefit(){
  if(!(this.newBenefitText == ""))
  {
+
     this.newBen = new Benefit(this.newBenefitText , 0, this.selectedCategories , null);
     this.serviceCall.createBenefit(this.currentProjectId, this.newBen).subscribe(
       data=>{console.log("Benefit created!\n" + data)},
