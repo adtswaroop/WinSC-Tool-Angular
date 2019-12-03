@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private currUserSub: Subscription;
   public currUser: User;
 
-  constructor(private profileService: ProfileService) { 
+  constructor(private profileService: ProfileService) {
     this.currUserSub = this.profileService.userData.subscribe((data: User) => {
       this.currUser = data;
     });
@@ -24,14 +24,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     $(document).ready(function () {
-      validate();
+      // validate();
       $('#firstNameInput, #lastNameInput, #emailInput').keyup(validate);
-      validatePW();
+      // validatePW();
       $('#passwordInput, #passwordConfirm').keyup(validatePW);
-      validateEmail();
+      // validateEmail();
       $('#emailInput').keyup(validateEmail);
     });
-  
+
     function validate() {
       if ($('#firstNameInput').val().length > 0 || $('#lastNameInput').val().length > 0 || $('#emailInput').val().length > 0) {
         document.getElementById("info-confirmation").innerHTML = "";
@@ -96,7 +96,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   saveInfo() {
     var userInfo = new User();
 
-    if ($('#firstNameInput').val() != "") userInfo.firstName = $('#firstNameInput').val(); 
+    if ($('#firstNameInput').val() != "") userInfo.firstName = $('#firstNameInput').val();
     if ($('#lastNameInput').val() != "") userInfo.lastName = $('#lastNameInput').val();
     if ($('#emailInput').val() != "") userInfo.email = $('#emailInput').val();
 
