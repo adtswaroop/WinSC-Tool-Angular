@@ -17,8 +17,8 @@
     min-height: 10%;
     margin-top: 5%;
     border: inset 1px #52494933;
-    padding: 30px;
-    background: #80808014;
+    padding: 30px 30px 6px 30px;
+    background: #ff000014;
     position: relative;
 }
 
@@ -100,3 +100,19 @@ app-win-condition-input#weight-value input {
 ::ng-deep .mat-accent .mat-slider-track-wrapper {
     height: 5px!important;
 }
+
+.updateButton{
+    background-color: #1e8aca;
+    color: white;
+    box-shadow: 1px 1px #525252;
+    float: right;
+    width: 60px;
+    font-size: 13px;
+    height: 30px;
+    padding: 2px;
+}
+
+/* mat-slider:hover{
+    background-color: #d4d3d3;
+}
+ */

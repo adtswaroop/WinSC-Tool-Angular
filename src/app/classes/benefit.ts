@@ -1,14 +1,16 @@
 import { Category } from './category'
 
 export class Benefit{
-    public userName: string;
     public categories: Array<Category>;
     public text: string;
+    public value: number;
+    public id: number;
 
-    constructor($userName: string, $categories: Array<Category>, $text: string){
-        this.userName = $userName;
+    constructor($text: string, $value: number, $categories: Array<Category>, $id:number){
         this.categories = $categories;
         this.text = $text;
+        this.value = $value;
+        this.id = $id;
     }
 }
 

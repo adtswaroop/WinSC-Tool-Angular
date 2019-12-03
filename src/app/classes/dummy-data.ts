@@ -88,9 +88,7 @@ export class DummyData {
   public wcArr = [this.w1, this.w2, this.w3, this.w4, this.w5 ];
    */
 
-  //BENEFITS
-  public benefit1 = new Benefit("Aditi" , [this.cat1], "Support win-win negotiations")
-
+  
   // project list array and associated individual project elements
   public project1 = new Project("Project Pineapple", 1, "Pineapple is good", "public", "Pineapple vision",
   false, false, 1, 4, 5, new Date('December 17, 2018 03:24:00'), new Date('September 17, 2019 04:24:22'));
