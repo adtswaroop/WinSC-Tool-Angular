@@ -117,6 +117,9 @@ export class ProjectService {
   updateActiveProjectObject() {
     const joinedProjectArr = this.joinedProjectListData.value;
     const projectID = this.activeProjectData.value;
+    if (projectID === -1) {
+      return;
+    }
     let projectFound = false;
     joinedProjectArr.forEach((element)=> {
       if (element.id == projectID) {
