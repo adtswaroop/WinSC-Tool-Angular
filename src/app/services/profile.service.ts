@@ -31,8 +31,7 @@ export class ProfileService {
   putUserData(userInfo) {
     const obj = this.http.put<any>(USER_URL, userInfo);
     obj.subscribe((data) => {
-      console.log('Updating user data: ');
-      console.log(userInfo);
+      console.log('Updating user data...');
       this.userSource.next(data);
     }, (error) => {
       console.log('Failed to update user info');
