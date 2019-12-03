@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../../classes/user';
 import { ProfileService } from '../../services/profile.service';
 import { Subscription } from 'rxjs';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
-// import { $ } from 'protractor';
 
 declare var $:any;
 
@@ -24,7 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     $(document).ready(function () {
       validate();
       $('#firstNameInput, #lastNameInput, #emailInput').keyup(validate);
@@ -82,6 +80,45 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.url = event.target.result;
       }
     }
+  }
+
+  cancelInfo() {
+    $('#firstNameInput').val(null);
+    $('#lastNameInput').val(null);
+    $('#emailInput').val(null);
+    $('#saveChanges').prop("disabled", true);
+    $('#cancelChanges').prop("disabled", true);
+  }
+
+  saveInfo() {
+    var userInfo = new User();
+
+    if ($('#firstNameInput').val() != "") userInfo.firstName = $('#firstNameInput').val(); 
+    if ($('#lastNameInput').val() != "") userInfo.lastName = $('#lastNameInput').val();
+    if ($('#emailInput').val() != "") userInfo.email = $('#emailInput').val();
+
+    this.profileService.putUserData(userInfo);
+
+    $('#firstNameInput').val(null);
+    $('#lastNameInput').val(null);
+    $('#emailInput').val(null);
+
+    $('#saveChanges').prop("disabled", true);
+    $('#cancelChanges').prop("disabled", true);
+  }
+
+  cancelPW() {
+    $('#passwordInput').val(null);
+    $('#passwordConfirm').val(null);
+    $('#updatePassword').prop("disabled", true);
+    $('#cancelPassword').prop("disabled", true);
+    document.getElementById('password-warning').innerHTML = "";
+  }
+
+  updatePW() {
+    var userInfo = new User();
+    userInfo.password = $('#passwordConfirm').val();
+    console.log(JSON.stringify(userInfo));
   }
 
   ngOnDestroy(): void {
