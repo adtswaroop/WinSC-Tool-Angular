@@ -30,10 +30,7 @@ export class ServiceTesterComponent implements OnInit {
   }
 
   testRegister() {
-    const obj = this.authenticationService.register('test','asdasda','fasf','xxxx');
-    obj.subscribe((data) => {
-      console.log(data);
-    })
+    console.log("Removed this");
   }
 
   logoutUser() {

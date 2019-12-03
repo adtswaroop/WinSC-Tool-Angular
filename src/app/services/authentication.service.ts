@@ -35,13 +35,18 @@ export class AuthenticationService {
         const id  = 0;
         const type = "regular"; // TODO: Get user from backend once created
         const userObj = {id,email,password,firstName,lastName,type,token}
-        return this.backend.register(userObj)
-          .pipe(map(token => {
-                userObj.token = token;
-                localStorage.setItem('currentUser', JSON.stringify(userObj));
-                this.currentUserSubject.next(userObj);
-                return userObj;
-          }));
+        const promise = new Promise((resolve, reject) => {
+          this.backend.register(userObj).subscribe((data) => {
+              userObj.token = data.token;
+              localStorage.setItem('currentUser', JSON.stringify(userObj));
+              this.currentUserSubject.next(userObj);
+              resolve();
+          },(error) => {
+            reject();
+          });
+        });
+        return promise;
+
     }
 
     logout() {
