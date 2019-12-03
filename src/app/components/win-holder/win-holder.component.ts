@@ -25,6 +25,7 @@ export class WinHolderComponent implements OnInit, OnDestroy {
   constructor(private winconditionService: WinconditionService, private categoryService: CategoryService) {
     this.wSub = this.winconditionService.winConditionData.subscribe((data: Array<WinCondition>) => {
       this.winConditions = data;
+      console.log(this.winConditions)
     });
 
     this.cSub = this.categoryService.getSelectedCategories.subscribe((data) => {

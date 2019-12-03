@@ -4,7 +4,9 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { categories } from '../category-holder/dummyCategories';
 import { DummyData } from './../../classes/dummy-data';
 import { ProjectService } from '../../services/project/project.service';
-import { BackendService } from 'src/app/services/backend.service';
+import { BenefitsService } from '../../services/benefitsService'
+import { Subscription } from 'rxjs';
+import { all } from 'q';
 
 
 @Component({
@@ -16,9 +18,7 @@ export class ProjectBenefitsComponent implements OnInit {
   
   allBenefitsData:any = {};
   @Input() Benefit = Benefit;
-  // sortStates;
-  // currentSortState;
-
+  
   dropdownList = [];
   selectedItems = [];
   selectedCategories = [];
@@ -27,17 +27,13 @@ export class ProjectBenefitsComponent implements OnInit {
   benefitsArray: Benefit[] = [];
   newBen:Benefit;
   newBenefitText: string="";
+  benefitData: Subscription;
 
-  constructor( private serviceCall : BackendService, private projectService: ProjectService) {
-    this.projectService.getActiveProjectId.subscribe((projectId) => {
-      this.currentProjectId = projectId;
-      this.getAllBenefits();
-   });
+  constructor( private serviceCall : BenefitsService, private projectService: ProjectService) {
+   this.benefitData = this.serviceCall.benefitData.subscribe(data=>{this.showBenefits(data)});
   }
 
   ngOnInit() {
-    // this.sortStates = ["Sort By", "Most Likes", "Least Likes"];
-    // this.currentSortState = "Sort By";
     this.dropdownList = categories;
     this.selectedItems = [];
     this.dropdownSettings = {
@@ -50,10 +46,9 @@ export class ProjectBenefitsComponent implements OnInit {
       allowSearchFilter: false,
       enableCheckAll: false
     };
-    
   }
 
-  onItemSelect(item: any) {
+onItemSelect(item: any) {
     this.selectedCategories.push(categories.find(category => category.id == item.id));
   }
 
@@ -64,57 +59,40 @@ onCategoryChange(event) {
     });
   }
 
-getAllBenefits(){
-  this.serviceCall.getAllBenefits(this.currentProjectId).subscribe(
-    data=>{this.allBenefitsData = data},
-    err=>{console.log(err)},
-    ()=>{this.showBenefits(this.allBenefitsData)}
-  );
-}
 
 showBenefits(benefits){
- this.benefitsArray = benefits;
+  console.log("In show benefits...")
+ //this.benefitsArray = benefits;
+ for(let i=0; i<benefits.length; i++){
+   this.benefitsArray.push(benefits[i]);
+ }
  console.log(this.benefitsArray)
 } 
 
 createNewBenefit(){
  if(!(this.newBenefitText == ""))
  {
-
     this.newBen = new Benefit(this.newBenefitText , 0, this.selectedCategories , null);
-    this.serviceCall.createBenefit(this.currentProjectId, this.newBen).subscribe(
-      data=>{console.log("Benefit created!\n" + data)},
-      err=>{console.log(err)}
-    )
+    this.serviceCall.createBenefit(this.newBen);
     this.newBenefitText = "";
  }
  else alert("You forgot to enter the benefit text!");
- this.getAllBenefits();
 }
 
 deleteBenefit(benefitid){
   let confirmDeletion = confirm("Are you sure?");
   if(confirmDeletion)
   {
-    this.serviceCall.deleteBenefit(benefitid).subscribe(
-      data=>{console.log("Deleted benefit!" + data)},
-      err=>{console.log(err)}
-    )
+    this.serviceCall.deleteBenefit(benefitid);
   }
-  this.getAllBenefits();
 }
 
 updateBenefit(benefit){
   console.log("Update Benefit...");
   console.log(benefit);
   this.newBen = new Benefit(benefit.text , benefit.value, benefit.categories, benefit.id);
-  console.log(this.newBen);
-  this.serviceCall.updateBenefit(this.newBen , benefit.id).subscribe(
-    data=>{console.log("Benefit updated!" + data)},
-    err=>{console.log(err)}
-  )
+  this.serviceCall.updateBenefit(this.newBen , benefit.id);
   alert("Successfully updated the benefit value.");
-  this.getAllBenefits();
 }
 
 sliderMoved(value:any, benefit: Benefit){

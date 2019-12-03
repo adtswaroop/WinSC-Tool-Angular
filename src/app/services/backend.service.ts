@@ -86,8 +86,7 @@ export class BackendService {
     {
         console.log("Getting benefits for project from the backend...");
 
-        this.benefitData = this.http.get(`${environment.urlBase}/project/${projectId}/benefits`);
-        return this.benefitData;
+        return this.http.get(`${environment.urlBase}/project/${projectId}/benefits`);
     }
 
     public createBenefit(projectId: number, newBenefit: Benefit)
