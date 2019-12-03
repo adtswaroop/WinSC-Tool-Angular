@@ -3,6 +3,7 @@ import { ProjectService } from './../../services/project/project.service';
 import { Subscription } from 'rxjs';
 import { Project } from './../../classes/project';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from './../../services/modal.service';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -40,7 +41,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   joinedProjectList: Project[];
   searchWord: string;
 
-  constructor(private projectService: ProjectService, private modalService: NgbModal) {
+  constructor(private projectService: ProjectService, private modalService: NgbModal, private customModal: ModalService) {
     // initialize service to retrieve project data
 
     // initialize project name and project description
@@ -58,6 +59,16 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       const modalRef = this.modalService.open(NgbdModalContent);
       modalRef.componentInstance.projectName = this.otherProjectList[i].name;
    }
+
+   openConfirmModal() {
+    this.customModal.openConfirmModal('Sample Modal, check console.log, confirm will print Yes otherwise, No', (answer: boolean) => {
+      if (answer) {
+        console.log('Yes');
+        return;
+      }
+      console.log('No');
+    });
+  }
 
   ngOnInit() {
   }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule, MatDividerModule, MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
@@ -46,6 +47,7 @@ import { SnackbarService } from './services/snackbar.service';
 import { WinConditionFilterPipe } from './pipes/win-condition-filter.pipe';
 import { WinConditionSortPipe } from './pipes/win-condition-sort.pipe';
 import { ProjectFilterPipe } from './pipes/project-filter.pipe';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -78,12 +80,16 @@ import { ProjectFilterPipe } from './pipes/project-filter.pipe';
     NgbdModalContent,
     WinConditionFilterPipe,
     WinConditionSortPipe,
-    ProjectFilterPipe
+    ProjectFilterPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatMenuModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatButtonModule,
     MatIconModule,
     NgbModule,
     FormsModule,
@@ -101,7 +107,7 @@ import { ProjectFilterPipe } from './pipes/project-filter.pipe';
     SnackbarService],
   bootstrap: [AppComponent],
   entryComponents: [
-    NgbdModalContent
+    NgbdModalContent, ModalComponent
   ]
 })
 export class AppModule { }
