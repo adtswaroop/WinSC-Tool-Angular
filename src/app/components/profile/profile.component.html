@@ -43,6 +43,9 @@
         <button type="reset" id="cancelChanges" class="btn btn-secondary mr-2" (click)="cancelInfo()">Cancel</button>
         <button type="submit" id="saveChanges" class="btn btn-primary" (click)="saveInfo()">Save Changes</button>
     </div>
+    <div class="row justify-content-center">
+        <span id="info-confirmation"></span>
+    </div>
 </div>
 
 <div class="container bg-light justify-content-center mt-5 py-4">
@@ -61,9 +64,12 @@
         </div>
     </div>
 
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center mt-4 mb-3">
         <button type="reset" id="cancelPassword" class="btn btn-secondary mr-2" (click)="cancelPW()">Cancel</button>
         <button type="submit" id="updatePassword" class="btn btn-primary" (click)="updatePW()">Update Password</button>
+    </div>
+    <div class="row justify-content-center">
+        <span id="pw-confirmation"></span>
     </div>
 </div>
 

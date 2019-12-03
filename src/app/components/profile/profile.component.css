@@ -41,6 +41,14 @@
     color: red;
 }
 
+#info-confirmation {
+    color: gold;
+}
+
+#pw-confirmation {
+    color: gold;
+}
+
 ::placeholder {
     opacity: 0.3;
 }

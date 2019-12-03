@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   
     function validate() {
       if ($('#firstNameInput').val().length > 0 || $('#lastNameInput').val().length > 0 || $('#emailInput').val().length > 0) {
+        document.getElementById("info-confirmation").innerHTML = "";
         $('#saveChanges').prop("disabled", false);
         $('#cancelChanges').prop("disabled", false);
       } else {
@@ -54,6 +55,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     function validatePW() {
       if ($('#passwordInput').val().length > 0 || $('#passwordConfirm').val().length > 0) {
+        document.getElementById("pw-confirmation").innerHTML = "";
+
         if ($('#passwordInput').val() == $('#passwordConfirm').val()) {
           document.getElementById("password-warning").innerHTML = "";
           $('#updatePassword').prop("disabled", false);
@@ -98,6 +101,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if ($('#emailInput').val() != "") userInfo.email = $('#emailInput').val();
 
     this.profileService.putUserData(userInfo);
+    document.getElementById('info-confirmation').innerHTML = "Profile update complete!"
 
     $('#firstNameInput').val(null);
     $('#lastNameInput').val(null);
@@ -118,7 +122,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   updatePW() {
     var userInfo = new User();
     userInfo.password = $('#passwordConfirm').val();
-    console.log(JSON.stringify(userInfo));
+
+    this.profileService.putUserData(userInfo);
+    document.getElementById('pw-confirmation').innerHTML = "Password update complete!";
+
+    $('#passwordInput').val(null);
+    $('#passwordConfirm').val(null);
+    $('#updatePassword').prop("disabled", true);
+    $('#cancelPassword').prop("disbaled", true);
   }
 
   ngOnDestroy(): void {
