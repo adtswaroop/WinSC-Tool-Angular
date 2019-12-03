@@ -13,9 +13,7 @@ export class CategoryHolderComponent implements OnInit {
 
   categoryForm: FormGroup;
   categories: Category[];
-  categoriesSelected = [];
-
-  @Output() applyCategoryToWin = new EventEmitter<Array<Category>>();
+  categoriesSelected = new Set<Category>();
 
   constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private router:Router) {
     this.categoryService.getCategories.subscribe((data) => {
@@ -31,11 +29,7 @@ export class CategoryHolderComponent implements OnInit {
   }
 
   applyCategory() {
-    const selectedOrderIds = this.categoryForm.value.categories
-      .map((v, i) => v ? this.categories[i] : null)
-      .filter(v => v !== null);
-    this.applyCategoryToWin.emit(selectedOrderIds);
-    console.log(this.categoryForm.value.categories.map((v, i) => v ? this.categories[i] : null));
+    this.categoryService.setSelectedCategories(Array.from(this.categoriesSelected));
   }
 
   ngOnInit() {
@@ -47,15 +41,13 @@ export class CategoryHolderComponent implements OnInit {
 
   handleKey(event, box) {
       if (event.key === 'Enter') {
-        var isMMF = false;
+        var type = 'regular';
         if ((<HTMLInputElement> document.getElementById('mmf-input')).checked) {
-          isMMF = true;
+          type = 'mmf';
         }
-        const color = (<HTMLInputElement> document.getElementById('category-color')).value;
-        const id = this.categoryService.generateNewId();
-        const cat = new Category(id,box.value,1,color,isMMF);
-        //this.categories.push({id: box.id, name: box.value, isMMF: isMMF, color: (<HTMLInputElement> document.getElementById('category-color')).value});
-        this.categoryService.addCategory(cat);
+        const color = (<HTMLInputElement> document.getElementById('category-color')).value.substring(1);
+        const cat = new Category(0,box.value,1,color,type);
+        this.categoryService.createCategory(cat);
         box.value = '';
 
         this.categoryForm = this.formBuilder.group({
@@ -64,6 +56,19 @@ export class CategoryHolderComponent implements OnInit {
 
         this.addCheckboxes();
       }
+  }
+
+  handleCheck(event, category) {
+    const checked = event.target.checked;
+    if (checked) {
+      this.categoriesSelected.add(category);
+    } else {
+      this.categoriesSelected.delete(category);
+    }
+  }
+
+  addHashToCategory(categoryStr: string) {
+    return "#"+categoryStr;
   }
 
   deleteCategory() {

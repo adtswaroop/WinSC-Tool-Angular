@@ -4,6 +4,8 @@ import {BackendService} from './backend.service';
 import { BehaviorSubject, ObjectUnsubscribedError } from 'rxjs';
 import { WinCondition } from '../classes/win-condition';
 import { Comment } from '../classes/comment';
+import { User } from '../classes/user';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class WinconditionService {
   private winConditionSource = new BehaviorSubject<Array<WinCondition>>([]);
   public winConditionData = this.winConditionSource.asObservable();
   private activeProjectId;
-  constructor(private backendService: BackendService, private projectService: ProjectService) {
+  constructor(private backendService: BackendService, private projectService: ProjectService, private authenticationService: AuthenticationService) {
     this.projectService.getActiveProjectId.subscribe((projectId) => {
         this.updateWinConditions(projectId);
         this.activeProjectId = projectId;
@@ -32,10 +34,11 @@ export class WinconditionService {
           return new WinCondition(elem);
       });
       */
-     console.log('Received win conditions : ');
-     console.log(data);
+
      this.winConditionSource.next(data);
     });
+
+
     return obj;
   }
 
@@ -73,10 +76,31 @@ export class WinconditionService {
     });
   }
 
-  createWinConditionComment(winconditionID: number, comment: Comment) {
-    const obs = this.backendService.createWinConditionComment(winconditionID, comment);
+  createWinConditionComment(wincondition: WinCondition, comment: Comment) {
+    const obs = this.backendService.createWinConditionComment(wincondition.id, comment);
     obs.subscribe((data) => {
-      this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
+      console.log(data);
+      data.upvoters = [];
+      data.downvoters = [];
+      data.user = new User();
+      data.user.firstName = this.authenticationService.currentUserValue.firstName;
+      data.user.lastName = this.authenticationService.currentUserValue.lastName;
+      wincondition.comments.push(data);
+      //this.updateWinConditions(this.activeProjectId); // TODO: we can optimize these by getting the win conditions as result
     });
+  }
+
+  updatePrioritizationValuesWinConditions(winconditions: Array<WinCondition>) {
+      const requestBody = {'winConditions': winconditions};
+
+
+
+      const obs = this.backendService.updatePrioritizationValuesWinConditions(requestBody);
+      obs.subscribe((data) => {
+          this.updateWinConditions(this.activeProjectId);
+      }, (error) => {
+        console.log(error);
+      });
+
   }
 }

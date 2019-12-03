@@ -1,67 +1,74 @@
 .mainDiv {
-  margin-top: 30px;
-  background-color: white;
-  border: black;
-  /* height: 1000px; */
-  /* width: 800px; */
-  /* margin: auto; */
-  /* padding: auto; */
-  /* padding-left: 50%; */
-  /* margin-left: 500px; */
-  /* margin-right: auto; */
-  /* margin: auto; */
+    margin-top: 30px;
+    background-color: white;
+    border: black;
+    /* height: 1000px; */
+    /* width: 800px; */
+    /* margin: auto; */
+    /* padding: auto; */
+    /* padding-left: 50%; */
+    /* margin-left: 500px; */
+    /* margin-right: auto; */
+    /* margin: auto; */
 }
+
 .myProject {
-  top: 5%;
-  height: 15%;
-  width: 100%;
-  background-color: #EEEEEE;
-  border: black;
-  margin: auto;
-  position: relative;
+    top: 5%;
+    height: 15%;
+    width: 100%;
+    background-color: #EEEEEE;
+    border: black;
+    margin: auto;
+    position: relative;
 }
+
 .joinProject {
-  top: 10%;
-  height: 50%;
-  width: 100%;
-  background-color: #EEEEEE;
-  border: black;
-  margin: auto;
-  position: relative;
+    top: 10%;
+    height: 50%;
+    width: 100%;
+    background-color: #EEEEEE;
+    border: black;
+    margin: auto;
+    position: relative;
 }
+
 .button {
     display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    transition: all .25s ease-out;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    padding: .3em .4em;
-    margin: 0 1rem 1rem 0;
     font-size: .9rem;
-    background: #990000;
-    color: #fff;
-    text-decoration: none;
     float: right;
+    margin-bottom: 1rem;
 }
-.listItem {
-  height: 3em;
-  width: 70%;
 
+.projectLink {
+    margin-top: 15px;
+    color: #990000;
+}
+
+.lock {
+    display: inline-block;
+    font-size: 1.5rem;
+    float: right;
 }
 
 .container {
-  padding-left: 10%;
+    padding-left: 10%;
 }
 
 #listHeading {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
+
 #innerText {
-  top: 1.25em;
-  left: 5%;
-  position: relative;
+    margin: 2rem 3rem;
 }
+
 #joinList li {
-  margin: 15px 0;
+    margin: 15px 0;
+}
+
+#searchProject {
+    float: right;
+    width: fit-content;
+    font-size: 14px;
+    width: 11rem;
 }

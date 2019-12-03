@@ -5,11 +5,12 @@ import { Project } from '../../classes/project';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { Router } from '@angular/router';
+import { SnackbarService } from './../../services/snackbar.service';
 
 
 const GETPROJECT_URL = environment.urlBase + '/projects';
 const DELETEPROJECT_URL = environment.urlBase + '/deleteProject';
-const PUTPROJECT_URL = environment.urlBase + '/putProject';
+const PUTPROJECT_URL = environment.urlBase + '/project';
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,17 @@ const PUTPROJECT_URL = environment.urlBase + '/putProject';
 export class ProjectService {
 
   initialProject = new Project("Waiting..",0,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
-  private joinedProjectListData = new BehaviorSubject<Project[]>([]);
+  public joinedProjectListData = new BehaviorSubject<Project[]>([]);
   joinedProjectList = this.joinedProjectListData.asObservable();
   private otherProjectListData = new BehaviorSubject<Project[]>([]);
   otherProjectList = this.otherProjectListData.asObservable();
-  private activeProjectData = new BehaviorSubject<number>(-1);
+  public activeProjectData = new BehaviorSubject<number>(-1);
   getActiveProjectId = this.activeProjectData.asObservable();
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
-  constructor(private http: HttpClient, private backendService: BackendService, private router: Router) {
+  constructor(private http: HttpClient, private backendService: BackendService, private router: Router,
+              private snackBarService: SnackbarService) {
     this.projectsFetched = false;
   }
 
@@ -84,9 +86,10 @@ export class ProjectService {
       createdAt: project.createdAt,
       updatedAt: project.updatedAt
     }).subscribe(data => {
-      console.log('PUT request done', data);
+      this.getAllProjects();
     }, error => {
       console.log('error in PUT method');
+      console.log(error);
     }
     );
   }

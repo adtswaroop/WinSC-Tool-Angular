@@ -15,6 +15,7 @@ export class WinCondition {
     public downvoters: Array<User>;
     public categories: Array<Category>;
     public comments: Array<Comment>;
+    public categoryIds: Array<number>;
 
   /*
   constructor(json) {

@@ -3,6 +3,7 @@ import { ProjectService } from './../../services/project/project.service';
 import { Subscription } from 'rxjs';
 import { Project } from './../../classes/project';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from './../../services/modal.service';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -38,10 +39,9 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   otherProjectList: Project[];
   joinedProjectList: Project[];
-   proj1 = '';
-  // proj2 = '';
+  searchWord: string;
 
-  constructor(private projectService: ProjectService, private modalService: NgbModal) {
+  constructor(private projectService: ProjectService, private modalService: NgbModal, private customModal: ModalService) {
     // initialize service to retrieve project data
 
     // initialize project name and project description
@@ -52,25 +52,32 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       this.otherProjectList = data;
     }));
     // dynamically added div based on projects retrieved.
-
-    this.proj1 = 'Project Pineapple';
     // this.proj2 = 'ProjectY';
    }
 
-   openModal() {
+   openModal(i) {
       const modalRef = this.modalService.open(NgbdModalContent);
-      modalRef.componentInstance.projectName = this.proj1;
+      modalRef.componentInstance.projectName = this.otherProjectList[i].name;
    }
 
-  ngOnInit() {
-
+   openConfirmModal() {
+    this.customModal.openConfirmModal('Sample Modal, check console.log, confirm will print Yes otherwise, No', (answer: boolean) => {
+      if (answer) {
+        console.log('Yes');
+        return;
+      }
+      console.log('No');
+    });
   }
 
-  joinProject(projectId) {
+  ngOnInit() {
+  }
+
+  joinProject(projectId, i) {
     const joinobs = this.projectService.joinProject(projectId);
     joinobs.subscribe((data) => {
       this.projectService.getAllProjects();
-      this.openModal();
+      this.openModal(i);
     });
   }
 

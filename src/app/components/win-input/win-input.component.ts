@@ -19,11 +19,7 @@ export class WinInputComponent implements OnInit {
 
   addWinForm : FormGroup
   private categories: Array<Category>;
-  @Input() currentCategory: string;
   @ViewChild('multiSelectx', {static:false}) multiSelect;
-
-  @Output() currentCategoryChange = new EventEmitter<string>();
-  @Output() addWinCondition = new EventEmitter<WinCondition>();
 
   dropdownList = [];
   selectedItems = [];
@@ -37,12 +33,6 @@ export class WinInputComponent implements OnInit {
       this.addWinForm = this.fb.group({
       winpost: ['',[Validators.required,Validators.minLength(4)]]
     })
-   }
-
-   changeCategory(pCategory) {
-     this.currentCategory = pCategory;
-     this.currentCategoryChange.emit(pCategory);
-     this.dropdownList = this.categories;
    }
 
   ngOnInit() {
@@ -76,6 +66,8 @@ export class WinInputComponent implements OnInit {
     const wcText = this.addWinForm.controls['winpost'].value;
     const user = this.authService.currentUserValue;
     const wc = new WinCondition(0,0,user,wcText,0,0,0,0,[],[],[],[]);
+    const categorIds = this.selectedCategories.map((element) => element.id);
+    wc.categoryIds = categorIds;
     this.winConditionService.createWincondition(wc);
   }
 }
