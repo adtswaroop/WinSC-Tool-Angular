@@ -24,11 +24,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     $(document).ready(function () {
-      // validate();
+      $('#saveChanges').prop("disabled", true);
+      $('#cancelChanges').prop("disabled", true);
+      $('#updatePassword').prop("disabled", true);
+      $('#cancelPassword').prop("disabled", true);
+
       $('#firstNameInput, #lastNameInput, #emailInput').keyup(validate);
-      // validatePW();
       $('#passwordInput, #passwordConfirm').keyup(validatePW);
-      // validateEmail();
       $('#emailInput').keyup(validateEmail);
     });
 
@@ -91,6 +93,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     $('#emailInput').val(null);
     $('#saveChanges').prop("disabled", true);
     $('#cancelChanges').prop("disabled", true);
+    document.getElementById('info-confirmation').innerHTML = "";
   }
 
   saveInfo() {
@@ -100,15 +103,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if ($('#lastNameInput').val() != "") userInfo.lastName = $('#lastNameInput').val();
     if ($('#emailInput').val() != "") userInfo.email = $('#emailInput').val();
 
-    this.profileService.putUserData(userInfo);
-    document.getElementById('info-confirmation').innerHTML = "Profile update complete!"
+    const promise = this.profileService.putUserData(userInfo);
+    promise.then(() => {
+      document.getElementById('info-confirmation').innerHTML = "Profile update complete!";
+      $('#firstNameInput').val(null);
+      $('#lastNameInput').val(null);
+      $('#emailInput').val(null);
 
-    $('#firstNameInput').val(null);
-    $('#lastNameInput').val(null);
-    $('#emailInput').val(null);
+      $('#saveChanges').prop("disabled", true);
+      $('#cancelChanges').prop("disabled", true);
 
-    $('#saveChanges').prop("disabled", true);
-    $('#cancelChanges').prop("disabled", true);
+    }, () => {
+      document.getElementById('info-confirmation').innerHTML = "Email address is already registered! Please try again.";
+    });
   }
 
   cancelPW() {

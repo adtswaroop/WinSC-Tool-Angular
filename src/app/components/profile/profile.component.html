@@ -20,7 +20,7 @@
             <div class="form-group row">
                 <label for="nameInput" class="col-sm-3 col-form-label text-right p-0 pt-2">First Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="firstNameInput" placeholder={{currUser?.firstName}}>
+                    <input type="" class="form-control" id="firstNameInput" placeholder={{currUser?.firstName}}>
                 </div>
             </div>
             <div class="form-group row">
@@ -29,10 +29,14 @@
                     <input type="text" class="form-control" id="lastNameInput" placeholder={{currUser?.lastName}}>
                 </div>
             </div>
+
+            <div class="text-center ml-4 pb-1">
+                <span id="email-warning"></span>
+            </div>
+
             <div class="form-group row">
                 <label for="orgInput" class="col-sm-3 col-form-label text-right p-0 pt-2">Email</label>
                 <div class="col-sm-9">
-                    <span id="email-warning"></span>
                     <input type="email" class="form-control" id="emailInput" placeholder={{currUser?.email}}>
                 </div>
             </div>
@@ -56,11 +60,14 @@
         </div>
     </div>
 
+    <div class="text-center mr-5 pr-5 pb-1">
+        <span id="password-warning"></span>
+    </div>
+
     <div class="form-group row">
         <label for="passwordConfirm" class="col-sm-4 col-form-label text-right p-0 pt-2 ml-4"></label>
         <div class="col-sm-6">
-            <span id="password-warning"></span>
-            <input type="password" class="form-control pr-2" id="passwordConfirm" placeholder="Re-enter new password">
+            <input type="password" class="form-control" id="passwordConfirm" placeholder="Re-enter new password">
         </div>
     </div>
 
