@@ -31,4 +31,8 @@ export class ProjectSettingsComponent implements OnInit {
      }
   }
 
+  updateProject() {
+     this.projectService.updateProject(this.activeProject);
+  }
+
 }
