@@ -12,10 +12,14 @@ export class ProjectSettingsComponent implements OnInit {
 
   members = members;
   activeProject: Project;
+  tempName: string;
+  tempVision: string;
 
   constructor(private projectService: ProjectService) {
     this.projectService.getActiveProjectObject.subscribe((data) => {
       this.activeProject = data;
+      this.tempName = this.activeProject.name;
+      this.tempVision = this.activeProject.vision;
     });
   }
 
@@ -32,6 +36,8 @@ export class ProjectSettingsComponent implements OnInit {
   }
 
   updateProject() {
+     this.activeProject.name = this.tempName;
+     this.activeProject.vision = this.tempVision;
      this.projectService.updateProject(this.activeProject);
   }
 
