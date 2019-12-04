@@ -55,16 +55,11 @@ export class RegisterComponent implements OnInit {
 
       this.loading = true;
       const formCtl = this.registerForm.value;
-      this.authenticationService.register(formCtl.email,formCtl.password,formCtl.firstName,formCtl.lastName)
-          .pipe(first())
-          .subscribe(
-              data => {
-                  this.router.navigate(['/']);
-              },
-              error => {
-                  this.loading = false;
-                  console.log(error);
-              });
-
+      const promise = this.authenticationService.register(formCtl.email,formCtl.password,formCtl.firstName,formCtl.lastName);
+      promise.then(()=>{
+        this.router.navigate(['/']);
+      }, () => {
+        this.loading = false;
+      });
   }
 }
