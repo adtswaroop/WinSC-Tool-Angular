@@ -1,7 +1,7 @@
 import { ProjectService } from './project/project.service';
 import { Injectable } from '@angular/core';
-import {BackendService} from './backend.service';
-import { BehaviorSubject, ObjectUnsubscribedError } from 'rxjs';
+import { BackendService } from './backend.service';
+import { BehaviorSubject } from 'rxjs';
 import { WinCondition } from '../classes/win-condition';
 import { Comment } from '../classes/comment';
 import { User } from '../classes/user';
