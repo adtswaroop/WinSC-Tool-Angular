@@ -1,6 +1,7 @@
 import { Comment } from './../../classes/comment';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalService } from './../../services/modal.service';
+import { Voters } from 'src/app/classes/voters';
 // TODO: Handle long comments, limit text length
 @Component({
   selector: 'app-comment',
@@ -26,6 +27,14 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  generateVoters(comment: Comment) {
+      const voters = new Voters();
+      voters.commmentId = comment.id;
+      voters.upvoters = comment.upvoters;
+      voters.downvoters = comment.downvoters;
+      return voters;
   }
 
 }
