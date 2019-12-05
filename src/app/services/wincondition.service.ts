@@ -82,6 +82,7 @@ export class WinconditionService {
       console.log(data);
       data.upvoters = [];
       data.downvoters = [];
+      data.isIssue = comment.isIssue;
       data.user = new User();
       data.user.firstName = this.authenticationService.currentUserValue.firstName;
       data.user.lastName = this.authenticationService.currentUserValue.lastName;

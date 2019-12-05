@@ -1,7 +1,10 @@
 <div class="category-holder">
-    <p class="category-header">
-        Categories
-    </p>
+    <div id="category-header-wrapper">
+        <p class="category-header">
+            Categories
+        </p>
+        <button id="apply-category" type="submit" class="btn btn-primary">Filter</button>
+    </div>
     <form id="category-form" [formGroup]="categoryForm" (ngSubmit)="applyCategory()">
         <label formArrayName="categories" *ngFor="let category of categories">
           <input type="checkbox" (change)="handleCheck($event, category)">
@@ -16,6 +19,5 @@
             </div>
             <label><input type="checkbox" id="mmf-input">Minimum Marketable</label>
         </div>
-        <button id="apply-category" type="submit" class="btn btn-primary">Filter</button>
     </form>
 </div>

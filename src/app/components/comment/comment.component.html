@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div id="commentTxt">
-                <p> {{ comment.text }} </p>
+                <p> <span *ngIf="comment.isIssue"><i class="fas fa-exclamation-triangle" style="color: gold; font-size: 22px;"></i></span> {{ comment.text }} </p>
             </div>
         </div>
     </div>

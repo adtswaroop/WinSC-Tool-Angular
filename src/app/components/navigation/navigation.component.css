@@ -1,10 +1,10 @@
 .dropdown-toggle:focus {
-  outline: none;
+    outline: none;
 }
 
 .dropdown-item:active {
-  background-color: #990000;
-  vertical-align: middle;
+    background-color: #990000;
+    vertical-align: middle;
 }
 
 .project-logo {
@@ -56,4 +56,8 @@
 #logo {
     width: 45px;
     margin-right: 20px;
+}
+
+#logo:focus {
+    outline: none;
 }
