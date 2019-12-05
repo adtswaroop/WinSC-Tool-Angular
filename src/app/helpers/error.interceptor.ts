@@ -17,9 +17,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.authenticationService.logout();
                 location.reload(true);
             }
-
-            const error = err.error.message || err.statusText;
-            this.snackBarService.showSnackBar('Error in Network Call, error code: ' + error);
+            const error = err.error.Error || err.statusText;
+            this.snackBarService.showSnackBar('Request Failed:  ' + error);
             return throwError(error);
         }));
     }
