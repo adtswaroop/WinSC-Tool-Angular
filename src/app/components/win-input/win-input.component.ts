@@ -69,7 +69,7 @@ export class WinInputComponent implements OnInit {
     const categorIds = this.selectedCategories.map((element) => element.id);
     wc.categoryIds = categorIds;
     this.winConditionService.createWincondition(wc);
-    this.addWinForm.reset();
     this.selectedItems = null;
+    this.addWinForm.controls['winpost'].setValue("");
   }
 }

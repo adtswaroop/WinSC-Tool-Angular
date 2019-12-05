@@ -16,6 +16,7 @@ export class WinCondition {
     public categories: Array<Category>;
     public comments: Array<Comment>;
     public categoryIds: Array<number>;
+    public createdAt: string;
 
   /*
   constructor(json) {
