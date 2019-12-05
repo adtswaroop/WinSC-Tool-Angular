@@ -33,8 +33,8 @@ export class WinHolderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sortStates = ["Most Likes", "Least Likes"];
-    this.currentSortState = "Most Likes";
+    this.sortStates = ["Newest", "Oldest","Most Likes", "Least Likes"];
+    this.currentSortState = "Newest";
   }
 
   handleSortState(state) {
