@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BackendService } from './backend.service';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../classes/user'
 import { BehaviorSubject } from 'rxjs';
@@ -14,27 +15,32 @@ export class ProfileService {
   private userSource = new BehaviorSubject<User>(null);
   public userData = this.userSource.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private backendService: BackendService, private http: HttpClient) {
     this.getUserData();
   }
 
   getUserData() {
-    const obj = this.http.get<User>(USER_URL);
-    obj.subscribe((data) => {
+    const obs = this.backendService.getUser();
+    obs.subscribe((data) => {
       console.log('Received user data: ');
       console.log(data);
       this.userSource.next(data);
     });
-    return obj;
+    return obs;
   }
 
   putUserData(userInfo) {
-    const obj = this.http.put<any>(USER_URL, userInfo);
-    obj.subscribe((data) => {
-      console.log('Updating user data...');
-      this.userSource.next(data);
-    }, (error) => {
-      console.log('Failed to update user info');
+    const promise = new Promise((resolve, reject) => {
+      const obs = this.backendService.putUser(userInfo);
+      obs.subscribe((data) => {
+        console.log('Updating user data...');
+        this.userSource.next(data);
+        resolve();
+      }, () => {
+        console.log('Failed to update user info (DB rejected the update)');
+        reject();
+      });
     });
+    return promise;
   }
 }

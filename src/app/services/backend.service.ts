@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { WinCondition } from '../classes/win-condition';
 import { Comment } from '../classes/comment';
 import { Project } from '../classes/project';
 import { Category } from '../classes/category';
+import { User } from '../classes/user';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BackendService {
 
   constructor(private http: HttpClient) { }
@@ -71,10 +72,16 @@ export class BackendService {
     return this.http.post<any>(`${environment.urlBase}/project/${projectId}/category`, category);
   }
 
-
-
   updatePrioritizationValuesWinConditions(winconditions: any) {
     // Fix, put the correct URL for this function request
     return this.http.post<any>(`${environment.urlBase}/wincondition/updateWinConditions`, winconditions);
+  }
+
+  getUser() {
+    return this.http.get<User>(`${environment.urlBase}/user`);
+  }
+
+  putUser(userInfo : User) {
+    return this.http.put<any>(`${environment.urlBase}/user`, userInfo);
   }
 }
