@@ -58,6 +58,10 @@
     right: 10px;
 }
 
+#trash {
+    color: #990000 !important;
+}
+
 .fas {
     font-size: 12px;
     color: #007bff;

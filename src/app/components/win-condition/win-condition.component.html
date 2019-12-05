@@ -5,24 +5,23 @@
     <div class="commentText">
         <div id="header">
             <p><b>{{ winCondition.user.firstName + " " + winCondition.user.lastName}}:</b></p>
+            <div id="icons">
+                <i class="fas fa-check" title="Mark as Issue Resolved"></i>
+                <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+                <i (click)="deleteWin()" id="trash" class="fas fa-trash-alt" title="Delete Comment"></i>
+            </div>
         </div>
+
         <div class="categoryHolder">
             <div *ngFor="let category of winCondition.categories" id="category-labels">
                 <span style="color: white; padding: 3px; font-size: 13px;" [ngStyle]="{'background-color': addHashToCategory(category.color)}">{{ category.name }}</span>
             </div>
         </div>
-        <div id="icons">
-            <i class="fas fa-pencil-alt" title="Edit Comment"></i>
-            <i (click)="deleteWin()" class="fas fa-trash-alt" title="Delete Comment"></i>
-            <i class="fas fa-check" title="Mark as Issue Resolved"></i>
-        </div>
         <div id="winConText">
             <p> {{ winCondition.text }} </p>
         </div>
-        <a style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
-        <a style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a>
-        <!-- <a href="#" *ngIf="!showComments" (click)="toggleComments()"> Show Comments</a>
-        <a href="#" *ngIf="showComments" (click)="toggleComments()"> Hide Comments</a> -->
+        <a id="comment-button" *ngIf="!showComments" (click)="toggleComments()"> <i class="far fa-comment-alt"></i> {{ winCondition.comments.length }} Comments</a>
+        <a id="comment-button" *ngIf="showComments" (click)="toggleComments()"> <i class="far fa-comment-alt"></i> {{ winCondition.comments.length }} Comments</a>
 
     </div>
 
@@ -32,9 +31,13 @@
     <div *ngFor="let com of winCondition.comments">
         <app-comment [comment]=com></app-comment>
     </div>
-    <span>
-    <input #box (keyup)="handleCommentAdd($event,box)" class="text" type="text" placeholder="Enter a new comment">
-    <input id="chkIssue" type="checkbox" value="">
-      <label id="lblIssue">Tag comment as an Issue</label>
-</span>
+    <div>
+        <div style="display: inline-block; float: left; margin-top: 10px; margin-left: 2rem;">
+            <label id="lblIssue"><i class="fas fa-exclamation-triangle" style="color: gold; font-size: 22px;"></i></label>
+            <input id="chkIssue" type="checkbox" value="">
+        </div>
+        <div id="new-comment-wrapper">
+            <input #box (keyup)="handleCommentAdd($event,box)" class="text" type="text" placeholder="Enter a new comment">
+        </div>
+    </div>
 </div>

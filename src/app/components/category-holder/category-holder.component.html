@@ -6,7 +6,7 @@
         <label formArrayName="categories" *ngFor="let category of categories">
           <input type="checkbox" (change)="handleCheck($event, category)">
           <span id="category-name" [ngStyle]="{'background-color': addHashToCategory(category.color) }">{{category.name}} <span [hidden]="category.type!='mmf'"> (MMF)</span></span>
-          <i class="fas fa-times" id="delete-category" (click)="deleteCategory()"></i>
+          <i class="fas fa-trash-alt trash" id="delete-category" (click)="deleteCategory()"></i>
         </label>
 
         <div class="category-input">

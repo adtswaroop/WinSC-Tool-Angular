@@ -75,3 +75,8 @@
     padding: 3px;
     font-size: 15px;
 }
+
+.trash {
+    color: #990000 !important;
+    font-size: 13px;
+}

@@ -1,4 +1,17 @@
 .commentText {
+    vertical-align: middle;
+    background-color: #f2f3f5;
+    border-radius: 18px;
+    line-height: 16px;
+    max-width: 100%;
+    word-wrap: break-word;
+    position: relative;
+    white-space: normal;
+    word-break: break-word;
+    padding: 15px;
+}
+
+.commentWrapper {
     display: table-cell;
     vertical-align: middle;
     width: 35rem;
@@ -10,7 +23,7 @@
 }
 
 #header>p {
-    display: block;
+    display: contents;
     width: 100%;
     float: left;
 }
@@ -43,4 +56,8 @@
     padding: 5px;
     margin-top: 30px;
     /* display: table-cell; */
+}
+
+#trash {
+    color: #990000 !important;
 }
