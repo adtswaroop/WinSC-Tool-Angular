@@ -26,7 +26,7 @@ export class CategoryHolderComponent implements OnInit, OnDestroy {
         this.categories = data;
     });
 
-    this.pSub = this.projectService.activeProjectData.subscribe((data) => {
+    this.pSub = this.projectService.getActiveProjectId.subscribe((data) => {
       this.categoriesSelected.clear();
       this.applyCategory();
     });
