@@ -27,11 +27,12 @@ export class ProjectSettingsComponent implements OnInit {
   }
 
   deleteProject(projectId) {
-     if (confirm("Confirm to delete the project")) {
-       console.log("project deleted");
+     if (confirm("Are you SURE you want to DELETE this project?")) {
+       console.log("Deleting project...");
+       console.log(this.activeProject.id);
        this.projectService.deleteProject(this.activeProject.id);
      } else {
-       console.log("we good");
+       console.log("Abort delete project.");
      }
   }
 
