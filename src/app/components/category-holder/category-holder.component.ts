@@ -5,6 +5,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-category-holder',
@@ -21,7 +22,8 @@ export class CategoryHolderComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
               private categoryService: CategoryService,
-              private projectService: ProjectService) {
+              private projectService: ProjectService,
+              private customModal: ModalService) {
     this.cSub = this.categoryService.getCategories.subscribe((data) => {
         this.categories = data;
     });
@@ -82,7 +84,14 @@ export class CategoryHolderComponent implements OnInit, OnDestroy {
     return "#"+categoryStr;
   }
 
-  deleteCategory() {
+  deleteCategory(category: Category) {
+    console.log("DLT");
+    const dialogText = 'Delete category ' + category.name + ' ?';
+    this.customModal.openConfirmModal(dialogText, (answer: boolean) => {
+      if (answer) {
+        this.categoryService.deleteCategory(category.id);
+      }
+    });
   }
 
   ngOnDestroy(): void {
