@@ -1,15 +1,16 @@
 import { WinconditionService } from './../../services/wincondition.service';
 import { User } from './../../classes/user';
-import { AuthenticationService } from './../../services/authentication.service';
 import { Voters } from './../../classes/voters';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { ProfileService } from 'src/app/services/profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vote',
   templateUrl: './vote.component.html', // TODO: expand width of the tooltip
   styleUrls: ['./vote.component.css']
 })
-export class VoteComponent implements OnInit {
+export class VoteComponent implements OnInit, OnDestroy {
   @Input()  voters: Voters;
 
   private  upVoters: Array<User>;
@@ -19,9 +20,16 @@ export class VoteComponent implements OnInit {
   private commentId: number;
   private likeType: number;
   private initialLikeType: number;
+  private pSub: Subscription;
 
-  constructor(private authenticationService:AuthenticationService, private winconditionService:WinconditionService) {
-      this.userId = authenticationService.currentUserValue.id;
+  constructor(private profileService: ProfileService, private winconditionService:WinconditionService) {
+      this.pSub = this.profileService.userData.subscribe((user) => {
+        if (user) {
+          this.userId = user.id;
+          this.parseLikeType();
+        }
+      });
+
   }
 
   ngOnInit() {
@@ -45,6 +53,9 @@ export class VoteComponent implements OnInit {
 parseLikeType() {
     this.likeType=0;
     this.initialLikeType = 0;
+    if (!this.upVoters || !this.downVoters ) {
+      return;
+    }
     this.upVoters.forEach((user) => {
         if (user.id==this.userId){
           this.likeType=1;
@@ -97,6 +108,10 @@ parseLikeType() {
 
   getScore() {
     return this.upVoters.length - this.downVoters.length -this.initialLikeType + this.likeType;
+  }
+
+  ngOnDestroy(): void {
+    this.pSub.unsubscribe();
   }
 
 }
