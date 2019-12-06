@@ -44,14 +44,6 @@ export class ProjectSettingsComponent implements OnInit {
   cancelUpdateProject() {
     this.tempName = this.activeProject.name;
     this.tempVision = this.activeProject.vision;
-    var activeName = this.activeProject.name;
-    this.activeProject.name = "";
-    var activeVision = this.activeProject.vision;
-    this.activeProject.vision = "";
-    setTimeout(()=>{
-      this.activeProject.name = activeName;
-      this.activeProject.vision = activeVision;
- }, 50);
   }
 
 }
