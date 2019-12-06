@@ -1,20 +1,21 @@
 <div class="commentMain">
     <div class="commentText">
         <div id="priority-value">{{winCondition.prioritizationScore}}</div>
-        <div id="imgDiv"><img src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" style="width: 35px; padding-top: 20px;"></div>
-        <div class="commentText">
-            <div id="header">
-                <p><b>{{ winCondition.user.firstName + " " + winCondition.user.lastName }}:</b></p>
-            </div>
-            <div class="categoryHolder">
-                <div *ngFor="let category of winCondition.categories" id="category-labels">
-                    <span id="category-tag" [ngStyle]="{'background-color': category.color}">{{ category.name }}</span>
+        <div id="comment-wrapper">
+            <div id="imgDiv"><img src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" style="width: 35px; padding-top: 20px;"></div>
+            <div class="commentText">
+                <div id="header">
+                    <p><b>{{ winCondition.user.firstName + " " + winCondition.user.lastName }}:</b></p>
+                </div>
+                <div class="categoryHolder">
+                    <div *ngFor="let category of winCondition.categories" id="category-labels">
+                        <span id="category-tag" [ngStyle]="{'background-color': addHashToCategory(category.color)}">{{ category.name }}</span>
+                    </div>
+                </div>
+                <div id="winConText">
+                    <p> {{ winCondition.text }} </p>
                 </div>
             </div>
-            <div id="winConText">
-                <p> {{ winCondition.text }} </p>
-            </div>
         </div>
-
     </div>
 </div>

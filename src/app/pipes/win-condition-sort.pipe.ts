@@ -7,9 +7,9 @@ import { WinCondition } from '../classes/win-condition';
 export class WinConditionSortPipe implements PipeTransform {
 
   transform(winconditions: WinCondition[], sortState: string ): any {
-    if (sortState === 'Most Likes') {
+    if (sortState === 'Most Agreed') {
       return this.sortByLikes(winconditions, true);
-    } else if (sortState === 'Least Likes') {
+    } else if (sortState === 'Least Agreed') {
       return this.sortByLikes(winconditions, false);
     } else if (sortState === 'Newest') {
       return this.sortByDate(winconditions,true);

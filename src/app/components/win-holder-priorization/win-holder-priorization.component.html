@@ -34,16 +34,18 @@
     </div>
 
     <div id="weight-titles">
-        <span class="title">Business value</span>
-        <span class="title">Relative Penalty</span>
-        <span class="title">Ease of Realization</span>
+        <span class="title">Business <br/> value</span>
+        <span class="title">Relative <br/> Penalty</span>
+        <span class="title">Ease of <br/> Realization</span>
     </div>
-    <div *ngFor="let winCondition of winConditions | winConditionSort: currentSortState" >
-        <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
-        <div class="col-5" id="win-weights">
-            <app-win-condition-input id="weight-value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
-            <app-win-condition-input id="weight-value" [value]="winCondition.relativePenalty" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
-            <app-win-condition-input id="weight-value" [value]="winCondition.easeOfRealization" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+    <div id="win-conditions-wrapper">
+        <div *ngFor="let winCondition of winConditions | winConditionSort: currentSortState">
+            <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
+            <div class="col-5" id="win-weights">
+                <app-win-condition-input id="weight-value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+                <app-win-condition-input id="weight-value" [value]="winCondition.relativePenalty" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+                <app-win-condition-input id="weight-value" [value]="winCondition.easeOfRealization" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+            </div>
         </div>
     </div>
 

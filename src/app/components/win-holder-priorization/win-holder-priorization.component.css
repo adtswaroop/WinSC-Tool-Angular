@@ -1,6 +1,6 @@
 .slider-input {
-  width: 50px;
-  margin-left: 10px;
+    width: 50px;
+    margin-left: 10px;
 }
 
 #prioritization-title {
@@ -71,17 +71,26 @@
 #weight-value {
     display: inline-block;
     text-align: -webkit-center;
-    margin-left: 2rem;
+    margin-left: 5rem;
 }
 
 #weight-titles {
     float: right;
-    margin-right: 9.5rem;
+    margin-right: 4rem;
+    display: table;
+    margin-top: 2rem;
+}
+
+#win-conditions-wrapper {
+    display: inline-block;
+    width: -webkit-fill-available;
 }
 
 .title {
-    padding-left: 10px;
+    padding-left: 5.5rem;
     font-weight: bold;
+    display: table-cell;
+    text-align: center;
 }
 
 app-win-condition-input#weight-value input {

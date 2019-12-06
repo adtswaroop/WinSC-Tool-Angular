@@ -14,4 +14,8 @@ export class WinConditionPriorizationComponent implements OnInit {
   ngOnInit() {
   }
 
+  addHashToCategory(categoryStr: string) {
+    return "#"+categoryStr;
+  }
+
 }
