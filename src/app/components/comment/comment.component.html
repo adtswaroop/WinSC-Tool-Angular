@@ -1,4 +1,4 @@
-<div *ngIf="showComments"class="commentMain">
+<div *ngIf="showComments" class="commentMain">
     <app-vote [voters]="generateVoters(comment)" style="display: table-cell;"> </app-vote>
     <div id="imgDiv">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzlDPRr1xSW0lukY2EmVpAx5Ye1S8H5luUVOK2IqFdcsjCDQxK">
@@ -8,8 +8,8 @@
             <div id="header">
                 <p><b>{{ comment.user.firstName + " " + comment.user.lastName }} :</b></p>
                 <div id="icons">
-                    <i class="fas fa-check" title="Mark as Issue Resolved"></i>
-                    <i class="fas fa-pencil-alt" title="Edit Comment"></i>
+                    <!-- <i class="fas fa-check" title="Mark as Issue Resolved"></i>
+                    <i class="fas fa-pencil-alt" title="Edit Comment"></i> -->
                     <i (click)="deleteComments()" id="trash" class="fas fa-trash-alt" title="Delete Comment"></i>
                 </div>
             </div>
