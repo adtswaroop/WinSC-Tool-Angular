@@ -10,7 +10,7 @@ export class WinConditionInputComponent implements OnInit {
 
   @Input() winCondition: WinCondition;
   @Input() value: number;
-  @Input() label: string;
+  @Input() name: string;
   @Input() type: string;
   @Output() winConditionChange = new EventEmitter<WinCondition>();
   @Output() enableSaveButton = new EventEmitter<boolean>();
@@ -29,10 +29,10 @@ export class WinConditionInputComponent implements OnInit {
 
     this.inputValidateValue(newValue);
 
-    if(this.label == "Business value"){
+    if(this.name == "Business value"){
       this.winCondition.businessValue = newValue;
     }
-    else if(this.label == "Relative penalty") {
+    else if(this.name == "Relative penalty") {
       this.winCondition.relativePenalty = newValue;
     }
     else {

@@ -42,9 +42,9 @@
         <div *ngFor="let winCondition of winConditions | winConditionSort: currentSortState">
             <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
             <div class="col-5" id="win-weights">
-                <app-win-condition-input id="weight-value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
-                <app-win-condition-input id="weight-value" [value]="winCondition.relativePenalty" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
-                <app-win-condition-input id="weight-value" [value]="winCondition.easeOfRealization" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+                <app-win-condition-input id="weight-value" name="Business value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+                <app-win-condition-input id="weight-value" name="Relative penalty" [value]="winCondition.relativePenalty" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
+                <app-win-condition-input id="weight-value" name="Ease of Realization" [value]="winCondition.easeOfRealization" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()"></app-win-condition-input>
             </div>
         </div>
     </div>
