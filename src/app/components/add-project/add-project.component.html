@@ -28,39 +28,30 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="businessValueWeight" class="col-sm-3 col-form-label">Business Value Weight</label>
+            <label for="BusinessValueWeight" class="col-sm-3 col-form-label">Business Value Weight (0-100)</label>
             <div class="col-sm-7">
-                <select id="businessValueWeight" class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+                <input type="number" class="form-control" name="BusinessValueWeight" id="BusinessValueWeight" [pattern] = "'^([0-9]|[1-9][0-9]|100)$'" #BusinessValueWeight="ngModel" [(ngModel)]="projectBVW"/>
+                <span class='text-danger' *ngIf="BusinessValueWeight.touched && BusinessValueWeight.invalid">
+                    <p *ngIf="BusinessValueWeight?.errors?.pattern">Please enter a number between 0 and 100</p>
+                  </span>
+              </div>
+        </div>
+        <div class="form-group row">
+            <label for="relativePenaltyWeight" class="col-sm-3 col-form-label">Relative Penalty Weight (0-100) </label>
+            <div class="col-sm-7">
+                <input type="number" class="form-control" name="relativePenaltyWeight" id="relativePenaltyWeight" [pattern] = "'^([0-9]|[1-9][0-9]|100)$'" #relativePenaltyWeight="ngModel" [(ngModel)]="projectRPW"/>
+                <span class='text-danger' *ngIf="relativePenaltyWeight.touched && relativePenaltyWeight.invalid">
+                    <p *ngIf="relativePenaltyWeight?.errors?.pattern">Please enter a number between 0 and 100</p>
+                  </span>
             </div>
         </div>
         <div class="form-group row">
-            <label for="relativePenaltyWeight" class="col-sm-3 col-form-label">Relative Penalty Weight</label>
+            <label for="easeOfRealizationWeight" class="col-sm-3 col-form-label">Ease of Realization Weight (0-100)</label>
             <div class="col-sm-7">
-                <select id="relativePenaltyWeight" class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="easeOfRealizationWeight" class="col-sm-3 col-form-label">Ease of Realization Weight</label>
-            <div class="col-sm-7">
-                <select id="easeOfRealizationWeight" class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+                <input type="number" class="form-control" name="easeOfRealizationWeight" id="easeOfRealizationWeight" [pattern] = "'^([0-9]|[1-9][0-9]|100)$'" #easeOfRealizationWeight="ngModel" [(ngModel)]="projectERW"/>
+                <span class='text-danger' *ngIf="easeOfRealizationWeight.touched && easeOfRealizationWeight.invalid">
+                    <p *ngIf="easeOfRealizationWeight?.errors?.pattern">Please enter a number between 0 and 100</p>
+                  </span>
             </div>
         </div>
         <div class="form-group row">
