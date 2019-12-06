@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Category } from '../classes/category';
 import { BackendService } from './backend.service';
 import { ProjectService } from './project/project.service';
+import { WinconditionService } from './wincondition.service';
 
 
 @Injectable({
@@ -16,7 +17,9 @@ export class CategoryService {
   getCategories = this.categoryData.asObservable();
   private selectedCategoriesData = new BehaviorSubject<Category[]>([]);
   getSelectedCategories = this.selectedCategoriesData.asObservable();
-  constructor(private backendService: BackendService, private projectService: ProjectService) {
+  constructor(private backendService: BackendService,
+              private projectService: ProjectService,
+              private winConditionService: WinconditionService) {
     this.projectService.getActiveProjectId.subscribe((projectId)=>{
         this.getAllCategories(projectId);
         this.activeProjectId = projectId;
@@ -46,5 +49,18 @@ export class CategoryService {
 
   setSelectedCategories(categories: Category[]) {
     this.selectedCategoriesData.next(categories);
+  }
+
+  deleteCategory(categoryId: number) {
+
+      const obs = this.backendService.deleteCategory(categoryId);
+      obs.subscribe((data) => {
+          console.log("Category delete data was: " + data);
+          let categoryArr = this.categoryData.value;
+          this.categoryData.next(categoryArr.filter((category) => category.id !== categoryId));
+          this.winConditionService.reloadWinConditions();
+      }, (error) => {
+          console.log("Rejecting because of a failure in http error");
+    });
   }
 }
