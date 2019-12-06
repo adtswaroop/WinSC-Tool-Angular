@@ -6,6 +6,7 @@ import { WinCondition } from '../classes/win-condition';
 import { Comment } from '../classes/comment';
 import { User } from '../classes/user';
 import { AuthenticationService } from './authentication.service';
+import { Project } from '../classes/project';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,33 @@ export class WinconditionService {
       });
       */
 
-     this.winConditionSource.next(data);
+     this.winConditionSource.next(this.prioritize(data));
+    });
+    return obj;
+  }
+
+  prioritize(winConditions: Array<WinCondition>) {
+    const activeProject = this.projectService.getActiveProjectDataNonReactive();
+    let totalScore = 0;
+    winConditions.forEach((winCondition) =>  {
+        totalScore+= this.getScore(activeProject,winCondition);
     });
 
+    winConditions.forEach((winCondition) => {
+        if (totalScore === 0) {
+          winCondition.prioritizationScore = 0;
+        } else {
+          winCondition.prioritizationScore = Math.round((this.getScore(activeProject,winCondition)/totalScore)*100);
+        }
 
-    return obj;
+    });
+    return winConditions;
+  }
+
+  getScore(project:Project, winCondition: WinCondition) {
+    return winCondition.easeOfRealization*project.easeOfRealizationWeight +
+           winCondition.businessValue*project.businessValueWeight +
+           winCondition.easeOfRealization*project.easeOfRealizationWeight;
   }
 
   handleVote(winConditionId: number , commentId: number, voteType: number) {

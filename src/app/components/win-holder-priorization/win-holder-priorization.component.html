@@ -1,8 +1,7 @@
 <div>
     <div id="button-container">
         <div id="prioritization-buttons">
-            <button id="btn-save" class="btn btn-primary" (click)="updatePrioritizationValuesProjectWinConditions()" [disabled]="enableSave">Save</button>
-            <button id="btn-prioritize" class="btn btn-primary" (click)="changeValue()">Prioritize</button>
+            <button id="btn-save" class="btn btn-primary" (click)="updatePrioritizationValuesProjectWinConditions()" [disabled]="enableSave">Save & Prioritize</button>
         </div>
         <div id="select-buttons">
             <button class="btn btn-primary btn-win">Win Conditions</button>
@@ -39,7 +38,7 @@
         <span class="title">Relative Penalty</span>
         <span class="title">Ease of Realization</span>
     </div>
-    <div *ngFor="let winCondition of winConditions">
+    <div *ngFor="let winCondition of winConditions | winConditionSort: currentSortState" >
         <app-win-condition-priorization class="col-7" id="win-conditions" [winCondition]="winCondition"></app-win-condition-priorization>
         <div class="col-5" id="win-weights">
             <app-win-condition-input id="weight-value" label="Business value" [value]="winCondition.businessValue" [winCondition]="winCondition" (winConditionChange)="winCondition=$event; validateWinconditionsValues()" ></app-win-condition-input>

@@ -15,7 +15,8 @@ export class WinConditionSortPipe implements PipeTransform {
       return this.sortByDate(winconditions,true);
     } else if (sortState === 'Oldest') {
       return this.sortByDate(winconditions,false);
-
+    } else if (sortState=== 'Score') {
+      return this.sortByScore(winconditions,true);
     }
   }
 
@@ -26,6 +27,18 @@ export class WinConditionSortPipe implements PipeTransform {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       } else {
         return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      }
+    });
+    return cloneWinConditions;
+  }
+
+  sortByScore(winConditions, asc: Boolean) {
+    const cloneWinConditions = winConditions.slice(0);
+    cloneWinConditions.sort((a:WinCondition, b:WinCondition) => {
+      if (asc) {
+        return b.prioritizationScore-a.prioritizationScore;
+      } else {
+        return a.prioritizationScore-b.prioritizationScore;
       }
     });
     return cloneWinConditions;

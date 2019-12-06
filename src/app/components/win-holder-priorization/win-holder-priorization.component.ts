@@ -41,6 +41,7 @@ export class WinHolderPriorizationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentSortState = "Score";
   }
 
   sortByLeastPriority(pWinConditions) {
@@ -90,22 +91,16 @@ export class WinHolderPriorizationComponent implements OnInit {
     var allWinconditionsValid = true;
     for (let i = 0; i < this.winConditions.length && allWinconditionsValid == true; i++) {
       allWinconditionsValid = (this.validateValue(this.winConditions[i].businessValue) && this.validateValue(this.winConditions[i].relativePenalty)) && this.validateValue(this.winConditions[i].easeOfRealization);
-      console.log(this.winConditions);
-      if(this.winConditions[i].businessValue == -1){
-        console.log(-1);
-        console.log(this.winConditions[i]);
-      }
     }
     var disable = !allWinconditionsValid;
-    console.log(disable);
     this.setEnableSave(disable);
   }
 
   validateProjectValues(){
     var allValuesValid = true;
-    
+
     allValuesValid = (this.validateValue(this.project.businessValueWeight) && this.validateValue(this.project.relativePenaltyWeight)) && this.validateValue(this.project.easeOfRealizationWeight);
-    
+
     var disable = !allValuesValid;
     console.log(disable);
     this.setEnableSave(disable);
@@ -119,7 +114,7 @@ export class WinHolderPriorizationComponent implements OnInit {
     if(!this.validateMaxValue(pValue)){
       valid = false;
     }
-    
+
     return valid;
   }
 

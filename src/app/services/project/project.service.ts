@@ -114,6 +114,10 @@ export class ProjectService {
 
   }
 
+  getActiveProjectDataNonReactive() {
+    return this.activeProjectObjectData.value;
+  }
+
   updateActiveProjectObject() {
     const joinedProjectArr = this.joinedProjectListData.value;
     const projectID = this.activeProjectData.value;
