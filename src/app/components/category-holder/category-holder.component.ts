@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { CategoryService } from 'src/app/services/category.service';
@@ -9,15 +11,24 @@ import { Router } from '@angular/router';
   templateUrl: './category-holder.component.html',
   styleUrls: ['./category-holder.component.css']
 })
-export class CategoryHolderComponent implements OnInit {
+export class CategoryHolderComponent implements OnInit, OnDestroy {
 
   categoryForm: FormGroup;
   categories: Category[];
   categoriesSelected = new Set<Category>();
+  cSub: Subscription;
+  pSub: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private router:Router) {
-    this.categoryService.getCategories.subscribe((data) => {
+  constructor(private formBuilder: FormBuilder,
+              private categoryService: CategoryService,
+              private projectService: ProjectService) {
+    this.cSub = this.categoryService.getCategories.subscribe((data) => {
         this.categories = data;
+    });
+
+    this.pSub = this.projectService.getActiveProjectId.subscribe((data) => {
+      this.categoriesSelected.clear();
+      this.applyCategory();
     });
   }
 
@@ -72,6 +83,11 @@ export class CategoryHolderComponent implements OnInit {
   }
 
   deleteCategory() {
+  }
+
+  ngOnDestroy(): void {
+    this.cSub.unsubscribe();
+    this.pSub.unsubscribe();
   }
 
 }
