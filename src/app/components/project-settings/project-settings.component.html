@@ -39,22 +39,22 @@
                                 <ng-template #elseBlock>
                                     <div *ngIf="member.access === 'ADMIN'; else memberBlock">
                                         <select class="access-dropdown" style="font-size: 11pt;">
-                        <option value="ADMIN" selected>Admin</option>
-                        <option value="MEMBER">Member</option>
-                      </select>
+                                            <option value="ADMIN" selected>Admin</option>
+                                            <option value="MEMBER">Member</option>
+                                        </select>
                                     </div>
                                     <ng-template #memberBlock>
                                         <select class="access-dropdown" style="font-size: 11pt;">
-                        <option value="MEMBER" selected>Member</option>
-                        <option value="ADMIN">Admin</option>
-                      </select>
+                                            <option value="MEMBER" selected>Member</option>
+                                            <option value="ADMIN">Admin</option>
+                                        </select>
                                     </ng-template>
                                 </ng-template>
                             </div>
                             <div class="col-sm-2 pt-0">
                                 <button *ngIf="member.access !== 'OWNER'" type="button" class="close text-danger" aria-Label="Remove">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -72,8 +72,7 @@
         <div class="col-sm-7">
             <div class="container rounded align-horizontal border border-warning py-4">
                 <button type="submit" class="btn btn-warning mr-5">Make Public</button>
-                <button type="submit" class="btn btn-warning mr-5">Archive Project</button>
-                <button type="submit" class="btn btn-danger" (click)="deleteProject()">Delete Project</button>
+                <button type="submit" class="btn btn-danger ml-5" (click)="deleteProject()">Delete Project</button>
             </div>
         </div>
     </div>
