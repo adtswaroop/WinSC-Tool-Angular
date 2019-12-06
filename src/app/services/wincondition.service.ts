@@ -99,6 +99,26 @@ export class WinconditionService {
     });
   }
 
+  deleteWinCondition(winCondition: WinCondition) {
+    const promise = new Promise((resolve, reject) => {
+      const obs = this.backendService.deleteWinCondition(winCondition.id);
+      obs.subscribe((data) => {
+
+          if (data === 0){
+            console.log("Rejecting promise because wc wasn't ours");
+            reject();
+          } else {
+            console.log("Delete successful");
+            resolve();
+          }
+      }, (error) => {
+          console.log("Rejecting because of a failure in http error");
+          reject();
+      });
+    });
+    return promise;
+  }
+
   createWinConditionComment(wincondition: WinCondition, comment: Comment) {
     const obs = this.backendService.createWinConditionComment(wincondition.id, comment);
     obs.subscribe((data) => {

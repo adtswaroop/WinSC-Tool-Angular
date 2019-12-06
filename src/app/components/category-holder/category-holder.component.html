@@ -3,9 +3,9 @@
         <p class="category-header">
             Categories
         </p>
-        <button id="apply-category" type="submit" class="btn btn-primary">Filter</button>
+        <button id="apply-category" type="submit" class="btn btn-primary" (click)="applyCategory()">Filter</button>
     </div>
-    <form id="category-form" [formGroup]="categoryForm" (ngSubmit)="applyCategory()">
+    <form id="category-form" [formGroup]="categoryForm">
         <div *ngFor="let category of categories">
           <label formArrayName="categories">
           <input type="checkbox" (change)="handleCheck($event, category)"/>
