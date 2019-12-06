@@ -40,10 +40,13 @@
     text-align: left;
     font-weight: bold;
     font-size: 14pt;
+    float: left;
+    margin-top: 10px;
 }
 
 #apply-category {
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    float: right;
 }
 
 #category-color {
@@ -74,4 +77,14 @@
     color: white;
     padding: 3px;
     font-size: 15px;
+}
+
+.trash {
+    color: #990000 !important;
+    font-size: 13px;
+}
+
+#category-header-wrapper {
+    display: flow-root;
+    margin-bottom: 20px;
 }

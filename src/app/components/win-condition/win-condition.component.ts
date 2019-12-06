@@ -15,11 +15,14 @@ export class WinConditionComponent implements OnInit {
 
   showWinCondition:boolean;
   showComments:boolean;
+  isIssue:boolean;
+
   constructor(
     private winconditionService: WinconditionService, private customModal: ModalService
   ) {
     this.showComments = false;
     this.showWinCondition = true;
+    this.isIssue = false;
   }
 
   ngOnInit() {
@@ -39,7 +42,7 @@ export class WinConditionComponent implements OnInit {
 
   handleCommentAdd(event,box) {
     if (event.key === 'Enter' && box.value.length > 0) { // TODO: Proper value check
-      const comment = new Comment([], [], 0, 'Romi', 1, 1, [], box.value, 0, false)
+      const comment = new Comment([], [], 0, 'User', 1, 1, [], box.value, 0, this.isIssue);
       this.winconditionService.createWinConditionComment(this.winCondition, comment);
       box.value = '';
     }
