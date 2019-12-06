@@ -23,7 +23,6 @@ export class WinInputComponent implements OnInit {
 
   dropdownList = [];
   selectedItems = [];
-  selectedCategories = [];
   dropdownSettings = {};
   constructor(private fb: FormBuilder,
               private winConditionService: WinconditionService,
@@ -41,7 +40,6 @@ export class WinInputComponent implements OnInit {
       this.dropdownList = data;
       if (this.multiSelect) {
         this.multiSelect.data = data;
-        console.log(this.multiSelect);
       }
   });
     this.dropdownList = this.categories;
@@ -58,18 +56,14 @@ export class WinInputComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
-    this.selectedCategories.push(this.categories.find(category => category.id == item.id));
-  }
-
   addWin() {
     const wcText = this.addWinForm.controls['winpost'].value;
     const user = this.authService.currentUserValue;
     const wc = new WinCondition(0,0,user,wcText,0,0,0,0,[],[],[],[]);
-    const categorIds = this.selectedCategories.map((element) => element.id);
+    const categorIds = this.selectedItems.map((element) => element.id);
     wc.categoryIds = categorIds;
     this.winConditionService.createWincondition(wc);
-    this.selectedItems = null;
+    this.selectedItems = [];
     this.addWinForm.controls['winpost'].setValue("");
   }
 }
