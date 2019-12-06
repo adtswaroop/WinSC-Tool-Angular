@@ -127,4 +127,8 @@ export class WinconditionService {
       });
 
   }
+
+  reloadWinConditions(){
+    this.updateWinConditions(this.activeProjectId);
+  }
 }
