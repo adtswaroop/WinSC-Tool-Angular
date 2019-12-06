@@ -72,6 +72,10 @@ export class BackendService {
     return this.http.post<any>(`${environment.urlBase}/project/${projectId}/category`, category);
   }
 
+  deleteCategory(categoryId: number) {
+    return this.http.delete<any>(`${environment.urlBase}/category/${categoryId}/`);
+  }
+
   updatePrioritizationValuesWinConditions(winconditions: any) {
     // Fix, put the correct URL for this function request
     return this.http.post<any>(`${environment.urlBase}/wincondition/updateWinConditions`, winconditions);
