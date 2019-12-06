@@ -17,7 +17,7 @@ export class WinConditionInputComponent implements OnInit {
   inputClass;
   inputValid;
 
-  constructor() { 
+  constructor() {
     this.inputClass = {};
   }
 
@@ -26,7 +26,7 @@ export class WinConditionInputComponent implements OnInit {
   }
 
   changeValue(newValue) {
-    
+
     this.inputValidateValue(newValue);
 
     if(this.label == "Business value"){
@@ -45,13 +45,11 @@ export class WinConditionInputComponent implements OnInit {
     this.inputValid = this.validateValue(pValue);
     if(this.validateValue(pValue)){
       this.enableSaveButton.emit(false);
-      console.log("valid");
       this.inputClass = {};
     }
     else {
       this.enableSaveButton.emit(true);
       this.enableSaveButton.emit(true);
-      console.log("invalid");
       this.inputClass = {"input-red":true};
     }
   }
@@ -64,7 +62,7 @@ export class WinConditionInputComponent implements OnInit {
     if(!this.validateMaxValue(pValue)){
       valid = false;
     }
-    
+
     return valid;
   }
 
