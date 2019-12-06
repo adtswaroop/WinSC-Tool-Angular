@@ -52,6 +52,10 @@ export class BackendService {
     return this.http.post<any>(`${environment.urlBase}/project/${projectId}/wincondition`, winCondition);
   }
 
+  deleteWinCondition(winConditionId: number) {
+    return this.http.delete<any>(`${environment.urlBase}/wincondition/${winConditionId}/`);
+  }
+
   createWinConditionComment(winConditionId: number, comment: Comment) {
     return this.http.post<any>(`${environment.urlBase}/wincondition/${winConditionId}/comment`, comment);
   }

@@ -51,10 +51,14 @@ export class WinConditionComponent implements OnInit {
   deleteWin() {
     this.customModal.openConfirmModal('Do you want to delete this win condition?', (answer: boolean) => {
       if (answer) {
-        this.showWinCondition = false;
-        return;
+        const promise = this.winconditionService.deleteWinCondition(this.winCondition);
+        promise.then(()=>{
+          this.showWinCondition = false;
+          this.showComments = false;
+        }, () => {
+          console.log("Wincondition delete error");
+        });
       }
-      console.log('No');
     });
   }
 
