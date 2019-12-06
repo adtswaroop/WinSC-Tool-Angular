@@ -41,4 +41,9 @@ export class ProjectSettingsComponent implements OnInit {
      this.projectService.updateProject(this.activeProject);
   }
 
+  cancelUpdateProject() {
+    this.tempName = this.activeProject.name;
+    this.tempVision = this.activeProject.vision;
+  }
+
 }
