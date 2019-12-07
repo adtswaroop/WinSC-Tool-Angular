@@ -42,7 +42,6 @@ export class ProjectService {
       this.projectsFetched = true;
       this.joinedProjectListData.next(data.joinedProjects);
       this.otherProjectListData.next(data.otherProjects);
-      this.updateActiveProjectObject();
     });
   }
 
@@ -110,7 +109,19 @@ export class ProjectService {
 
   setActiveProject(projectID: number) {
     this.activeProjectData.next(projectID);
-    this.updateActiveProjectObject();
+    if (projectID === -1) {
+      return;
+    }
+    const obj = this.backendService.getSingpleProject(projectID);
+    obj.subscribe((data) => {
+      console.log(data);
+      if (data===null) {
+        this.router.navigate(["project-list"]);
+      } else {
+        this.activeProjectObjectData.next(data);
+      }
+    });
+
 
   }
 
@@ -118,25 +129,6 @@ export class ProjectService {
     return this.activeProjectObjectData.value;
   }
 
-  updateActiveProjectObject() {
-    const joinedProjectArr = this.joinedProjectListData.value;
-    const projectID = this.activeProjectData.value;
-    if (projectID === -1) {
-      return;
-    }
-    let projectFound = false;
-    joinedProjectArr.forEach((element)=> {
-      if (element.id == projectID) {
-        this.activeProjectObjectData.next(element);
-        projectFound = true;
-        console.log("Active project found");
-      }
-    });
-    if (!projectFound && this.projectsFetched) {
-      console.log("Nonexistent project called");
-      this.router.navigate(["project-list"]);
-    }
-  }
 
   getActiveProjectAsNumber(){
     return this.activeProjectData.value;
