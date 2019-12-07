@@ -19,9 +19,7 @@ export class ProjectSettingsComponent implements OnInit {
 
   constructor(private projectService: ProjectService) {
     this.projectService.getActiveProjectObject.subscribe((data) => {
-      data.accessLevel = data.access;
       this.activeProject = data;
-      console.log(data);
       this.tempName = this.activeProject.name;
       this.tempVision = this.activeProject.vision;
     });
