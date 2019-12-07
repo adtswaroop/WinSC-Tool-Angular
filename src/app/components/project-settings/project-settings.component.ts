@@ -23,6 +23,7 @@ export class ProjectSettingsComponent implements OnInit {
       this.activeProject.accessLevel = data.access;
       this.tempName = this.activeProject.name;
       this.tempVision = this.activeProject.vision;
+      console.log(this.activeProject);
     });
   }
 
@@ -54,6 +55,18 @@ export class ProjectSettingsComponent implements OnInit {
      this.activeProject.accessLevel = paccessLevel;
      this.activeProject.access = paccessLevel;
      this.projectService.updateProject(this.activeProject);
+  }
+
+
+  addProjectMember(event) {
+    if (event.key === "Enter") {
+      console.log(event.target.value);
+      //this.projectService.addProjectMember(event.target.value);
+    }
+  }
+
+  removeProjectMember(pMember) {
+    //this.projectService.removeProjectMember();
   }
 
 }

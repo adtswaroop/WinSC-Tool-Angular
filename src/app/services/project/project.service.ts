@@ -11,6 +11,7 @@ import { SnackbarService } from './../../services/snackbar.service';
 const GETPROJECT_URL = environment.urlBase + '/projects';
 const DELETEPROJECT_URL = environment.urlBase + '/deleteProject';
 const PUTPROJECT_URL = environment.urlBase + '/project';
+const POSTMEMBER_URL = environment.urlBase + '/project';
 
 @Injectable({
   providedIn: 'root'
@@ -150,5 +151,33 @@ export class ProjectService {
       obs.subscribe((data)=> {
           this.getAllProjects();
       });
+  }
+
+  addProjectMember(pMember) {
+    /*
+    const postURL = POSTMEMBER_URL + '/' + projectID + "/addMember";
+    this.http.post(postURL, {
+      email: pMember
+    }).subscribe(data => {
+      console.log('POST request done', data);
+    }, error => {
+      console.log('error in POST method');
+    }
+    );
+    */
+  }
+
+  removeProjectMember(pMember) {
+    /*
+    const postURL = POSTMEMBER_URL + '/' + projectID + "/removeMember";
+    this.http.post(postURL, {
+      email: pMember
+    }).subscribe(data => {
+      console.log('POST request done', data);
+    }, error => {
+      console.log('error in POST method');
+    }
+    );
+    */
   }
 }
