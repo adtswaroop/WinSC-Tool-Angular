@@ -20,6 +20,7 @@ export class ProjectSettingsComponent implements OnInit {
   constructor(private projectService: ProjectService) {
     this.projectService.getActiveProjectObject.subscribe((data) => {
       this.activeProject = data;
+      this.activeProject.accessLevel = data.access;
       this.tempName = this.activeProject.name;
       this.tempVision = this.activeProject.vision;
     });
@@ -51,6 +52,7 @@ export class ProjectSettingsComponent implements OnInit {
 
   updateProjectAccessLevel(paccessLevel) {
      this.activeProject.accessLevel = paccessLevel;
+     this.activeProject.access = paccessLevel;
      this.projectService.updateProject(this.activeProject);
   }
 

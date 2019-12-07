@@ -3,6 +3,7 @@ export class Project {
   public id: number;
   public description: string;
   public accessLevel: string; //private or public
+  public access: string; //private or public
   public vision: string;
   public archieved: boolean;
   public deleted: boolean;
