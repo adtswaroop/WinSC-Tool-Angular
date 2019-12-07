@@ -71,8 +71,8 @@
         <label for="dangerZone" class="col-sm-3 col-form-label text-right">Danger Zone</label>
         <div class="col-sm-7">
             <div class="container rounded align-horizontal border border-warning py-4">
-                <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.access==PUBLIC_PROJECT">Make Private</button>
-                <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.access!=PUBLIC_PROJECT">Make Public</button>
+                <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.accessLevel==PUBLIC_PROJECT" (click)="updateProjectAccessLevel(PRIVATE_PROJECT)">Make Private</button>
+                <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.accessLevel!=PUBLIC_PROJECT" (click)="updateProjectAccessLevel(PUBLIC_PROJECT)">Make Public</button>
                 <button type="submit" class="btn btn-danger ml-5" (click)="deleteProject()">Delete Project</button>
             </div>
         </div>

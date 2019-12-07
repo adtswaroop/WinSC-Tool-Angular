@@ -11,6 +11,7 @@ import { ProjectService } from 'src/app/services/project/project.service';
 export class ProjectSettingsComponent implements OnInit {
 
   PUBLIC_PROJECT = "public";
+  PRIVATE_PROJECT = "private";
   members = members;
   activeProject: Project;
   tempName: string;
@@ -18,6 +19,7 @@ export class ProjectSettingsComponent implements OnInit {
 
   constructor(private projectService: ProjectService) {
     this.projectService.getActiveProjectObject.subscribe((data) => {
+      data.accessLevel = data.access;
       this.activeProject = data;
       console.log(data);
       this.tempName = this.activeProject.name;
@@ -49,10 +51,9 @@ export class ProjectSettingsComponent implements OnInit {
     this.tempVision = this.activeProject.vision;
   }
 
-  isProjectPublic(paccessLevel) {
-    console.log(this.activeProject.accessLevel);
-    console.log(this.activeProject.accessLevel == "public");
-    return this.activeProject.accessLevel == "public";
+  updateProjectAccessLevel(paccessLevel) {
+     this.activeProject.accessLevel = paccessLevel;
+     this.projectService.updateProject(this.activeProject);
   }
 
 }

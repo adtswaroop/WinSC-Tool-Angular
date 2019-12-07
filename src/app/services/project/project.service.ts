@@ -76,6 +76,7 @@ export class ProjectService {
       name: project.name,
       id: project.id,
       description: project.description,
+      access: project.access,
       accessLevel: project.accessLevel,
       vision: project.vision,
       archieved: project.archieved,
