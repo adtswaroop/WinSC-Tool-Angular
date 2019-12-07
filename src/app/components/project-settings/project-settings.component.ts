@@ -10,6 +10,7 @@ import { ProjectService } from 'src/app/services/project/project.service';
 })
 export class ProjectSettingsComponent implements OnInit {
 
+  PUBLIC_PROJECT = "public";
   members = members;
   activeProject: Project;
   tempName: string;
@@ -18,6 +19,7 @@ export class ProjectSettingsComponent implements OnInit {
   constructor(private projectService: ProjectService) {
     this.projectService.getActiveProjectObject.subscribe((data) => {
       this.activeProject = data;
+      console.log(data);
       this.tempName = this.activeProject.name;
       this.tempVision = this.activeProject.vision;
     });
@@ -45,6 +47,12 @@ export class ProjectSettingsComponent implements OnInit {
   cancelUpdateProject() {
     this.tempName = this.activeProject.name;
     this.tempVision = this.activeProject.vision;
+  }
+
+  isProjectPublic(paccessLevel) {
+    console.log(this.activeProject.accessLevel);
+    console.log(this.activeProject.accessLevel == "public");
+    return this.activeProject.accessLevel == "public";
   }
 
 }
