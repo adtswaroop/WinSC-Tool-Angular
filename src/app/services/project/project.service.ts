@@ -151,6 +151,7 @@ export class ProjectService {
     this.http.post(postURL, {
       email: pMemberEmail
     }).subscribe(data => {
+      this.updateProjectMember(pMemberEmail, "member", projectID);
       this.setActiveProject(projectID);
     }, error => {
       console.log('error in POST method');

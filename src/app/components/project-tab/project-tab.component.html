@@ -9,7 +9,7 @@
             <app-project-priorization></app-project-priorization>
         </ng-template>
     </ngb-tab>
-    <ngb-tab title="Project Settings" *ngIf="showSetting">
+    <ngb-tab title="Project Settings" *ngIf="userInfo.role == 'owner'">
         <ng-template ngbTabContent>
             <app-project-settings></app-project-settings>
         </ng-template>
