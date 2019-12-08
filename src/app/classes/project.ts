@@ -1,3 +1,5 @@
+import { ProjectUser } from './project-user';
+
 export class Project {
   public name: string;
   public id: number;
@@ -12,6 +14,7 @@ export class Project {
   public easeOfRealizationWeight: number;
   public createdAt: Date;
   public updatedAt: Date;
+  public users: Array<ProjectUser>;
 
   constructor($name: string, $id: number, $description: string, $accessLevel: string, $vision: string, $archieved: boolean,
       $deleted: boolean, $businessValueWeight: number, $relativePenaltyWeight: number, $easeOfRealizationWeight: number,

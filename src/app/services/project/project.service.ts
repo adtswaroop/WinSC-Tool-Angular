@@ -20,7 +20,7 @@ const POSTMEMBER_URL = environment.urlBase + '/project';
 
 export class ProjectService {
 
-  initialProject = new Project("Waiting..",0,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
+  initialProject = new Project("Waiting..",-1,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
   private joinedProjectListData = new BehaviorSubject<Project[]>([]);
   joinedProjectList = this.joinedProjectListData.asObservable();
   private otherProjectListData = new BehaviorSubject<Project[]>([]);
