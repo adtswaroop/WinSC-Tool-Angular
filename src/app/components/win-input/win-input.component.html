@@ -6,7 +6,7 @@
             <!-- <select (change)="changeCategory($event.target.value)">
                 <option *ngFor="let category of categories" [value]="category">{{category.name}}</option>
             </select> -->
-            <ng-multiselect-dropdown #multiSelectx id="multiselect" [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}" [placeholder]=" 'Categories' " [data]="dropdownList" [settings]="dropdownSettings " (onSelect)="onItemSelect($event) " (onSelectAll)="onSelectAll($event) ">
+            <ng-multiselect-dropdown #multiSelectx id="multiselect" [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}" [placeholder]=" 'Categories' " [data]="dropdownList" [settings]="dropdownSettings ">
             </ng-multiselect-dropdown>
             <button id="post-button " [disabled]='!addWinForm.valid' type="submit " class="btn btn-primary ">Post</button>        </div>
     </div>

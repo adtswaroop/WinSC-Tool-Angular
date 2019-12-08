@@ -89,6 +89,7 @@ export class CategoryHolderComponent implements OnInit, OnDestroy {
     const dialogText = 'Delete category ' + category.name + ' ?';
     this.customModal.openConfirmModal(dialogText, (answer: boolean) => {
       if (answer) {
+        this.categoriesSelected.delete(category);
         this.categoryService.deleteCategory(category.id);
       }
     });
