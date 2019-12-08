@@ -152,11 +152,14 @@ export class ProjectService {
     const postURL = POSTMEMBER_URL + '/' + projectID + "/addMember";
     this.http.post(postURL, {
       email: pMemberEmail
-    }).subscribe(data => {
+    }).subscribe( (data: any) => {
       this.setActiveProject(projectID);
-      this.snackBarService.showSnackBar('User ' + pMemberEmail + ' added successfully');
-    }, error => {
-      this.snackBarService.showSnackBar('Email ' + pMemberEmail + ' does not exist');
+      console.log(data);
+      if (data.error && data.error === 'User not found') {
+        this.snackBarService.showSnackBar('Email ' + pMemberEmail + ' does not exist');
+      } else {
+        this.snackBarService.showSnackBar('User ' + pMemberEmail + ' added successfully');
+      }
     }
     );
 
