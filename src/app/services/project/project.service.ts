@@ -11,6 +11,7 @@ import { SnackbarService } from './../../services/snackbar.service';
 const GETPROJECT_URL = environment.urlBase + '/projects';
 const DELETEPROJECT_URL = environment.urlBase + '/deleteProject';
 const PUTPROJECT_URL = environment.urlBase + '/project';
+const POSTMEMBER_URL = environment.urlBase + '/project';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ const PUTPROJECT_URL = environment.urlBase + '/project';
 
 export class ProjectService {
 
-  initialProject = new Project("Waiting..",0,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
+  initialProject = new Project("Waiting..",-1,"Waiting..","public","Waiting...",false,false,0,0,0,new Date(),new Date());
   private joinedProjectListData = new BehaviorSubject<Project[]>([]);
   joinedProjectList = this.joinedProjectListData.asObservable();
   private otherProjectListData = new BehaviorSubject<Project[]>([]);
@@ -29,7 +30,9 @@ export class ProjectService {
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
-  constructor(private http: HttpClient, private backendService: BackendService, private router: Router,
+  constructor(private http: HttpClient,
+              private backendService: BackendService,
+              private router: Router,
               private snackBarService: SnackbarService) {
     this.projectsFetched = false;
   }
@@ -42,7 +45,6 @@ export class ProjectService {
       this.projectsFetched = true;
       this.joinedProjectListData.next(data.joinedProjects);
       this.otherProjectListData.next(data.otherProjects);
-      this.updateActiveProjectObject();
     });
   }
 
@@ -76,6 +78,7 @@ export class ProjectService {
       name: project.name,
       id: project.id,
       description: project.description,
+      access: project.access,
       accessLevel: project.accessLevel,
       vision: project.vision,
       archieved: project.archieved,
@@ -110,7 +113,19 @@ export class ProjectService {
 
   setActiveProject(projectID: number) {
     this.activeProjectData.next(projectID);
-    this.updateActiveProjectObject();
+    if (projectID === -1) {
+      return;
+    }
+    const obj = this.backendService.getSingpleProject(projectID);
+    obj.subscribe((data) => {
+      console.log(data);
+      if (data===null) {
+        this.router.navigate(["project-list"]);
+      } else {
+        this.activeProjectObjectData.next(data);
+      }
+    });
+
 
   }
 
@@ -118,25 +133,6 @@ export class ProjectService {
     return this.activeProjectObjectData.value;
   }
 
-  updateActiveProjectObject() {
-    const joinedProjectArr = this.joinedProjectListData.value;
-    const projectID = this.activeProjectData.value;
-    if (projectID === -1) {
-      return;
-    }
-    let projectFound = false;
-    joinedProjectArr.forEach((element)=> {
-      if (element.id == projectID) {
-        this.activeProjectObjectData.next(element);
-        projectFound = true;
-        console.log("Active project found");
-      }
-    });
-    if (!projectFound && this.projectsFetched) {
-      console.log("Nonexistent project called");
-      this.router.navigate(["project-list"]);
-    }
-  }
 
   getActiveProjectAsNumber(){
     return this.activeProjectData.value;
@@ -149,5 +145,58 @@ export class ProjectService {
       obs.subscribe((data)=> {
           this.getAllProjects();
       });
+  }
+
+  addProjectMember(pMemberEmail, projectID: number) {
+
+    const postURL = POSTMEMBER_URL + '/' + projectID + "/addMember";
+    this.http.post(postURL, {
+      email: pMemberEmail
+    }).subscribe( (data: any) => {
+      this.setActiveProject(projectID);
+      console.log(data);
+      if (data.error && data.error === 'User not found') {
+        this.snackBarService.showSnackBar('Email ' + pMemberEmail + ' does not exist');
+      } else {
+        this.snackBarService.showSnackBar('User ' + pMemberEmail + ' added successfully');
+      }
+    }
+    );
+
+  }
+
+  removeProjectMember(pMemberEmail: string, projectID: number) {
+
+    const postURL = POSTMEMBER_URL + '/' + projectID + "/removeMember";
+    this.http.post(postURL, {
+      email: pMemberEmail
+    }).subscribe(data => {
+      this.setActiveProject(projectID);
+      this.snackBarService.showSnackBar('User ' + pMemberEmail + ' removed successfully');
+
+    }, error => {
+      this.snackBarService.showSnackBar('Error in removing user ' + pMemberEmail);
+    }
+    );
+
+  }
+
+  updateProjectMember(pMemberEmail: string, pRole: string, projectID: number) {
+    console.log(pMemberEmail);
+    console.log(pRole);
+
+    const postURL = POSTMEMBER_URL + '/' + projectID + "/changeRole";
+    this.http.post(postURL, {
+      email: pMemberEmail,
+      role: pRole
+    }).subscribe(data => {
+      this.setActiveProject(projectID);
+      this.snackBarService.showSnackBar('Successfully updated ' + pMemberEmail + ' role to ' + pRole);
+
+    }, error => {
+      this.snackBarService.showSnackBar('Failed updating ' + pMemberEmail + ' role to ' + pRole);
+    }
+    );
+
   }
 }
