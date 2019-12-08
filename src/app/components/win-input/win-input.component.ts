@@ -40,6 +40,12 @@ export class WinInputComponent implements OnInit {
       this.dropdownList = data;
       if (this.multiSelect) {
         this.multiSelect.data = data;
+        const filteredSelected = this.selectedItems.filter((obj) => {
+        return (data.find((cat) => {
+            return cat.id === obj.id;
+          }));
+        });
+        this.selectedItems = filteredSelected;
       }
   });
     this.dropdownList = this.categories;
