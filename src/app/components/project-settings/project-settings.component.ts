@@ -68,13 +68,8 @@ export class ProjectSettingsComponent implements OnInit {
     }
   }
 
-  removeProjectMember(pMember) {
-    //this.projectService.removeProjectMember();
-  }
-
-  aa(){
-    this.addMemberInput = "";
-    console.log(this.addMemberInput);
+  removeProjectMember(puser) {
+    this.projectService.removeProjectMember(puser.user.email, puser.projectId);
   }
 
 }
