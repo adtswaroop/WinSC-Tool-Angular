@@ -92,4 +92,8 @@ export class BackendService {
   putUser(userInfo : User) {
     return this.http.put<any>(`${environment.urlBase}/user`, userInfo);
   }
+
+  getSingpleProject(projectId: number) {
+    return this.http.get<any>(`${environment.urlBase}/project/${projectId}/`);
+  }
 }
