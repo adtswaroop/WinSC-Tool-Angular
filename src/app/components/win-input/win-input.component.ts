@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/classes/category';
 import { WinCondition } from 'src/app/classes/win-condition';
@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { IDropdownSettings, MultiSelectComponent } from 'ng-multiselect-dropdown';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-win-input',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./win-input.component.css']
 })
 
-export class WinInputComponent implements OnInit {
+export class WinInputComponent implements OnInit, OnDestroy {
 
   addWinForm : FormGroup
   private categories: Array<Category>;
@@ -25,6 +26,7 @@ export class WinInputComponent implements OnInit {
   selectedItems = [];
   selectedCategories = [];
   dropdownSettings = {};
+  cSub: Subscription;
   constructor(private fb: FormBuilder,
               private winConditionService: WinconditionService,
               private authService: AuthenticationService,
@@ -36,7 +38,7 @@ export class WinInputComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.categoryService.getCategories.subscribe((data) => {
+    this.cSub = this.categoryService.getCategories.subscribe((data) => {
       this.categories = data;
       this.dropdownList = data;
       if (this.multiSelect) {
@@ -71,5 +73,9 @@ export class WinInputComponent implements OnInit {
     this.winConditionService.createWincondition(wc);
     this.selectedItems = null;
     this.addWinForm.controls['winpost'].setValue("");
+  }
+
+  ngOnDestroy(): void {
+    this.cSub.unsubscribe();
   }
 }

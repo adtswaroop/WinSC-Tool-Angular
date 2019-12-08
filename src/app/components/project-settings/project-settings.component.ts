@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { members } from './dummyMembers';
 import { Project } from 'src/app/classes/project';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { Subscription } from 'rxjs';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-project-settings',
   templateUrl: './project-settings.component.html',
   styleUrls: ['./project-settings.component.css']
 })
-export class ProjectSettingsComponent implements OnInit {
+export class ProjectSettingsComponent implements OnInit, OnDestroy {
 
   PUBLIC_PROJECT = "public";
   PRIVATE_PROJECT = "private";
@@ -17,9 +19,10 @@ export class ProjectSettingsComponent implements OnInit {
   tempName: string;
   tempVision: string;
   addMemberInput: string;
+  pSub: Subscription;
 
-  constructor(private projectService: ProjectService) {
-    this.projectService.getActiveProjectObject.subscribe((data) => {
+  constructor(private projectService: ProjectService, private customModal: ModalService) {
+    this.pSub = this.projectService.getActiveProjectObject.subscribe((data) => {
       this.activeProject = data;
       this.activeProject.accessLevel = data.access;
       this.tempName = this.activeProject.name;
@@ -33,13 +36,12 @@ export class ProjectSettingsComponent implements OnInit {
   }
 
   deleteProject(projectId) {
-     if (confirm("Are you SURE you want to DELETE this project?")) {
-       console.log("Deleting project...");
-       console.log(this.activeProject.id);
-       this.projectService.deleteProject(this.activeProject.id);
-     } else {
-       console.log("Abort delete project.");
-     }
+    const dialogText = 'Confirm deleting project ';
+    this.customModal.openConfirmModal(dialogText, (answer: boolean) => {
+      if (answer) {
+        this.projectService.deleteProject(this.activeProject.id);
+      }
+    });
   }
 
   updateProject() {
@@ -69,14 +71,21 @@ export class ProjectSettingsComponent implements OnInit {
   }
 
   removeProjectMember(puser) {
-    this.projectService.removeProjectMember(puser.user.email, puser.projectId);
+    const dialogText = 'Remove user ' + puser.user.email + ' from project ?';
+    this.customModal.openConfirmModal(dialogText, (answer: boolean) => {
+      if (answer) {
+         this.projectService.removeProjectMember(puser.user.email, puser.projectId);
+      }
+    });
   }
 
   updateProjectMember(puser, prole) {
-    
+
     this.projectService.updateProjectMember(puser.user.email, prole, puser.projectId);
   }
 
-
+  ngOnDestroy(): void {
+    this.pSub.unsubscribe();
+  }
 
 }

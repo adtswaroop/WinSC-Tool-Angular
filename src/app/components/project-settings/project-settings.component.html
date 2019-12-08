@@ -34,15 +34,16 @@
                             </div>
                             <div class="col-sm-3 pt-1">
                                 <div>
-                                    <select class="access-dropdown" style="font-size: 11pt;" [(ngModel)]="user.role" (change)="updateProjectMember(user, $event.target.value)">
+                                    <select  *ngIf="user.role !== 'owner'" class="access-dropdown" style="font-size: 11pt;" [(ngModel)]="user.role" (change)="updateProjectMember(user, $event.target.value)">
                                         <option value="admin" selected>Admin</option>
                                         <option value="member">Member</option>
-                                        <option value="owner" selected>Owner</option>
                                     </select>
+
+                                    <label *ngIf="user.role == 'owner'" style="font-size: 11pt;padding-left: 8px;">Owner</label>
                                 </div>
                             </div>
                             <div class="col-sm-2 pt-0">
-                                <button *ngIf="user.role !== 'OWNER'" type="button" class="close text-danger" aria-Label="Remove" (click)="removeProjectMember(user)">
+                                <button *ngIf="user.role !== 'owner'" type="button" class="close text-danger" aria-Label="Remove" (click)="removeProjectMember(user)">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -64,7 +65,7 @@
                 <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.accessLevel==PUBLIC_PROJECT" (click)="updateProjectAccessLevel(PRIVATE_PROJECT)">Make Private</button>
                 <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.accessLevel!=PUBLIC_PROJECT" (click)="updateProjectAccessLevel(PUBLIC_PROJECT)">Make Public</button>
                 <button type="submit" class="btn btn-danger ml-5" (click)="deleteProject()">Delete Project</button>
-                
+
             </div>
         </div>
     </div>

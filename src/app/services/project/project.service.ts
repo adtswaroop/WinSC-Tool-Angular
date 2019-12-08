@@ -30,7 +30,9 @@ export class ProjectService {
   private activeProjectObjectData = new BehaviorSubject<Project>(this.initialProject);
   getActiveProjectObject = this.activeProjectObjectData.asObservable();
   projectsFetched: boolean;
-  constructor(private http: HttpClient, private backendService: BackendService, private router: Router,
+  constructor(private http: HttpClient,
+              private backendService: BackendService,
+              private router: Router,
               private snackBarService: SnackbarService) {
     this.projectsFetched = false;
   }
@@ -146,31 +148,34 @@ export class ProjectService {
   }
 
   addProjectMember(pMemberEmail, projectID: number) {
-    
+
     const postURL = POSTMEMBER_URL + '/' + projectID + "/addMember";
     this.http.post(postURL, {
       email: pMemberEmail
     }).subscribe(data => {
       this.setActiveProject(projectID);
+      this.snackBarService.showSnackBar('User ' + pMemberEmail + ' added successfully');
     }, error => {
-      console.log('error in POST method');
+      this.snackBarService.showSnackBar('Email ' + pMemberEmail + ' does not exist');
     }
     );
-    
+
   }
 
   removeProjectMember(pMemberEmail: string, projectID: number) {
-    
+
     const postURL = POSTMEMBER_URL + '/' + projectID + "/removeMember";
     this.http.post(postURL, {
       email: pMemberEmail
     }).subscribe(data => {
       this.setActiveProject(projectID);
+      this.snackBarService.showSnackBar('User ' + pMemberEmail + ' removed successfully');
+
     }, error => {
-      console.log('error in POST method');
+      this.snackBarService.showSnackBar('Error in removing user ' + pMemberEmail);
     }
     );
-    
+
   }
 
   updateProjectMember(pMemberEmail: string, pRole: string, projectID: number) {
@@ -183,10 +188,12 @@ export class ProjectService {
       role: pRole
     }).subscribe(data => {
       this.setActiveProject(projectID);
+      this.snackBarService.showSnackBar('Successfully updated ' + pMemberEmail + ' role to ' + pRole);
+
     }, error => {
-      console.log('error in POST method');
+      this.snackBarService.showSnackBar('Failed updating ' + pMemberEmail + ' role to ' + pRole);
     }
     );
-    
+
   }
 }
