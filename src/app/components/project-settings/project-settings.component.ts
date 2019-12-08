@@ -72,4 +72,11 @@ export class ProjectSettingsComponent implements OnInit {
     this.projectService.removeProjectMember(puser.user.email, puser.projectId);
   }
 
+  updateProjectMember(puser, prole) {
+    
+    this.projectService.updateProjectMember(puser.user.email, prole, puser.projectId);
+  }
+
+
+
 }

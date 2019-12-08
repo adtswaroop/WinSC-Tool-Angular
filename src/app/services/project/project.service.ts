@@ -159,11 +159,28 @@ export class ProjectService {
     
   }
 
-  removeProjectMember(pMemberEmail, projectID: number) {
+  removeProjectMember(pMemberEmail: string, projectID: number) {
     
     const postURL = POSTMEMBER_URL + '/' + projectID + "/removeMember";
     this.http.post(postURL, {
       email: pMemberEmail
+    }).subscribe(data => {
+      this.setActiveProject(projectID);
+    }, error => {
+      console.log('error in POST method');
+    }
+    );
+    
+  }
+
+  updateProjectMember(pMemberEmail: string, pRole: string, projectID: number) {
+    console.log(pMemberEmail);
+    console.log(pRole);
+
+    const postURL = POSTMEMBER_URL + '/' + projectID + "/changeRole";
+    this.http.post(postURL, {
+      email: pMemberEmail,
+      role: pRole
     }).subscribe(data => {
       this.setActiveProject(projectID);
     }, error => {
