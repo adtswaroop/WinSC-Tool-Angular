@@ -145,18 +145,18 @@ export class ProjectService {
       });
   }
 
-  addProjectMember(pMember) {
-    /*
+  addProjectMember(pMemberEmail, projectID: number) {
+    
     const postURL = POSTMEMBER_URL + '/' + projectID + "/addMember";
     this.http.post(postURL, {
-      email: pMember
+      email: pMemberEmail
     }).subscribe(data => {
-      console.log('POST request done', data);
+      this.setActiveProject(projectID);
     }, error => {
       console.log('error in POST method');
     }
     );
-    */
+    
   }
 
   removeProjectMember(pMember) {

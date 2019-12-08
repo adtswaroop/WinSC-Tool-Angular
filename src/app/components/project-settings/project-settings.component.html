@@ -27,17 +27,17 @@
         <div class="col-sm-7">
             <div class="container rounded border px-2 pt-3">
                 <div class="member-list-holder container">
-                    <div *ngFor="let member of members">
+                    <div *ngFor="let user of activeProject.users">
                         <div class="row align-vertical p-0 mb-2">
                             <div class="col-sm-6 pt-1">
-                                {{ member.email }}
+                                {{ user.user.email }}
                             </div>
                             <div class="col-sm-3 pt-1">
-                                <div *ngIf="member.access === 'OWNER'; else elseBlock" class="container p-0 pt-1 pl-1" style="font-size: 10pt;">
+                                <div *ngIf="user.role === 'OWNER'; else elseBlock" class="container p-0 pt-1 pl-1" style="font-size: 10pt;">
                                     Owner
                                 </div>
                                 <ng-template #elseBlock>
-                                    <div *ngIf="member.access === 'ADMIN'; else memberBlock">
+                                    <div *ngIf="user.role === 'ADMIN'; else memberBlock">
                                         <select class="access-dropdown" style="font-size: 11pt;">
                                             <option value="ADMIN" selected>Admin</option>
                                             <option value="MEMBER">Member</option>
@@ -52,7 +52,7 @@
                                 </ng-template>
                             </div>
                             <div class="col-sm-2 pt-0">
-                                <button *ngIf="member.access !== 'OWNER'" type="button" class="close text-danger" aria-Label="Remove">
+                                <button *ngIf="user.role !== 'OWNER'" type="button" class="close text-danger" aria-Label="Remove">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="container border-top p-0 mt-3">
-                    <input type="text" class="form-control member-input" placeholder="Add a new member's email address..." (keydown)="addProjectMember($event)">
+                    <input type="text" class="form-control member-input" placeholder="Add a new member's email address..." (keydown)="addProjectMember($event)" [(ngModel)]="addMemberInput">
                 </div>
             </div>
         </div>
@@ -74,6 +74,7 @@
                 <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.accessLevel==PUBLIC_PROJECT" (click)="updateProjectAccessLevel(PRIVATE_PROJECT)">Make Private</button>
                 <button type="submit" class="btn btn-warning mr-5" *ngIf="activeProject.accessLevel!=PUBLIC_PROJECT" (click)="updateProjectAccessLevel(PUBLIC_PROJECT)">Make Public</button>
                 <button type="submit" class="btn btn-danger ml-5" (click)="deleteProject()">Delete Project</button>
+                
             </div>
         </div>
     </div>

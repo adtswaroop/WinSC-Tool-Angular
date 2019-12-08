@@ -16,6 +16,7 @@ export class ProjectSettingsComponent implements OnInit {
   activeProject: Project;
   tempName: string;
   tempVision: string;
+  addMemberInput: string;
 
   constructor(private projectService: ProjectService) {
     this.projectService.getActiveProjectObject.subscribe((data) => {
@@ -23,6 +24,7 @@ export class ProjectSettingsComponent implements OnInit {
       this.activeProject.accessLevel = data.access;
       this.tempName = this.activeProject.name;
       this.tempVision = this.activeProject.vision;
+      this.addMemberInput = "";
       console.log(this.activeProject);
     });
   }
@@ -61,12 +63,18 @@ export class ProjectSettingsComponent implements OnInit {
   addProjectMember(event) {
     if (event.key === "Enter") {
       console.log(event.target.value);
-      //this.projectService.addProjectMember(event.target.value);
+      this.projectService.addProjectMember(event.target.value, this.activeProject.id);
+      this.addMemberInput = "";
     }
   }
 
   removeProjectMember(pMember) {
     //this.projectService.removeProjectMember();
+  }
+
+  aa(){
+    this.addMemberInput = "";
+    console.log(this.addMemberInput);
   }
 
 }
