@@ -4,7 +4,7 @@
     <div id="imgDiv"><img src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" style="width: 35px; padding-top: 20px;"></div>
     <div class="commentText">
         <div id="header">
-            <p><b>{{ winCondition.user.firstName + " " + winCondition.user.lastName}}:</b></p>
+            <p><b>{{ "[WC-" + winCondition.id+ "]  " +winCondition.user.firstName + " " + winCondition.user.lastName}}:</b></p>
             <div id="icons">
                 <!-- <i class="fas fa-pencil-alt" title="Edit Comment"></i> -->
                 <i (click)="deleteWin()" id="trash" class="fas fa-trash-alt" title="Delete Comment"></i>
