@@ -60,6 +60,10 @@ export class BackendService {
     return this.http.post<any>(`${environment.urlBase}/wincondition/${winConditionId}/comment`, comment);
   }
 
+  deleteWinConditionComment(winConditionCommentId: number) {
+    return this.http.delete<any>(`${environment.urlBase}/winconditioncomment/${winConditionCommentId}`);
+  }
+
   createProject(project: Project) {
     return this.http.post<any>(`${environment.urlBase}/project`, project);
   }

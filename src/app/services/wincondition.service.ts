@@ -119,6 +119,20 @@ export class WinconditionService {
     return promise;
   }
 
+  deleteWinConditionComment(comment: Comment) {
+    const promise = new Promise((resolve, reject) => {
+      const obs = this.backendService.deleteWinConditionComment(comment.id);
+      obs.subscribe((data) => {
+          console.log("Delete Successfull");
+          resolve();
+      }, (error) => {
+          reject();
+      });
+    });
+    return promise;
+  }
+
+
   createWinConditionComment(wincondition: WinCondition, comment: Comment) {
     const obs = this.backendService.createWinConditionComment(wincondition.id, comment);
     obs.subscribe((data) => {

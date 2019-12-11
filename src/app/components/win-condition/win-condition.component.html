@@ -28,7 +28,7 @@
 
 <div class="commentHolder" *ngIf="showComments">
     <div *ngFor="let com of winCondition.comments">
-        <app-comment [comment]=com></app-comment>
+        <app-comment [comment]=com (commentDeleted)="handleCommentDelete($event)"></app-comment>
     </div>
     <div>
         <div style="display: inline-block; float: left; margin-top: 10px; margin-left: 2rem;">
