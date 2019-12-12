@@ -71,6 +71,11 @@ export class CategoryHolderComponent implements OnInit, OnDestroy {
       }
   }
 
+  fakeEvent(box) {
+    const event = {key:"Enter"};
+    this.handleKey(event,box);
+  }
+
   handleCheck(event, category) {
     const checked = event.target.checked;
     if (checked) {

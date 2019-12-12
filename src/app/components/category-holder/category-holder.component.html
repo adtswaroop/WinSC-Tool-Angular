@@ -3,7 +3,7 @@
         <p class="category-header">
             Categories
         </p>
-        <button id="apply-category" type="submit" class="btn btn-primary" (click)="applyCategory()">Filter</button>
+        <button id="apply-category" type="submit" class="btn btn-primary" placement="bottom" ngbTooltip="Select categories and click Filter to filter win conditions" (click)="applyCategory()">Filter</button>
     </div>
     <form id="category-form" [formGroup]="categoryForm">
         <div *ngFor="let category of categories">
@@ -19,7 +19,9 @@
                 <input #box (keyup)="handleKey($event,box)" class="text" type="text" placeholder="Enter a new category...">
                 <input type="color" id="category-color" value="#ff0000">
             </div>
-            <label><input type="checkbox" id="mmf-input">Minimum Marketable</label>
-        </div>
+            <label placement="bottom" ngbTooltip="Check to set the new category as MMF"><input type="checkbox" id="mmf-input">Minimum Marketable</label>
+            <button id="apply-category" class="btn btn-primary float-left" placement="bottom" ngbTooltip="Click to add new category" (click)="fakeEvent(box)">Add Category</button>
+
+          </div>
     </form>
 </div>
