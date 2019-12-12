@@ -1,3 +1,5 @@
+import { User } from './../../classes/user';
+import { ProfileService } from './../../services/profile.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ProjectService } from './../../services/project/project.service';
 import { Subscription } from 'rxjs';
@@ -36,12 +38,15 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   private joinedProjectSub: Subscription;
   private otherProjectSub: Subscription;
-
+  private profileSub: Subscription;
   otherProjectList: Project[];
   joinedProjectList: Project[];
   searchWord: string;
-
-  constructor(private projectService: ProjectService, private modalService: NgbModal, private customModal: ModalService) {
+  activeProfile: User;
+  constructor(private projectService: ProjectService,
+              private modalService: NgbModal,
+              private customModal: ModalService,
+              private profileService: ProfileService) {
     // initialize service to retrieve project data
 
     // initialize project name and project description
@@ -51,6 +56,9 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     this.otherProjectSub = this.projectService.otherProjectList.subscribe((data => {
       this.otherProjectList = data;
     }));
+    this.profileSub = this.profileService.userData.subscribe((data) => {
+      this.activeProfile = data;
+    });
     // dynamically added div based on projects retrieved.
     // this.proj2 = 'ProjectY';
    }
@@ -84,5 +92,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.joinedProjectSub.unsubscribe();
     this.otherProjectSub.unsubscribe();
+    this.profileSub.unsubscribe();
   }
 }
