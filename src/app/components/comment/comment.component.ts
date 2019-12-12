@@ -1,7 +1,9 @@
 import { Comment } from './../../classes/comment';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalService } from './../../services/modal.service';
 import { Voters } from 'src/app/classes/voters';
+import { WinconditionService } from 'src/app/services/wincondition.service';
+
 // TODO: Handle long comments, limit text length
 @Component({
   selector: 'app-comment',
@@ -10,19 +12,19 @@ import { Voters } from 'src/app/classes/voters';
 })
 export class CommentComponent implements OnInit {
   @Input() comment: Comment;
+  @Output() commentDeleted = new EventEmitter<number>();
   showComments:boolean;
 
-  constructor(private customModal: ModalService) {
+  constructor(private customModal: ModalService, private winConditionService: WinconditionService) {
     this.showComments = true;
   }
 
   deleteComments() {
     this.customModal.openConfirmModal('Do you want to delete this comment?', (answer: boolean) => {
       if (answer) {
-        this.showComments = false;
-        return;
+        const promise = this.winConditionService.deleteWinConditionComment(this.comment);
+        promise.then(() => {this.commentDeleted.emit(this.comment.id); });
       }
-      console.log('No');
     });
   }
 

@@ -65,4 +65,11 @@ export class WinConditionComponent implements OnInit {
   addHashToCategory(categoryStr: string) {
     return "#"+categoryStr;
   }
+
+  handleCommentDelete(event) {
+    console.log("Event was "+event);
+    this.winCondition.comments = this.winCondition.comments.filter((com) => {
+        return com.id !== event;
+    });
+  }
 }
