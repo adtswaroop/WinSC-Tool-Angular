@@ -14,19 +14,19 @@
 
         <div id="slider">
             <div class="col-4">
-                <span>Business value</span>
+                <span>Business value [1-100]</span>
                 <input [(ngModel)]="project.businessValueWeight" (input)="validateProjectValues(); inputValidateValueProjectBusiness($event.target.value)" [ngClass]="inputProjectBusinessClass">
                 <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.businessValueWeight"></mat-slider>
             </div>
 
             <div class="col-4">
-                <span>Relative Penalty</span>
+                <span>Relative Penalty [1-100]</span>
                 <input [(ngModel)]="project.relativePenaltyWeight" (input)="validateProjectValues(); inputValidateValueProjectPenalty($event.target.value)" [ngClass]="inputProjectPenaltyClass">
                 <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.relativePenaltyWeight"></mat-slider>
             </div>
 
             <div class="col-4">
-                <span>Ease of Realization</span>
+                <span>Ease of Realization [1-100]</span>
                 <input [(ngModel)]="project.easeOfRealizationWeight" (input)="validateProjectValues(); inputValidateValueProjectEase($event.target.value)" [ngClass]="inputProjectEaseClass">
                 <mat-slider id="mat-slider" min="1" max="100" step="1" [(ngModel)]="project.easeOfRealizationWeight"></mat-slider>
             </div>
@@ -34,9 +34,9 @@
     </div>
 
     <div id="weight-titles">
-        <span class="title">Business <br/> value</span>
-        <span class="title">Relative <br/> Penalty</span>
-        <span class="title">Ease of <br/> Realization</span>
+        <span class="title">Business <br/> value <br/> [1-100]</span>
+        <span class="title">Relative <br/> Penalty <br/> [1-100]</span>
+        <span class="title">Ease of <br/> Realization <br/> [1-100]</span>
     </div>
     <div id="win-conditions-wrapper">
         <div *ngFor="let winCondition of winConditions | winConditionSort: currentSortState">
