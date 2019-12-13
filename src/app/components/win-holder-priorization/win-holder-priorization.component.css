@@ -91,6 +91,7 @@
     font-weight: bold;
     display: table-cell;
     text-align: center;
+    float: left;
 }
 
 app-win-condition-input#weight-value input {
