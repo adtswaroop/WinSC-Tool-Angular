@@ -10,7 +10,7 @@
                 <div id="icons">
                     <!-- <i class="fas fa-check" title="Mark as Issue Resolved"></i>
                     <i class="fas fa-pencil-alt" title="Edit Comment"></i> -->
-                    <i (click)="deleteComments()" id="trash" class="fas fa-trash-alt" title="Delete Comment"></i>
+                    <i (click)="deleteComments()" *ngIf="isDeletable"  id="trash" class="fas fa-trash-alt" title="Delete Comment"></i>
                 </div>
             </div>
             <div id="commentTxt">

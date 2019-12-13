@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { ProfileService } from './../../services/profile.service';
 import { Comment } from './../../classes/comment';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalService } from './../../services/modal.service';
@@ -14,12 +16,18 @@ export class CommentComponent implements OnInit {
   @Input() comment: Comment;
   @Output() commentDeleted = new EventEmitter<number>();
   showComments:boolean;
+  isDeletable = false;
+  pSub: Subscription;
 
-  constructor(private customModal: ModalService, private winConditionService: WinconditionService) {
+  constructor(private customModal: ModalService,
+              private winConditionService: WinconditionService,
+              private profileService : ProfileService) {
     this.showComments = true;
+
   }
 
   deleteComments() {
+    console.log(this.comment);
     this.customModal.openConfirmModal('Do you want to delete this comment?', (answer: boolean) => {
       if (answer) {
         const promise = this.winConditionService.deleteWinConditionComment(this.comment);
@@ -29,6 +37,11 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pSub = this.profileService.userData.subscribe((data) => {
+      if (data && data.id == this.comment.userId) {
+        this.isDeletable = true;
+      }
+    });
   }
 
   generateVoters(comment: Comment) {
@@ -37,6 +50,10 @@ export class CommentComponent implements OnInit {
       voters.upvoters = comment.upvoters;
       voters.downvoters = comment.downvoters;
       return voters;
+  }
+
+  ngOnDestroy(): void {
+    this.pSub.unsubscribe();
   }
 
 }
