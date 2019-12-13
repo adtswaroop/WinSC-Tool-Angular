@@ -39,4 +39,12 @@ export class ProjectVisionComponent implements OnInit {
     document.getElementById("save-button").style.display = 'inline';
   }
 
+  getTotalUsers() {
+    if (this.activeProject.users) {
+      return this.activeProject.users.length;
+    } else {
+      return 0;
+    }
+  }
+
 }
