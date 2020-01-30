@@ -66,13 +66,20 @@ Please do not stray off task on your feature branch, if you see unrelated bugs o
 ## Code Scaffolding
 
 In order to quickly and cleanly generate the supporting boilerplate for a new file, run
- `ng generate component component-name` 
- to generate a new component. You can also use 
- `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+`ng generate component component-name` 
+
+to generate a new component. You can also use 
+
+`ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Building
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run 
+
+`ng build` 
+
+to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Testing
 
