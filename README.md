@@ -1,6 +1,6 @@
 # WinBook App
 
-This is the repository for the WinBook 2.0 Frontend Web App
+This is the repository for the WinBook 2.0 Frontend webapp.
 
 ## Development Environment
 
@@ -9,12 +9,14 @@ Please make sure the following are installed:
 - NodeJS v13.6.6 [NodeJS](https://nodejs.org/en/)
 - AngularCLI v8.3.6 [Angular CLI](https://github.com/angular/angular-cli)
 
+Additionally, if you would like to build and run the app using Docker, [please install it](https://www.docker.com/get-started).
+
 ## Project Setup
 
 Please follow the guide for setting up your angular development environment using Angular-CLI as follows:
 [Angular CLI Basic Installation and Basic workflow](https://angular.io/cli)
 
-#### MacOS
+### MacOS
 Install the required dependencies for the project by running the following command in the project root directory:
 
 `npm install`
@@ -26,7 +28,7 @@ To run the local development web app, run
 and navigate to `http://localhost:4200/`. 
 The app will automatically reload if you change any of the source files.
 
-#### Windows
+### Windows
 Install angular by using the following command in the root directory:
 
 `npm install -g @angular/cli`
@@ -51,7 +53,6 @@ The app will automatically reload if you change any of the source files.
 ### WinBook Server
 
 Enter server root directory and use "node index.js" to run the server
-
 
 ## Contribution Conventions
 
@@ -99,4 +100,48 @@ Run
 
 to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Miscellaneous
+## Docker
+
+### Building image
+
+Once you have Docker installed, building a Winbook image is as easy as running the following:
+
+```
+$ docker build -t kgrimes2/winbook-app:<tag> .
+```
+
+where `<tag>` is the version of the `winbook-app` you are building.
+
+If the build completes without error, you should be able to see the image:
+
+```
+$ docker images | grep winbook
+kgrimes2/winbook-app     0.0.1     5f4158ab778f      10 minutes ago      59MB
+```
+
+### Running it
+
+You can run the frontend as follows:
+
+```
+$ docker run -p 3000:80 -d --name winbook-app kgrimes2/winbook-app:<tag>
+<container id>
+```
+
+You should then be able to access the webapp via `http://localhost:3000`.
+
+You can stop the container via `docker stop <container id>`.
+
+### Pushing it
+
+Once you've built an image, you can push it to the hub.docker.com registry. First, log in:
+
+```
+$ docker login docker.io
+```
+
+And then push the image:
+
+```
+$ docker push kgrimes2/winbook-app:<tag>
+```
