@@ -1,5 +1,8 @@
 # WinBook App
 
+[![](https://images.microbadger.com/badges/image/kgrimes2/winbook-app.svg)](https://microbadger.com/images/kgrimes2/winbook-app "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/kgrimes2/winbook-app.svg)](https://microbadger.com/images/kgrimes2/winbook-app "Get your own version badge on microbadger.com")
+
 This is the repository for the WinBook 2.0 Frontend webapp.
 
 ## Development Environment
