@@ -5,7 +5,7 @@
 
 This is the repository for the WinBook 2.0 Frontend webapp.
 
-## Development Environment
+## Requirements
 
 Please make sure the following are installed:
 
@@ -16,10 +16,8 @@ Additionally, if you would like to build and run the app using Docker, [please i
 
 ## Project Setup
 
-Please follow the guide for setting up your angular development environment using Angular-CLI as follows:
-[Angular CLI Basic Installation and Basic workflow](https://angular.io/cli)
-
 ### MacOS
+
 Install the required dependencies for the project by running the following command in the project root directory:
 
 `npm install`
@@ -52,6 +50,14 @@ To run the local development web app, run
 
 and navigate to `http://localhost:4200/`. 
 The app will automatically reload if you change any of the source files.
+
+### Docker
+
+You can run the frontend as follows (after running `docker login docker.io`):
+
+```
+$ docker run -p 3000:80 -d --name winbook-app kgrimes2/winbook-app:latest
+```
 
 ### WinBook Server
 
@@ -121,19 +127,6 @@ If the build completes without error, you should be able to see the image:
 $ docker images | grep winbook
 kgrimes2/winbook-app     0.0.1     5f4158ab778f      10 minutes ago      59MB
 ```
-
-### Running it
-
-You can run the frontend as follows:
-
-```
-$ docker run -p 3000:80 -d --name winbook-app kgrimes2/winbook-app:<tag>
-<container id>
-```
-
-You should then be able to access the webapp via `http://localhost:3000`.
-
-You can stop the container via `docker stop <container id>`.
 
 ### Pushing it
 
