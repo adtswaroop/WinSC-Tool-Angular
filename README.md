@@ -2,6 +2,14 @@
 
 This is the repository for the WinBook 2.0 Frontend Web App
 
+## Screenshots
+![](Images/SC1.png)
+![](Images/SC2.png)
+![](Images/SC3.png)
+![](Images/SC4.png)
+![](Images/SC5.png)
+![](Images/SC6.png)
+
 ## Development Environment
 
 Please make sure the following are installed:
